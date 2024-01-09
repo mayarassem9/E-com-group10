@@ -1,4 +1,4 @@
-#  BOOKERY Multi-Actor E-commerce System 
+#  BOOKERY Multi-Actor E-commerce System.
 
 This is an  Ecommerce project that helps the users to buy and sell books . The frontend of the system is built using HTML, CSS, Bootstrap, JavaScript, and Ajax.
 
