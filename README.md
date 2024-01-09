@@ -24,10 +24,12 @@ Product Catalog:
 
 * List products with details, images, and "Add to Cart" buttons
 * Browse and search functionality for Customers and Sellers
+
 Product Details Page:
 
 * Display comprehensive product information and images
 * Include "Back to Catalog" button for easy navigation
+
 Shopping Cart:
 
 * Track selected items for Customers
@@ -36,14 +38,17 @@ Checkout Process:
 
 * Collect shipping and payment information
 * Provide order summary before purchase finalization
+
 Seller Dashboard:
 
 * Manage products, process orders, and view sales analytics
 * Add, edit, and delete products
+  
 Admin Panel:
 
 * Manage user accounts, product listings, and customer service tasks
 * Access all system features
+
 Responsive Design:
 
 Ensure optimal viewing and functionality across various devices
