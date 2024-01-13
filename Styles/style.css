@@ -12,9 +12,45 @@ body {
 
 /*The Item Listing Section*/
 
+
+.nav-tabs {
+    justify-content: space-evenly; /* Justify the tabs */
+    padding: 10px;
+}
+
+.nav-tabs .nav-link {
+    color: #b7b7b7;
+    background-color: transparent; /* No background color for inactive tabs */
+    border: none; /* Remove border for inactive tabs */
+    border-radius: 0;
+    padding: 10px 20px; /* Add padding to the tabs */
+    transition: color 0.3s ease; /* Add a smooth transition for color changes */
+}
+
+.nav-tabs .nav-link:hover {
+    color: #111111; /* Change text color on hover */
+}
+
+.nav-tabs .nav-link.active {
+    color: #111111;
+    border: none; /* Remove border for active tab */
+}
+
+.nav-tabs .nav-link.active:focus,
+.nav-tabs .nav-link.active:active {
+    transform: scale(1.1); /* Apply a scale transformation on click for a fancy animation */
+    transition: transform 0.3s ease-in-out; /* Add a smooth transition for the scale transformation */
+}
+
+.tab-content {
+    padding: 10px;
+    border: none;
+}
+
+
 .custom-card-img {
     /* width: 253.4px;*/
-    height: 378px; 
+    /* height: 390px;  */
     object-fit: cover;
     transition: transform 0.4s ease-in-out;
 }
@@ -97,3 +133,5 @@ body {
 .card {
     animation: scaleAndFadeIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
+
+
