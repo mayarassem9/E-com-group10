@@ -1,0 +1,210 @@
+/*   Poster Section */
+.carousel-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+.carousel-item img{
+    height: 70vh;
+    width: 100%;
+}
+.carousel-item .subject {
+    flex:10%;
+    font-size: 5vw;
+    color: #f5f1f1;
+    margin: 0 0 10px;
+    font-family: cursive;
+    opacity: 0;
+}
+.DateOfBookClub{
+    flex:10%;
+    font-size: 2vw;
+    color: #f5f1f1;
+    margin: 0 0 10px;
+    font-family: cursive;
+    
+}
+.carousel-item.active .subject {
+    animation: fadeInLeft 0.5s ease forwards;
+}
+
+.carousel-item .container {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.image-container {
+    flex: 60%;
+    display: flex;
+    transition: transform 2s ease-in-out;
+}
+
+.image {
+    flex: 25%;
+    padding: 10px;
+}
+
+.image img {
+    width: 100%;
+    height: 80%;
+}
+
+
+@keyframes fadeInLeft {
+    0%{
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+
+.image-containerBookOfTheMounth img{
+    width: 100%;
+    height: 30vh;
+    transform: rotate(15deg);
+}
+
+.image-containerBookClub{
+     width: 60%;
+    height: 25%;
+   
+    
+}
+.imgBCTwo{
+min-width: 25vh;
+animation: fadeIn 5s ease-in-out infinite;
+}
+.imgBCOne{
+min-width: 25vh;
+animation: fadeOut 5s ease-out infinite;
+}
+@keyframes fadeIn {
+    0% {
+        transform: rotate(-15deg);
+    }
+    25% {
+        transform: rotate(15deg);
+    }
+    50%{
+        transform: rotate(-15deg);
+    }
+    100%{
+        transform: rotate(15deg);
+    }
+}
+@keyframes fadeOut {
+    0% {
+        transform: rotate(15deg);
+    }
+    25% {
+        transform: rotate(-15deg);
+    }
+    50%{
+        transform: rotate(15deg);
+    }
+    100%{
+        transform: rotate(-15deg);
+    }
+}
+
+
+
+
+.carousel-indicators button {
+    background-image:  radial-gradient(ellipse at top, #e66465, transparent),radial-gradient(ellipse at bottom, #4d9f0c, transparent);
+}
+.carousel-control-prev ,.carousel-control-next{
+    padding-top: 20vh;
+}
+.textBookOfTheMounth{
+    margin-left: 10vw;
+}
+.quote{
+    
+    color: #f8dfdf;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 25px;
+    font-style: italic;
+    margin-top: 20px;
+}
+.image img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Additional style cleanup and consistency */
+.image-container {
+    width: 60%;
+    height: 25%;
+}
+
+.imgBCOne, .imgBCTwo {
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+@media (max-width: 768px) {
+   
+.image-container {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+height: 50vh;
+
+}
+.image-container img{
+width: 50vw;
+}
+
+
+.carousel-item img {
+height: 70vh;
+}
+
+.carousel-item .subject {
+font-size: 4vw;
+}
+
+.DateOfBookClub {
+font-size: 3.5vw;
+}
+
+.image img {
+height: 60%;
+width: 100%;
+}
+
+.image-containerBookOfTheMounth img {
+height: 30vh;
+min-width: 30vh;
+}
+
+.image-containerBookClub {
+height: 30%;
+}
+
+.imgBCTwo, .imgBCOne {
+min-width: 20vh;
+}
+
+.textBookOfTheMounth {
+margin-left: 5vw;
+}
+
+.quote {
+font-size: 18px;
+}
+}
