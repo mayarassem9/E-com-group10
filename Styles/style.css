@@ -1,0 +1,137 @@
+
+/*The global Section*/
+html,
+body {
+	height: 100%;
+	font-family: "Nunito Sans", sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+
+
+
+/*The Item Listing Section*/
+
+
+.nav-tabs {
+    justify-content: space-evenly; /* Justify the tabs */
+    padding: 10px;
+}
+
+.nav-tabs .nav-link {
+    color: #b7b7b7;
+    background-color: transparent; /* No background color for inactive tabs */
+    border: none; /* Remove border for inactive tabs */
+    border-radius: 0;
+    padding: 10px 20px; /* Add padding to the tabs */
+    transition: color 0.3s ease; /* Add a smooth transition for color changes */
+}
+
+.nav-tabs .nav-link:hover {
+    color: #111111; /* Change text color on hover */
+}
+
+.nav-tabs .nav-link.active {
+    color: #111111;
+    border: none; /* Remove border for active tab */
+}
+
+.nav-tabs .nav-link.active:focus,
+.nav-tabs .nav-link.active:active {
+    transform: scale(1.1); /* Apply a scale transformation on click for a fancy animation */
+    transition: transform 0.3s ease-in-out; /* Add a smooth transition for the scale transformation */
+}
+
+.tab-content {
+    padding: 10px;
+    border: none;
+}
+
+
+.custom-card-img {
+    /* width: 253.4px;*/
+    /* height: 390px;  */
+    object-fit: cover;
+    transition: transform 0.4s ease-in-out;
+}
+.card {
+    /* height: 100%;
+    overflow: hidden; */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+} 
+
+.card:hover .custom-card-img {
+    transform: scale(1.05); /* Adjust the scale factor for the desired zoom effect */
+}
+
+.card-body {
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.card:hover .card-body {
+    background-color: #dfe1e6; /* Change the background color on hover */
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card-text {
+    color: #666;
+}
+
+.price {
+    font-size: 1.2rem;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.btn-dark {
+    background-color: #343a40;
+    color: #fff;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-dark:hover {
+    background-color: #1d2124;
+}
+.ribbon-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.ribbon-new {
+    font-size: 12px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 3px 8px;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 15px;
+    right: -25px;
+    z-index: 1;
+}
+
+@keyframes scaleAndFadeIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.card {
+    animation: scaleAndFadeIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+
