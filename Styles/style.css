@@ -1,3 +1,139 @@
+
+
+
+/* header*/
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000; /* Assuming a dark header from the image */
+    color: #fff;
+    padding: 10px 20px;
+}
+@media (max-width: 650px) {
+    .header {
+        display: none;
+    }
+}
+
+.left-section {
+   margin-left: 70px;
+}
+
+.right-section {
+    margin-right: 60px;
+    
+
+}
+
+.right-section a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    
+}
+
+.currency-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.currency-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.currency-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.currency-dropdown:hover .currency-content {
+    display: block;
+}
+/*nav bar*/
+.main-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 0 20px;
+}
+
+.logo img {
+    /* max-height: 50px; Adjust this value as needed */
+    height: 100px;
+    width: 120px; /* T   his will maintain the aspect ratio of the image */
+    margin-left:90px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    position: relative;
+    padding: 5px 5px;
+}
+
+.nav-links li a:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background: red;
+    transition: width 0.3s;
+}
+
+/* .nav-links li a:hover{
+    
+    
+} */
+.nav-links li a:hover:after {
+width: 90%;
+text-decoration: underline red;
+}
+.nav-icons {
+    
+    margin-right: 70px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    }
+.nav-icons a {
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    }
+    
+.nav-icons span {
+    font-size: 18px;
+    color: #000;
+}
+    
+.fa {
+    font-size: 18px;
+}
+
+
+
+/*Asmaa*/
+
+
 /*   Poster Section */
 .carousel-item::before {
     content: "";
@@ -208,3 +344,139 @@ margin-left: 5vw;
 font-size: 18px;
 }
 }
+
+/*The global Section Hamed*/
+html,
+body {
+	height: 100%;
+	font-family: "Nunito Sans", sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+
+
+
+/*The Item Listing Section*/
+
+
+.nav-tabs {
+    justify-content: space-evenly; /* Justify the tabs */
+    padding: 10px;
+}
+
+.nav-tabs .nav-link {
+    color: #b7b7b7;
+    background-color: transparent; /* No background color for inactive tabs */
+    border: none; /* Remove border for inactive tabs */
+    border-radius: 0;
+    padding: 10px 20px; /* Add padding to the tabs */
+    transition: color 0.3s ease; /* Add a smooth transition for color changes */
+}
+
+.nav-tabs .nav-link:hover {
+    color: #111111; /* Change text color on hover */
+}
+
+.nav-tabs .nav-link.active {
+    color: #111111;
+    border: none; /* Remove border for active tab */
+}
+
+.nav-tabs .nav-link.active:focus,
+.nav-tabs .nav-link.active:active {
+    transform: scale(1.1); /* Apply a scale transformation on click for a fancy animation */
+    transition: transform 0.3s ease-in-out; /* Add a smooth transition for the scale transformation */
+}
+
+.tab-content {
+    padding: 10px;
+    border: none;
+}
+
+
+.custom-card-img {
+    /* width: 253.4px;*/
+    /* height: 390px;  */
+    object-fit: cover;
+    transition: transform 0.4s ease-in-out;
+}
+.card {
+    /* height: 100%;
+    overflow: hidden; */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+} 
+
+.card:hover .custom-card-img {
+    transform: scale(1.05); /* Adjust the scale factor for the desired zoom effect */
+}
+
+.card-body {
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.card:hover .card-body {
+    background-color: #dfe1e6; /* Change the background color on hover */
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card-text {
+    color: #666;
+}
+
+.price {
+    font-size: 1.2rem;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.btn-dark {
+    background-color: #343a40;
+    color: #fff;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-dark:hover {
+    background-color: #1d2124;
+}
+.ribbon-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.ribbon-new {
+    font-size: 12px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 3px 8px;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 15px;
+    right: -25px;
+    z-index: 1;
+}
+
+@keyframes scaleAndFadeIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.card {
+    animation: scaleAndFadeIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
