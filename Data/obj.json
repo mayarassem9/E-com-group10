@@ -1,0 +1,97 @@
+{
+    "users":[
+       {
+          "id":1,
+          "role":"customer",
+          "username":"customer1",
+          "password":"password123",
+          "cart":[
+             
+          ],
+          "orders":[
+             
+          ]
+       },
+       {
+          "id":2,
+          "role":"seller",
+          "username":"seller1",
+          "password":"sellerpass",
+          "products":[
+             
+          ]
+       },
+       {
+          "id":3,
+          "role":"admin",
+          "username":"admin1",
+          "password":"adminpass"
+       }
+    ],
+    "products":[
+       {
+          "id":101,
+          "title":"The Great Gatsby",
+          "description":"Classic novel by F. Scott Fitzgerald",
+          "price":10.99,
+          "image":"gatsby.jpg",
+          "sellerId":2
+       },
+       {
+          "id":102,
+          "title":"To Kill a Mockingbird",
+          "description":"Harper Lee's masterpiece",
+          "price":12.99,
+          "image":"mockingbird.jpg",
+          "sellerId":2
+       }
+    ],
+    "cart":[
+       {
+          "userId":1,
+          "items":[
+             {
+                "productId":101,
+                "quantity":2
+             }
+          ]
+       }
+    ],
+    "orders":[
+       {
+          "orderId":1,
+          "userId":1,
+          "items":[
+             {
+                "productId":101,
+                "quantity":2
+             }
+          ],
+          "total":21.98,
+          "status":"completed"
+       }
+    ],
+    "sellerDashboard":{
+       "sellerId":2,
+       "products":[
+          {
+             "productId":101,
+             "quantity":50,
+             "sales":200
+          }
+       ],
+       "orders":[
+          {
+             "orderId":1,
+             "items":[
+                
+             ],
+             "total":21.98,
+             "status":"completed"
+          }
+       ],
+       "analytics":{
+          "totalSales":5000
+       }
+    }
+ }
