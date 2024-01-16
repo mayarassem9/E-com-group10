@@ -5,3 +5,15 @@ $(document).ready(function(){
         $('#count').html(counter);
     });
 });
+
+
+let app = {
+    users:[{
+        username:"",
+
+    },
+    {
+        
+    }]
+
+}
