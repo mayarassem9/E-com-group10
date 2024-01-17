@@ -1,0 +1,37 @@
+/*The global Section*/
+html,
+body {
+	height: 100%;
+	font-family: "Nunito Sans", sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+.table button {
+    transition: transform 0.5s ease-in-out;
+}
+
+.table button:hover {
+    transform: scale(1.1) rotate(10deg);
+}
+
+@keyframes rotateAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(20deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.table button:hover {
+    animation: rotateAnimation 0.5s ease-in-out infinite;
+}
+
+#Add-User{
+    transition: transform 0.5s ease-in-out;
+}
+#Add-User:hover{
+    transform: scale(1.05);
+}
