@@ -3,6 +3,8 @@ const users =  [ {id: 1, username: "customer1",email:"customer1@gmail.com", pass
                  {id: 3, username: "admin1",email:"admin1@gmail.com",password: "adminpass",role: "admin"}
                ];
 let allUsers=[];
+const usersPerPage = 5;
+let currentPage = 1;
 
 $(document).ready(function (){
     //saveUsersInLocalStorage(users) 
@@ -10,6 +12,24 @@ $(document).ready(function (){
     loadUsersFromLocalStorage();
     // OnLoad
     loadAllUsers();
+    updatePagination();
+    displayUsersByPage(currentPage);
+
+    // Event listeners for pagination
+    $('#prevPage').click(function () {
+        if (currentPage > 1) {
+            currentPage--;
+            displayUsersByPage(currentPage);
+        }
+    });
+
+    $('#nextPage').click(function () {
+        const totalPages = Math.ceil(allUsers.length / usersPerPage);
+        if (currentPage < totalPages) {
+            currentPage++;
+            displayUsersByPage(currentPage);
+        }
+    });
 
     //********* Event Listeners ***********
     $('#submitAddUser').click(function(){
@@ -32,8 +52,42 @@ $(document).ready(function (){
         let searchTerm = $(this).val().toLowerCase();
         searchAndDisplayUsers(searchTerm);
     });
+    $('#submitEditUser').click(function(){
+        console.log("HERE");
+        let target_id = $('#edit-id').val();
+        let name = $('#edit-name').val();
+        let password = $('#edit-password').val();
+        let email = $('#edit-email').val();
+        let role = $('#edit-role').val();
+        updateUser(target_id,name, email,password,role);
+    });
 
 });
+
+
+
+
+// function displayUsersByPage(page) {
+//     const startIndex = (page - 1) * usersPerPage;
+//     const endIndex = startIndex + usersPerPage;
+//     const usersToDisplay = allUsers.slice(startIndex, endIndex);
+//     displayFilteredUsers(usersToDisplay);
+//     updatePagination();
+// }
+
+// function updatePagination() {
+//     const totalPages = Math.ceil(allUsers.length / usersPerPage);
+//     let paginationHtml = '';
+
+//     for (let i = 1; i <= totalPages; i++) {
+//         const activeClass = i === currentPage ? 'active' : '';
+//         paginationHtml += `<li class="page-item ${activeClass}">
+//             <a class="page-link" href="#" onclick="displayUsersByPage(${i})">${i}</a>
+//         </li>`;  
+//     }
+
+//     $('#pagination').html(paginationHtml);
+// }
 
 
 function searchAndDisplayUsers(searchTerm) {
@@ -94,7 +148,7 @@ function loadAllUsers() {
                         <td>${user.password}</td>
                         <td>${user.role}</td>
                         <td>
-                            <button class="btn btn-secondary rounded-circle">
+                            <button class="btn btn-secondary rounded-circle"  data-bs-toggle="modal" data-bs-target="#editUserModal" onclick="loadUserToForm(${user.id})">
                                 <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
                             </button>
                             <button class="btn btn-danger rounded-circle" onclick="deleteUser(${user.id})">
@@ -120,7 +174,7 @@ function createNewUser(name,email, pass, role){
             Swal.fire({
             position: "top",
             icon: "success",
-            title: `You have added ${name} as a new user `,
+            title: `You have created a new user `,
             showConfirmButton: false,
             timer: 1500
           });
@@ -183,8 +237,38 @@ function loadUsersFromLocalStorage() {
     return myUsers;
 }
 
-function updateUser(){
+function loadUserToForm(id){
+    let myUser = allUsers.find(user => user.id === id);
+    console.log(myUser);
+    if(myUser){
+        $('#edit-id').val(myUser.id);
+        $('#edit-name').val(myUser.username);
+        $('#edit-email').val(myUser.email);
+        $('#edit-password').val(myUser.password);
+        $('#edit-role').val(myUser.role); 
+    }
+    
 
+}
+
+function updateUser(userId, name, email, password, role) {
+    console.log(userId);
+    //let indexToUpdate = allUsers.findIndex(user => user.id === userId);
+
+    allUsers[userId] = { id: userId, username: name, email:email, password:password, role:role };
+    console.log(allUsers);
+    saveUsersInLocalStorage(allUsers);
+
+    Swal.fire({
+        position: "top",
+        icon: "success",
+        title: `User updated successfuly `,
+        showConfirmButton: false,
+        timer: 1500
+      });
+    $('#editUserModal').modal('hide');
+
+    loadAllUsers();
 }
 function deleteUser(id) {
     allUsers.forEach((user, index) => {

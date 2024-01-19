@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../Styles/bootstrap.css">
     <link rel="stylesheet" href="../Styles/navbar_footer_styles.css">
     <link rel="stylesheet" href="admin_style.css">
+    <link rel="icon" href="../Resources/Images/logo/svg/White logo - no background.svg" type="image/png">
     </head>
 <body>
     <!-- **************************  NAV BAR  ****************************-->
@@ -71,48 +72,75 @@
           </div>
       </div>
         <button class="btn btn-dark mb-3 rounded" id="Add-User" data-bs-toggle="modal" data-bs-target="#addUserModal"><i class="fa-solid fa-user-plus" style="color: #ffffff;"></i> Add User</button>
+        
+    <div class="table-responsive">
+            <table class="table  table-hover" id="userTable">
+                <thead>
+                    <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-        <table class="table  table-hover" id="userTable">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Password</th>
-              <th>Role</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
+                
+                    
+                    
+                <!-- <tr class="row">
+                    <td class="col-sm-2">1</td>
+                    <td class="col-sm-2">customer1</td>
+                    <td class="col-sm-2">customer1</td>
+                    <td class="col-sm-2">password123</td>
+                    <td class="col-sm-2">Customer</td>
+                    <td class="col-sm-2">
+                        <button class="btn btn-secondary  rounded-circle "><i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i></button>
+                        <button class="btn btn-danger rounded-circle"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+                    </td>
+                </tr> -->
 
+                
+                
+                <!-- <tr class="row">
+                    <td class="col-1">1</td>
+                    <td class="col-2">customer1</td>
+                    <td class="col-2">customer1</td>
+                    <td class="col-2">password123</td>
+                    <td class="col-1">Customer</td>
+                    <td class="col-2">
+                    <button class="btn btn-secondary  rounded-circle "><i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i></button>
+                    <button class="btn btn-danger rounded-circle"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+                    </td>
+                </tr>  -->
+            </tbody>
+            </table>
+    </div> 
+
+ <!-- ************************** Pagination  ****************************-->
+ <!-- <div class="row justify-content-center mt-3">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#" id="prevPage" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
             
-                  
-            <!-- <tr>
-              <td>1</td>
-              <td>customer1</td>
-              <td>password123</td>
-              <td>Customer</td>
-              <td>
-                <button class="btn btn-secondary  rounded-circle "><i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i></button>
-                <button class="btn btn-danger rounded-circle"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
-              </td>
-            </tr>
+          
+            
+            <li class="page-item">
+                <a class="page-link" href="#" id="nextPage" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div> -->
 
-              
-            <tr>
-                <td>1</td>
-                <td>customer1</td>
-                <td>password123</td>
-                <td>Customer</td>
-                <td>
-                  <button class="btn btn-secondary  rounded-circle "><i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i></button>
-                  <button class="btn btn-danger rounded-circle"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
-                </td>
-            </tr> -->
-          </tbody>
-        </table>
-      </div>
-
+</div>
 
       <!-- *********************ADD New User Modal******************-->
     
@@ -163,10 +191,62 @@
             </div>
             </div>
         </div>
+ <!-- *********************Edit  User Modal******************-->
+    
+ <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title " id="exampleModalLabel">Edit New User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+                 <!-- My Edit User Form-->
+        <form  >
+            <div class="modal-body">
+            
+                <div class="mb-3 input-group">
+                <span class="input-group-text"><i class="fa-regular fa-user" style="color: #000000;"></i></span>
+                <!-- hidden input that has the id-->
+                <input type="text" class="form-control" id="edit-id" hidden>
+                <input type="text" class="form-control" id="edit-name" placeholder="Enter your name" required>
+                </div>
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa-regular fa-envelope" style="color: #000000;"></i></span>
+                    <input type="email" class="form-control" id="edit-email" placeholder="Enter your email" required>
+                    </div>
+                <div class="mb-3 input-group">
+                <span class="input-group-text"><i class="fa-solid fa-key" style="color: #000000;"></i></span>
+                <input type="password" class="form-control" id="edit-password" placeholder="Enter your password" required>
+                </div>
+                <div class="mb-3 input-group">
+                <span class="input-group-text"><i class="fa-solid fa-user-check" style="color: #000000;"></i></span>
+                <select class="form-select" id="edit-role" required>
+                    <option value="" disabled selected>Select a role</option>
+                    <option value="seller">Seller</option>
+                    <option value="customer">Customer</option>
+                    <!-- Add more roles as needed -->
+                </select>
+                </div>
+                <div class="alert alert-light d-flex align-items-center d-none" id="errorMsg" role="alert">
+                    <i class="fa-solid fa-triangle-exclamation px-2 " style="color: #c01111;"></i>
+                    <div id="errorMsg-text">
+                      error msg
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button"  class="btn btn-primary" id="submitEditUser">Update changes</button>
+            </div>
+        </form>
+    </div>
+    </div>
+</div>
+<!-- ************************** Pagination  ****************************-->
+
 
 
 </main>
-
 
 
 <!-- **************************  FOOTER  ****************************-->
