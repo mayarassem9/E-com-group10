@@ -8,12 +8,22 @@
     background-color: #000; /* Assuming a dark header from the image */
     color: #fff;
     padding: 10px 20px;
+   
 }
+
 @media (max-width: 650px) {
-    .header {
-        display: none;
+    .left-section {
+        font-size: small;
     }
+
 }
+#NavBar {
+    width: 100%;
+    top: 0;
+    position: fixed;
+    z-index: 1000;
+  }
+  
 
 .left-section {
    margin-left: 70px;
@@ -59,6 +69,7 @@
 }
 /*nav bar*/
 .main-navigation {
+ margin-top:65px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -69,14 +80,14 @@
 .logo img {
     /* max-height: 50px; Adjust this value as needed */
     height: 100px;
-    width: 120px; /* T   his will maintain the aspect ratio of the image */
-    margin-left:90px;
+    width: 10vw; /* T   his will maintain the aspect ratio of the image */
+    margin-left:20%;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 40px;
+    gap: 10px;
 }
 
 .nav-links li a {
@@ -98,6 +109,7 @@
     transition: width 0.3s;
 }
 
+
 /* .nav-links li a:hover{
     
     
@@ -108,7 +120,7 @@ text-decoration: underline red;
 }
 .nav-icons {
     
-    margin-right: 70px;
+    margin-right:30px;
     display: flex;
     align-items: center;
     gap: 20px;
@@ -127,6 +139,7 @@ text-decoration: underline red;
 .fa {
     font-size: 18px;
 }
+
 
 
 /*Asmaa*/
