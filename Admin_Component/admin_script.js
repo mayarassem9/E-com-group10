@@ -7,16 +7,12 @@ const usersPerPage = 5;
 let currentPage = 1;
 
 
-const $button  = document.querySelector('#sidebar-toggle');
-const $wrapper = document.querySelector('#wrapper');
 
-$button.addEventListener('click', (e) => {
-e.preventDefault();
-$wrapper.classList.toggle('toggled');
-});
 
 $(document).ready(function (){
     //saveUsersInLocalStorage(users) 
+
+    links[0].parentElement.classList.add('active');
 
     loadUsersFromLocalStorage();
     // OnLoad
@@ -24,6 +20,9 @@ $(document).ready(function (){
     updatePagination();
     displayUsersByPage(currentPage);
 
+    // Event listeners for Navigation
+
+    
     // Event listeners for pagination
 
     // $('#sidebar-toggle').click(function (e) {
@@ -80,29 +79,41 @@ $(document).ready(function (){
 });
 
 
+  function navigateLink(element) {
+    console.log("Hllll");
+    // Remove 'active' class from all links
+    $('.sidebar-nav li').removeClass('active');
+
+    // Add 'active' class to the clicked link
+    $(element).parent().addClass('active');
+  }
 
 
-// function displayUsersByPage(page) {
-//     const startIndex = (page - 1) * usersPerPage;
-//     const endIndex = startIndex + usersPerPage;
-//     const usersToDisplay = allUsers.slice(startIndex, endIndex);
-//     displayFilteredUsers(usersToDisplay);
-//     updatePagination();
-// }
+function displayUsersByPage(page) {
+    currentPage = page; // Set the current page to the clicked page
+    const startIndex = (page - 1) * usersPerPage;
+    const endIndex = startIndex + usersPerPage;
+    const usersToDisplay = allUsers.slice(startIndex, endIndex);
 
-// function updatePagination() {
-//     const totalPages = Math.ceil(allUsers.length / usersPerPage);
-//     let paginationHtml = '';
+    displayFilteredUsers(usersToDisplay);
+    updatePagination();
+}
 
-//     for (let i = 1; i <= totalPages; i++) {
-//         const activeClass = i === currentPage ? 'active' : '';
-//         paginationHtml += `<li class="page-item ${activeClass}">
-//             <a class="page-link" href="#" onclick="displayUsersByPage(${i})">${i}</a>
-//         </li>`;  
-//     }
+function updatePagination() {
+    const totalPages = Math.ceil(allUsers.length / usersPerPage);
+    let paginationHtml = '';
 
-//     $('#pagination').html(paginationHtml);
-// }
+    for (let i = 1; i <= totalPages; i++) {
+        const activeClass = i === currentPage ? 'active' : '';
+        paginationHtml += `<li class="page-item ${activeClass}">
+            <a class="page-link" href="#" onclick="displayUsersByPage(${i})">${i}</a>
+        </li>`;
+    }
+
+    $('.pagination-numbers').html(paginationHtml);
+}
+
+
 
 
 function searchAndDisplayUsers(searchTerm) {
@@ -110,7 +121,7 @@ function searchAndDisplayUsers(searchTerm) {
 
    
     if (searchTerm.trim() === '') {
-        loadAllUsers();
+        displayUsersByPage(currentPage);
         return;
     }
 
@@ -137,7 +148,7 @@ function displayFilteredUsers(users) {
                         <td>${user.password}</td>
                         <td>${user.role}</td>
                         <td>
-                            <button class="btn btn-secondary rounded-circle">
+                            <button class="btn btn-secondary rounded-circle"  data-bs-toggle="modal" data-bs-target="#editUserModal" onclick="loadUserToForm(${user.id})">
                                 <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
                             </button>
                             <button class="btn btn-danger rounded-circle" onclick="deleteUser(${user.id})">
@@ -195,7 +206,7 @@ function createNewUser(name,email, pass, role){
           });
           // to dismiss my new user modal
           $('#addUserModal').modal('hide');
-        loadAllUsers();
+        displayUsersByPage(currentPage);
     }
     else{
         ShowErrorMessage();
@@ -283,7 +294,7 @@ function updateUser(userId, name, email, password, role) {
       });
     $('#editUserModal').modal('hide');
 
-    loadAllUsers();
+    displayUsersByPage(currentPage);
 }
 function deleteUser(id) {
     allUsers.forEach((user, index) => {

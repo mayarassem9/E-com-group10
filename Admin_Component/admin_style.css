@@ -91,7 +91,7 @@ body {
   }
   .sidebar-nav > li {
     text-indent: 10px;
-    line-height: 42px;
+    line-height: 70px;
   }
   .sidebar-nav > li a {
     display: block;
@@ -271,4 +271,9 @@ body {
       position: relative;
       margin-right: 250px;
     }
+  }
+
+  .pagination-numbers{
+    display: flex;
+    flex-direction: row;
   }

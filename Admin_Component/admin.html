@@ -57,25 +57,25 @@
   
     <div id="wrapper">
   <!-- ************************** Side Bar ****************************-->
-        <aside id="sidebar-wrapper">
-          <div class="sidebar-brand">
+    <aside id="sidebar-wrapper">
+        <div class="sidebar-brand">
             <img src="../Resources/Images/logo/png/White logo - no background.png" alt="" srcset="">
-          </div>
-          <ul class="sidebar-nav">
-            <li class="active">
-              <a href="#"><i class=" fa fa-user"></i>Manage Users </a>
+        </div>
+        <ul class="sidebar-nav">
+            <li>
+                <a href="admin.html" data-tab="0"><i class=" fa fa-user" ></i>Manage Users</a>
             </li>
             <li>
-              <a href="#"><i class="fa fa-boxes-stacked " ></i>Manage Products</a>
+                <a href="#" data-tab="1"><i class="fa fa-boxes-stacked " ></i>Manage Products</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-chart-simple" ></i>Statistics</a>
-              </li>
-            <li>
-              <a href="#"><i class="fa fa-home"></i>Back To Home</a>
+                <a href="customer_service.html" data-tab="2"><i class="fa fa-headset"></i>Customer Service</a>
             </li>
-          </ul>
-        </aside>
+            <li>
+                <a href="../index.html" data-tab="3"><i class="fa fa-home"></i>Back To Home</a>
+            </li>
+        </ul>
+    </aside>
        <!-- ************************** NEW NAV BAR  ****************************-->
         <div id="navbar-wrapper">
           <nav class="navbar navbar-inverse sticky-top">
@@ -143,7 +143,7 @@
                 </div> 
             
              <!-- ************************** Pagination  ****************************-->
-             <!-- <div class="row justify-content-center mt-3">
+             <div class="row justify-content-center mt-3">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li class="page-item">
@@ -151,17 +151,20 @@
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
+                        <div class="pagination-numbers">
+
+                        </div>
                         
                       
                         
                         <li class="page-item">
                             <a class="page-link" href="#" id="nextPage" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
+                                <span aria-hidden="true">&raquo; </span>
                             </a>
                         </li>
                     </ul>
                 </nav>
-            </div> -->
+            </div> 
             
             </div>
             
@@ -350,8 +353,9 @@
         </div>
         
     </footer> -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../Scripts/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="navigation_script.js"></script>
     <script src="admin_script.js"></script>
     <script src="../Scripts/bootstrap.bundle.js"></script>
 </body>
