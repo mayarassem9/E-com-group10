@@ -12,8 +12,8 @@
     <link rel="icon" href="../Resources/Images/logo/svg/White logo - no background.svg" type="image/png">
     </head>
 <body>
-    <!-- **************************  NAV BAR  ****************************-->
-    <header>
+    <!-- ************************** OLD NAV BAR  ****************************-->
+    <!-- <header>
         <div class="header">
             <div class="left-section">
                 Free shipping, 30-day return or refund guarantee.
@@ -53,95 +53,128 @@
         </nav>
 
 
-    </header>
+    </header> -->
+  
+    <div id="wrapper">
+  <!-- ************************** Side Bar ****************************-->
+        <aside id="sidebar-wrapper">
+          <div class="sidebar-brand">
+            <img src="../Resources/Images/logo/png/White logo - no background.png" alt="" srcset="">
+          </div>
+          <ul class="sidebar-nav">
+            <li class="active">
+              <a href="#"><i class=" fa fa-user"></i>Manage Users </a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-boxes-stacked " ></i>Manage Products</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-chart-simple" ></i>Statistics</a>
+              </li>
+            <li>
+              <a href="#"><i class="fa fa-home"></i>Back To Home</a>
+            </li>
+          </ul>
+        </aside>
+       <!-- ************************** NEW NAV BAR  ****************************-->
+        <div id="navbar-wrapper">
+          <nav class="navbar navbar-inverse sticky-top">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a href="#" class="navbar-brand" id="sidebar-toggle"><i class="fa fa-bars"></i></a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      
     <!-- **************************  Admin Panel  ****************************-->
+        <section id="content-wrapper">
+            <div class="row">
+              <div class="col-lg-12">
+
+                <div class="container my-5 border rounded">
+        
+                    <h3 class="text text-center p-3 "> User Management</h3>
+            
+                        <!--******************** Search Input with Icon ******************** -->
+                  <div class="row my-3">
+                      <div class="col-md-6 offset-md-3">
+                    
+                          <form class="d-flex">
+                            <div class="input-group">
+                                <span class="input-group-prepend bg-light"><i class="input-group-text fa fa-search"></i></span>
+                                <input class="form-control me-2" type="search" placeholder="Search User" aria-label="Search">
+                                        
+                              <!-- <button class="btn btn-outline-dark" type="submit"></i></button> -->
+                            </div>
+                           
+                      
+                          </form>
+                      </div>
+                  </div>
+                    <button class="btn btn-dark mb-3 rounded" id="Add-User" data-bs-toggle="modal" data-bs-target="#addUserModal"><i class="fa-solid fa-user-plus" style="color: #ffffff;"></i> Add User</button>
+                    
+                <div class="table-responsive">
+                        <table class="table  table-hover" id="userTable">
+                            <thead>
+                                <tr>
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <!-- <tr class="row">
+                                <td class="col-sm-2">1</td>
+                                <td class="col-sm-2">customer1</td>
+                                <td class="col-sm-2">customer1</td>
+                                <td class="col-sm-2">password123</td>
+                                <td class="col-sm-2">Customer</td>
+                                <td class="col-sm-2">
+                                    <button class="btn btn-secondary  rounded-circle "><i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i></button>
+                                    <button class="btn btn-danger rounded-circle"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+                                </td>
+                            </tr> -->
+                        </tbody>
+                        </table>
+                </div> 
+            
+             <!-- ************************** Pagination  ****************************-->
+             <!-- <div class="row justify-content-center mt-3">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" id="prevPage" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        
+                      
+                        
+                        <li class="page-item">
+                            <a class="page-link" href="#" id="nextPage" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div> -->
+            
+            </div>
+            
+              </div>
+            </div>
+        </section>
+      
+      </div>
+    
 <main>
 
    
-    <div class="container mt-5">
-        <h2 class="text text-center"> User Management</h2>
-
-            <!--******************** Search Input with Icon ******************** -->
-      <div class="row my-3">
-          <div class="col-md-6 offset-md-3">
-        
-              <form class="d-flex">
-                  <input class="form-control me-2" type="search" placeholder="Search User" aria-label="Search">
-                  <!-- <button class="btn btn-outline-dark" type="submit"><i class="fas fa-search"></i></button> -->
-              </form>
-          </div>
-      </div>
-        <button class="btn btn-dark mb-3 rounded" id="Add-User" data-bs-toggle="modal" data-bs-target="#addUserModal"><i class="fa-solid fa-user-plus" style="color: #ffffff;"></i> Add User</button>
-        
-    <div class="table-responsive">
-            <table class="table  table-hover" id="userTable">
-                <thead>
-                    <tr>
-                    <th>ID</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>Role</th>
-                    <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                
-                    
-                    
-                <!-- <tr class="row">
-                    <td class="col-sm-2">1</td>
-                    <td class="col-sm-2">customer1</td>
-                    <td class="col-sm-2">customer1</td>
-                    <td class="col-sm-2">password123</td>
-                    <td class="col-sm-2">Customer</td>
-                    <td class="col-sm-2">
-                        <button class="btn btn-secondary  rounded-circle "><i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i></button>
-                        <button class="btn btn-danger rounded-circle"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
-                    </td>
-                </tr> -->
-
-                
-                
-                <!-- <tr class="row">
-                    <td class="col-1">1</td>
-                    <td class="col-2">customer1</td>
-                    <td class="col-2">customer1</td>
-                    <td class="col-2">password123</td>
-                    <td class="col-1">Customer</td>
-                    <td class="col-2">
-                    <button class="btn btn-secondary  rounded-circle "><i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i></button>
-                    <button class="btn btn-danger rounded-circle"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
-                    </td>
-                </tr>  -->
-            </tbody>
-            </table>
-    </div> 
-
- <!-- ************************** Pagination  ****************************-->
- <!-- <div class="row justify-content-center mt-3">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="#" id="prevPage" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            
-          
-            
-            <li class="page-item">
-                <a class="page-link" href="#" id="nextPage" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div> -->
-
-</div>
-
+   <!-- **************************  MODALS ****************************-->
       <!-- *********************ADD New User Modal******************-->
     
         <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -6,6 +6,15 @@ let allUsers=[];
 const usersPerPage = 5;
 let currentPage = 1;
 
+
+const $button  = document.querySelector('#sidebar-toggle');
+const $wrapper = document.querySelector('#wrapper');
+
+$button.addEventListener('click', (e) => {
+e.preventDefault();
+$wrapper.classList.toggle('toggled');
+});
+
 $(document).ready(function (){
     //saveUsersInLocalStorage(users) 
 
@@ -16,6 +25,12 @@ $(document).ready(function (){
     displayUsersByPage(currentPage);
 
     // Event listeners for pagination
+
+    // $('#sidebar-toggle').click(function (e) {
+    //     e.preventDefault();
+    //     $('#wrapper').toggleClass('toggled');
+    // });
+ 
     $('#prevPage').click(function () {
         if (currentPage > 1) {
             currentPage--;
