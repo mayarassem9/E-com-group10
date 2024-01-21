@@ -120,47 +120,55 @@ function validateForm() {
     var category = document.getElementById("Catogry").value;
     var bookImage = document.getElementById("BookImage").value;
 
+    let isnotvalidForm=true;
     
     if (!istextvalid(title)) {
         document.getElementById("title").classList.toggle("is-invalid");
-        return false;  
+        isnotvalidForm=false;
+        //return false;  
     }else{
         document.getElementById("title").classList.remove("is-invalid");
     }
     if (!istextvalid(authorName)) {
         document.getElementById("AuthorName").classList.toggle("is-invalid");
-        return false;
+        isnotvalidForm=false;
+        //return false;
     }else{
         document.getElementById("AuthorName").classList.remove("is-invalid");
     }
     if (!isnumbervalid(numOfStock)) {
         document.getElementById("NumberOfStock").classList.add("is-invalid");
-        return false;
+        isnotvalidForm=false;
+       // return false;
     }else{
         document.getElementById("NumberOfStock").classList.remove("is-invalid");
     }
     if (!isnumbervalid(price)) {
         document.getElementById("Price").classList.add("is-invalid");
-        return false;
+        isnotvalidForm=false;
+       // return false;
     }else{
         document.getElementById("Price").classList.remove("is-invalid");
     } if (!istextvalid(description)) {
         document.getElementById("Description").classList.add("is-invalid");
-        return false;
+        isnotvalidForm=false;
+        //return false;
     }else{
         document.getElementById("Description").classList.remove("is-invalid");
     } if (!istextvalid(category)) {
         document.getElementById("Catogry").classList.add("is-invalid");
-        return false;
+        isnotvalidForm=false;
+        //return false;
     }else{
         document.getElementById("Catogry").classList.remove("is-invalid");
     } if (!isImgValid(bookImage)) {
         document.getElementById("BookImage").classList.add("is-invalid");
-        return false;
+        isnotvalidForm=false;
+        //return false;
     }else{
         document.getElementById("BookImage").classList.remove("is-invalid");
     } 
-    return true;
+    return isnotvalidForm;
 }
 
 function validateFormEdit() {
@@ -173,41 +181,48 @@ function validateFormEdit() {
     var description = document.getElementById("DescriptionEdit").value;
     var category = document.getElementById("CatogryEdit").value;
 
+    let isnotvalidForm=true;
     if (!istextvalid(title)) {
         document.getElementById("titleEdit").classList.add("is-invalid");
-        return false;
+        isnotvalidForm=false;
+        //return false;
     }
     else{
         document.getElementById("titleEdit").classList.remove("is-invalid");
     }
     if (!istextvalid(authorName)) {
         document.getElementById("AuthorNameEdit").classList.add("is-invalid");
-        return false;
+        isnotvalidForm=false;
+        //return false;
     }else{
         document.getElementById("AuthorNameEdit").classList.remove("is-invalid");
     }
     if (!isnumbervalid(numOfStock)) {
         document.getElementById("NumberOfStockEdit").classList.add("is-invalid");
-      return false 
+        isnotvalidForm=false;
+      //return false 
     }else{
         document.getElementById("NumberOfStockEdit").classList.remove("is-invalid");
     }if (!isnumbervalid(price)) {
         document.getElementById("PriceEdit").classList.add("is-invalid");
-        return false;
+        isnotvalidForm=false;
+        //return false;
     } else{
         document.getElementById("PriceEdit").classList.remove("is-invalid");
     }if (!istextvalid(description)) {
         document.getElementById("DescriptionEdit").classList.add("is-invalid");
-        return false;
+        isnotvalidForm=false;
+        //return false;
     }else{
         document.getElementById("DescriptionEdit").classList.remove("is-invalid");
     } if (!istextvalid(category)) {
         document.getElementById("CatogryEdit").classList.add("is-invalid");
-        return false;
+        isnotvalidForm=false;
+        //return false;
     }else{
         document.getElementById("CatogryEdit").classList.remove("is-invalid");
     }
-    return true;
+    return isnotvalidForm;
 }
 /*===============End Validation================*/
 
