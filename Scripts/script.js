@@ -133,6 +133,10 @@ tabData.forEach(tab => {
 rowDiv.appendChild(ul);
 
 
+
+
+
+
 // ************  End of Creation of tabs ***************
 
 //////////////////////////////////////////////
@@ -149,38 +153,24 @@ const searchButton = document.getElementById("searchButton");
 
 const AddBookstoDom = (books) => {
     const remainingBooks = books.slice(displayedBooks, displayedBooks + pageSize);
-    console.log(remainingBooks);
-    remainingBooks.forEach(function (book) {
-        var bookCard = createBookCard(book.title, book.author, book.description, book.price, book.imgLink);
+
+    if (remainingBooks.length === 0) {
+        viewMoreButton.disabled = true; // Disable the button when no more books to show
+        return;
+    }
+
+    remainingBooks.forEach(book => {
+        const bookCard = createBookCard(book.id , book.title, book.author, book.description, book.price, book.imgLink, book.bestSeller,book.recentlyAdded);
         row.appendChild(bookCard);
     });
 
     displayedBooks += remainingBooks.length;
     container.append(row);
 
-    //console.log('Displayed Books:', displayedBooks);
-
-    if (displayedBooks >= allBooksData.length) {
-        console.log('Disabling button');
+    // Disable the button when all books in the current set are displayed
+    if (displayedBooks >= books.length) {
         viewMoreButton.disabled = true;
     }
-    else if (displayedBooks >= filteredBooks.length) {
-        console.log('Disabling button');
-        viewMoreButton.disabled = true;
-    }
-    else if (displayedBooks >=bestSellerBooks.length) {
-        console.log('Disabling button');
-        viewMoreButton.disabled = true;
-    }
-    else if (displayedBooks >= recentlyAddedBooks.length) {
-        console.log('Disabling button');
-        viewMoreButton.disabled = true;
-    }
-    else if (displayedBooks >= categoryData.length) {
-        console.log('Disabling button');
-        viewMoreButton.disabled = true;
-    }
-
 };
 
 const filterBooks = (searchTerm) => {
@@ -236,9 +226,14 @@ allBooks.appendChild(container);
 row.classList.add("row");
 
 // Function to create a book card dynamically
-function createBookCard(title, author, description, price, imageSrc) {
+function createBookCard(bookId, title, author, description, price, imageSrc, isBestSeller, isRecentlyAdded) {
     var colDiv = document.createElement('div');
     colDiv.classList.add('col-md-3', 'mb-4');
+
+    // Create an anchor for the entire card
+    var cardLink = document.createElement('a');
+    cardLink.href = 'Productdetails.html?id=' + bookId; // Construct the URL with the book ID
+    cardLink.classList.add('card-link'); // You can add a custom class for styling if needed
 
     var cardDiv = document.createElement('div');
     cardDiv.classList.add('card');
@@ -248,6 +243,7 @@ function createBookCard(title, author, description, price, imageSrc) {
 
     var img = document.createElement('img');
     img.src = imageSrc;
+    console.log('Image source:', imageSrc); // Log the image source
     img.classList.add('card-img-top', 'img-fluid');
     img.alt = title + ' Image';
 
@@ -266,9 +262,22 @@ function createBookCard(title, author, description, price, imageSrc) {
     cardDescription.classList.add('card-text');
     cardDescription.textContent = description;
 
+    // Create labels for Best Seller and Recently Added
+    var bestSellerLabel = document.createElement('span');
+    bestSellerLabel.classList.add('badge', 'badge-success');
+    bestSellerLabel.textContent = 'Best Seller';
+    bestSellerLabel.style.display = isBestSeller ? 'inline-block' : 'none';
+
+    var recentlyAddedLabel = document.createElement('span');
+    recentlyAddedLabel.classList.add('badge', 'badge-info');
+    recentlyAddedLabel.textContent = 'Recently Added';
+    recentlyAddedLabel.style.display = isRecentlyAdded ? 'inline-block' : 'none';
+
     var cardPrice = document.createElement('p');
     cardPrice.classList.add('card-text', 'price');
-    cardPrice.textContent = '$' + price.toFixed(2);
+    var formattedPrice = typeof price === 'number' ? '$' + price.toFixed(2) : 'Invalid Price';
+    cardPrice.textContent = formattedPrice;
+    
 
     var addToCartBtn = document.createElement('a');
     addToCartBtn.href = '#';
@@ -285,10 +294,14 @@ function createBookCard(title, author, description, price, imageSrc) {
     cardDiv.appendChild(imgDiv);
     cardDiv.appendChild(bodyDiv);
 
-    colDiv.appendChild(cardDiv);
+    cardLink.appendChild(cardDiv); // Wrap the entire cardDiv with the anchor
+    colDiv.appendChild(cardLink);
 
     return colDiv;
 }
+
+
+
 sectionProducts.appendChild(myTabContent);
 
 
@@ -296,6 +309,7 @@ sectionProducts.appendChild(myTabContent);
 const updateDisplayedBooks = (tabId) => {
     displayedBooks = 0;
     row.innerHTML = ''; // Clear existing books before adding new ones
+    viewMoreButton.disabled = false; // Enable the "View More" button when updating the tab
     
 
     if (tabId === 'allBooks') {
@@ -377,6 +391,28 @@ searchInput.addEventListener('keyup', (event) => {
         }
     }
 });
+
+//event listener for the taps to reset the view more button 
+viewMoreButton.addEventListener('click', () => {
+    const activeTab = ul.querySelector('.active');
+    if (activeTab) {
+        const tabId = activeTab.getAttribute('data-target').substring(1);
+        if (tabId === 'allBooks') {
+            addBooksToDOM(allBooksData);
+        } else if (tabId === 'bestSeller') {
+            fetchBestSellerBooks();
+        } else if (tabId === 'recentlyAdded') {
+            fetchRecentlyAddedBooks();
+        } else if (tabId === 'category') {
+            fetchCategoryBooks();
+        }
+    }
+});
+
+
+
+
+
 
 
 
