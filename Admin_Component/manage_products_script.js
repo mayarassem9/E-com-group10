@@ -2,14 +2,16 @@
 let data=[];
 fetch('../Data/books.json')
   .then(response => response.json())
-  .then(data => {
+  .then(_data => {
     // Now you can use the 'data' variable with the loaded JSON data
-    data =data;
+    console.log(_data);
+    data = _data;
   })
   .catch(error => console.error('Error loading JSON data:', error));
 
 $(document).ready(function() {
-    debugger
+    links[1].parentElement.classList.add('active');
+
     window.navigateToPage = function(pageUrl) {
         window.location.href = pageUrl;
     }
@@ -18,11 +20,11 @@ $(document).ready(function() {
     /*============================================*/
 
 
-    if (!localStorage.getItem("books")) {
+    if (!(localStorage.getItem("books"))) {
         var books = data.books;
         updateLocalStorage(books);
 
-    } else if(localStorage.getItem("books")){
+    } else{
         var books = JSON.parse(localStorage.getItem("books"));
 
     }
@@ -259,7 +261,7 @@ function Add() {
         "price": price,
         "category": category,
         "salerID": "11",
-        "imgLink": "Resources/Images/books/" + bookImage,
+        "imgLink": "/Resources/Images/books/" + bookImage,
         "stockNum": numOfStock
     };
 
@@ -314,7 +316,7 @@ window.EditV2 = function (obj) {
             books[i]["category"] = category;
 
             if (bookImage) {
-                books[i]["imgLink"] = "Resources/Images/books/" + bookImage;
+                books[i]["imgLink"] = "/Resources/Images/books/" + bookImage;
             }
         }
     }
@@ -508,7 +510,9 @@ window.Delete=function (obj) {
 /*============================================*/
 window.Info=function(obj){
     var img=document.createElement("img");
-    img.setAttribute("src",obj["imgLink"]);
+
+    // added  /  to configure
+    img.setAttribute("src","/"+obj["imgLink"]);
     img.setAttribute("width","100%");
     img.setAttribute("height","100%");
     document.getElementById("ImgInfo").innerHTML="";
