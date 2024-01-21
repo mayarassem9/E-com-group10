@@ -42,7 +42,7 @@
     color: #fff;
     text-decoration: none;
     margin-left: 20px;
-    
+
 }
 
 .currency-dropdown {
@@ -374,32 +374,32 @@ body {
 
 
 .nav-tabs {
-    justify-content: space-evenly; /* Justify the tabs */
+    justify-content: space-evenly;
     padding: 10px;
 }
 
 .nav-tabs .nav-link {
     color: #b7b7b7;
-    background-color: transparent; /* No background color for inactive tabs */
-    border: none; /* Remove border for inactive tabs */
+    background-color: transparent;
+    border: none;
     border-radius: 0;
-    padding: 10px 20px; /* Add padding to the tabs */
-    transition: color 0.3s ease; /* Add a smooth transition for color changes */
+    padding: 10px 20px;
+    transition: color 0.3s ease;
 }
 
 .nav-tabs .nav-link:hover {
-    color: #111111; /* Change text color on hover */
+    color: #111111;
 }
 
 .nav-tabs .nav-link.active {
     color: #111111;
-    border: none; /* Remove border for active tab */
+    border: none;
 }
 
 .nav-tabs .nav-link.active:focus,
 .nav-tabs .nav-link.active:active {
-    transform: scale(1.1); /* Apply a scale transformation on click for a fancy animation */
-    transition: transform 0.3s ease-in-out; /* Add a smooth transition for the scale transformation */
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
 }
 
 .tab-content {
@@ -407,57 +407,95 @@ body {
     border: none;
 }
 
+body {
+    overflow-x: hidden;
+}
+/*mourad*/
+/* Custom Styles for Book Cards */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 70%;
+}
+
+
+
+.card {
+    height: 100%; /* Set fixed height for cards */
+    width: 100%;  /* Set fixed width for cards */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
 
 .custom-card-img {
-    /* width: 253.4px;*/
-    /* height: 390px;  */
-    object-fit: cover;
-    transition: transform 0.4s ease-in-out;
+    position: relative;
 }
-.card {
-    /* height: 100%;
-    overflow: hidden; */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-} 
 
-.card:hover .custom-card-img {
-    transform: scale(1.05); /* Adjust the scale factor for the desired zoom effect */
+.card-img-top {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
 }
 
 .card-body {
-    text-align: center;
-    height: 100%;
+    padding: 15px;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: background-color 0.3s ease-in-out;
-}
-
-.card:hover .card-body {
-    background-color: #dfe1e6; /* Change the background color on hover */
 }
 
 .card-title {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.card-author {
+    font-size: 0.9rem;
+    color: #0d0a0a;
+    font-weight: 900;
+    margin-bottom: 8px;
 }
 
 .card-text {
-    color: #666;
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Show max 3 lines of description */
+    -webkit-box-orient: vertical;
 }
 
 .price {
-    font-size: 1.2rem;
-    color: #007bff;
     font-weight: bold;
+    color: #007bff; /* Blue color for the price */
+    margin-bottom: 8px;
+    text-align: center;
 }
 
 .btn-dark {
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 4px;
     background-color: #343a40;
     color: #fff;
     transition: background-color 0.3s ease-in-out;
+    
 }
-
 .btn-dark:hover {
     background-color: #1d2124;
 }
@@ -493,6 +531,36 @@ body {
 .card {
     animation: scaleAndFadeIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
+
+
+/* Media Queries for Responsive Design */
+@media (min-width: 992px) {
+    .col-md-3 {
+        width: 25%; /* 4 cards per row for wider screens */
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .col-md-3 {
+        width: 33.3333%; /* 3 cards per row for medium screens */
+    }
+}
+
+@media (max-width: 767px) and (min-width: 576px) {
+    .col-md-3 {
+        width: 50%; /* 2 cards per row for small screens */
+    }
+}
+
+@media (max-width: 575px) {
+    .col-md-3 {
+        width: 100%; /* 1 card per row for extra small screens */
+    }
+}
+
+/*********************************************************************/
+/*style for details */
+
 
 
 /* Mayar */
