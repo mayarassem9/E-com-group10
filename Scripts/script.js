@@ -1,7 +1,6 @@
 
 
 
-
 $(document).ready(function () {
 
     /* poster Section Index.html*/
@@ -10,11 +9,6 @@ $(document).ready(function () {
     var images = Array.from(imageContainer.querySelectorAll('.image'));
 
     function resetImagesPosition() {
-        imageContainer.style.transition = 'transform 2s ease';
-        imageContainer.style.transform = 'translateY(0)';
-        // Force reflow to apply the changes immediately
-        void imageContainer.offsetWidth;
-        imageContainer.style.transition = 'transform 2s ease-in-out';
     }
 
     setInterval(function () {
@@ -33,11 +27,22 @@ $(document).ready(function () {
 
             // Reset the transform
             resetImagesPosition();
+// nada_v2
+        }, 1000); // Set a timeout to match the transition duration
+    }, 2000); // Set the interval (in milliseconds) between image movements
 
-        });
-    
+    // Reset images position when transitioning to the next or previous slide
+    var carousel = new bootstrap.Carousel(document.getElementById('carouselExampleIndicators'), {
+        interval: 5000, // Set the interval (in milliseconds) between slide transitions
+        wrap: true
+    });
+
+    carousel._element.addEventListener('slide.bs.carousel', function () {
+        resetImagesPosition();
+    });
+
 });
-
+    
 
 
 
@@ -425,23 +430,8 @@ viewMoreButton.addEventListener('click', () => {
 
 
 
-=======
-// nada_v2
-        }, 1000); // Set a timeout to match the transition duration
-    }, 2000); // Set the interval (in milliseconds) between image movements
 
-    // Reset images position when transitioning to the next or previous slide
-    var carousel = new bootstrap.Carousel(document.getElementById('carouselExampleIndicators'), {
-        interval: 5000, // Set the interval (in milliseconds) between slide transitions
-        wrap: true
-    });
-
-    carousel._element.addEventListener('slide.bs.carousel', function () {
-        resetImagesPosition();
-    });
-
-});
-
+  
 
 
 // Asmaa
