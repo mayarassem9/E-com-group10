@@ -88,7 +88,6 @@ $(document).ready(function (){
     $(element).parent().addClass('active');
   }
 
-
 function displayUsersByPage(page) {
     currentPage = page; // Set the current page to the clicked page
     const startIndex = (page - 1) * usersPerPage;
@@ -109,7 +108,6 @@ function updatePagination() {
             <a class="page-link" href="#" onclick="displayUsersByPage(${i})">${i}</a>
         </li>`;
     }
-
     $('.pagination-numbers').html(paginationHtml);
 }
 
@@ -119,7 +117,6 @@ function updatePagination() {
 function searchAndDisplayUsers(searchTerm) {
     let filteredUsers = [];
 
-   
     if (searchTerm.trim() === '') {
         displayUsersByPage(currentPage);
         return;

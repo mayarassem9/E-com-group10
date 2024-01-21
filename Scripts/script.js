@@ -48,10 +48,8 @@ $(document).ready(function () {
     });
 
 });
-=======
-        });
-    
-});
+
+
 
 // Asmaa
 
@@ -65,6 +63,7 @@ function sendComplain()
 {
     let myMessage= $('#complainTextarea').val();
     let messages = loadMessagesFromLocalStorage();
+    console.log(messages);
 
     let messageID = createNewMessageID(messages);
     let userID =1;  // static for now will get it from cookie later
@@ -95,7 +94,7 @@ function sendComplain()
 }
 function loadMessagesFromLocalStorage(){
     let myMessages = JSON.parse(localStorage.getItem('customerServiceMessages'));
-    return myMessages;
+    return myMessages ? myMessages : [];
 }
 function saveMessagesToLocalStorage(_customerServiceMessages){
     let messagesJSON = JSON.stringify(_customerServiceMessages);
@@ -103,7 +102,7 @@ function saveMessagesToLocalStorage(_customerServiceMessages){
 }
 function createNewMessageID(messages) {
 
-    if (messages.length > 0) {
+    if (messages.length) {
         return messages[messages.length - 1].id + 1;
     } else {
         return 1;
