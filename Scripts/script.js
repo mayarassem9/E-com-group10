@@ -160,7 +160,7 @@ const AddBookstoDom = (books) => {
     }
 
     remainingBooks.forEach(book => {
-        const bookCard = createBookCard(book.id , book.title, book.author, book.description, book.price, book.imgLink, book.bestSeller,book.recentlyAdded);
+        const bookCard = createBookCard(book.ID , book.title, book.author, book.description, book.price, book.imgLink, book.bestSeller,book.recentlyAdded);
         row.appendChild(bookCard);
     });
 
