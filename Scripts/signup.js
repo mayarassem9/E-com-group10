@@ -51,13 +51,14 @@ function emailvalid(email) {
     
     
     if (/^[a-zA-Z0-9._%+-]+@(gmail|yahoo)\.com$/.test(email) && ! isSellerEmail(email)) {
-       
+       console.log("HHIIIIII");
         isEmailValid = true;
         email_message.textContent = ('valid email');
         email_message.style.color='green'
         document.getElementById('email').classList.remove('border-danger');
         document.getElementById('email').classList.add('border-success');
     } else {
+        console.log("NNNNIIIII");
         isEmailValid = false;
         email_message.textContent = ('Not valid. Only Gmail or Yahoo emails allowed or use another email.');
         email_message.style.color='red'
