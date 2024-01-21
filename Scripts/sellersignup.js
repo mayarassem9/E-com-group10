@@ -2,7 +2,6 @@ let isUserNameValid = false;
 let isEmailValid = false;
 let isPasswordValid = false;
 let isPasswordAgainValid = false;
-let id=0;
 
 
 document.getElementById("signup").addEventListener('click', function (e) {
@@ -49,7 +48,7 @@ function uservalid(username) {
 function emailvalid(email) {
     email_message=document.getElementById("emailmessage");
     
-    if (/^[a-zA-Z0-9._%+-]+@(gmail|yahoo)\.com$/.test(email)) {
+    if (/^[a-zA-Z0-9._%+-]+@(gmail|yahoo)\.com$/.test(email) && isCustomerEmail()) {
         isEmailValid = true;
         email_message.textContent = ('valid email');
         email_message.style.color='green'
@@ -57,7 +56,7 @@ function emailvalid(email) {
         document.getElementById('email').classList.add('border-success');
     } else {
         isEmailValid = false;
-        email_message.textContent = ('Not valid. Only Gmail or Yahoo emails allowed.');
+        email_message.textContent = ('Not valid. Only Gmail or Yahoo emails allowed or use another email.');
         email_message.style.color='red'
         document.getElementById('email').classList.remove('border-success');
         document.getElementById('email').classList.add('border-danger');
@@ -97,12 +96,21 @@ function samepass(password, againpassword) {
         document.getElementById("againpassword").classList.add('border-danger');
     }
 }
+function isCustomerEmail(email) {
+    let users = localStorage.getItem("users");
+    // if (!sellers) {
+    //     return false; 
+    // }
+    users = JSON.parse(users);
+    return (users.some(users => users.email === email));
+}
 function saveUserData(username, email, password) {
     let sellers = localStorage.getItem("sellers");
     sellers = sellers ? JSON.parse(sellers) : [];
+    let newid=sellers[sellers.length-1].id+1
 
     let newSeller = {
-        id:++id,
+        id:newid,
         username: username,
         email: email,
         password: password,

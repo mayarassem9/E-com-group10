@@ -49,7 +49,9 @@ function uservalid(username) {
 function emailvalid(email) {
     email_message=document.getElementById("emailmessage");
     
-    if (/^[a-zA-Z0-9._%+-]+@(gmail|yahoo)\.com$/.test(email)) {
+    
+    if (/^[a-zA-Z0-9._%+-]+@(gmail|yahoo)\.com$/.test(email) && ! isSellerEmail(email)) {
+       
         isEmailValid = true;
         email_message.textContent = ('valid email');
         email_message.style.color='green'
@@ -57,7 +59,7 @@ function emailvalid(email) {
         document.getElementById('email').classList.add('border-success');
     } else {
         isEmailValid = false;
-        email_message.textContent = ('Not valid. Only Gmail or Yahoo emails allowed.');
+        email_message.textContent = ('Not valid. Only Gmail or Yahoo emails allowed or use another email.');
         email_message.style.color='red'
         document.getElementById('email').classList.remove('border-success');
         document.getElementById('email').classList.add('border-danger');
@@ -97,12 +99,21 @@ function samepass(password, againpassword) {
         document.getElementById("againpassword").classList.add('border-danger');
     }
 }
+function isSellerEmail(email) {
+    let sellers = localStorage.getItem("sellers");
+    // if (!sellers) {
+    //     return false; 
+    // }
+    sellers = JSON.parse(sellers);
+    return (sellers.some(sellers => sellers.email === email));
+}
 function saveUserData(username, email, password) {
     let users = localStorage.getItem("users");
     users = users ? JSON.parse(users) : [];
+    let newid=users[users.length-1].id+1
 
     let newUser = {
-        id:++id,
+        id:newid,
         username: username,
         email: email,
         password: password,

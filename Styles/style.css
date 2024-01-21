@@ -1,6 +1,6 @@
 
 
-/* header*/
+/* header-nada*/
 .header {
     display: flex;
     justify-content: space-between;
@@ -14,6 +14,9 @@
 @media (max-width: 650px) {
     .left-section {
         font-size: small;
+    }
+    .logo img{
+        width:5vw ;
     }
 
 }
@@ -67,10 +70,10 @@
 .currency-dropdown:hover .currency-content {
     display: block;
 }
-/*nav bar*/
+/*nav bar  */
 .main-navigation {
  margin-top:65px;
-    display: flex;
+    display: flex;  
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
@@ -139,7 +142,7 @@ text-decoration: underline red;
 .fa {
     font-size: 18px;
 }
-
+/* end of nav bar nada */
 
 
 /*Asmaa*/
