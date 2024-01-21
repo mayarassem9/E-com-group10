@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="../Styles/all.min.css">
+    <link rel="stylesheet" href="../Styles/font-awesome.min.css">
+    <link rel="stylesheet" href="../Styles/bootstrap.css">
+    <link rel="stylesheet" href="../Styles/navbar_footer_styles.css">
+    <link rel="stylesheet" href="admin_style.css">
+    <link rel="icon" href="../Resources/Images/logo/svg/White logo - no background.svg" type="image/png">
+    </head>
+<body>
+    <!-- ************************** OLD NAV BAR  ****************************-->
+    <!-- <header>
+        <div class="header">
+            <div class="left-section">
+                Free shipping, 30-day return or refund guarantee.
+            </div>
+            <div class="right-section">
+                <a href="#">SIGN IN</a>
+                <a href="#">FAQS</a>
+                <div class="currency-dropdown">
+                    <button class="dropbtn">USD</button>
+                    <div class="currency-content">
+                        <a href="#">USD</a>
+                        <a href="#">EGP</a>
+                        <a href="#">EUR</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="main-navigation">
+            <div class="logo">
+                <a href="#">
+                    <img src="../Resources/Images/logo/logo.png" alt="book logo" height="50">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#section-poster">Shop</a></li>
+                <li><a href="#">Pages</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contacts</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-search"></i></i></a>
+                <a href="#"><i class="fa fa-heart"></i></a>
+                <a href="#"><i class="fa fa-shopping-bag"></i></a>
+                <span>$0.00</span>
+            </div>
+        </nav>
+
+
+    </header> -->
+  
+    <div id="wrapper">
+  <!-- ************************** Side Bar ****************************-->
+    <aside id="sidebar-wrapper">
+        <div class="sidebar-brand">
+            <img src="../Resources/Images/logo/png/White logo - no background.png" alt="" srcset="">
+        </div>
+        <ul class="sidebar-nav">
+            <li>
+                <a href="admin.html" data-tab="0"><i class=" fa fa-user" ></i>Manage Users</a>
+            </li>
+            <li>
+                <a href="#" data-tab="1"><i class="fa fa-boxes-stacked " ></i>Manage Products</a>
+            </li>
+            <li>
+                <a href="customer_service.html" data-tab="2"><i class="fa fa-headset"></i>Customer Service</a>
+            </li>
+            <li>
+                <a href="../index.html" data-tab="3"><i class="fa fa-home"></i>Back To Home</a>
+            </li>
+        </ul>
+    </aside>
+       <!-- ************************** NEW NAV BAR  ****************************-->
+        <div id="navbar-wrapper">
+          <nav class="navbar navbar-inverse sticky-top">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a href="#" class="navbar-brand" id="sidebar-toggle"><i class="fa fa-bars"></i></a>
+              </div>
+              <ul class="nav navbar-nav ml-auto">
+                <li><a href="#" id="signOut"> <i class="fa-solid fa-right-from-bracket"></i></a></li>
+            </ul>
+            </div>
+          
+          </nav>
+        </div>
+      
+    <!-- **************************  Admin Panel  ****************************-->
+        <section id="content-wrapper">
+            <div class="row">
+              <div class="col-lg-12">
+
+                <div class="container my-5 border rounded">
+        
+                    <h3 class="text text-center p-3 "> User Management</h3>
+            
+                        <!--******************** Search Input with Icon ******************** -->
+                  <div class="row my-3">
+                      <div class="col-md-6 offset-md-3">
+                    
+                          <form class="d-flex">
+                            <div class="input-group">
+                                <span class="input-group-prepend bg-light"><i class="input-group-text fa fa-search"></i></span>
+                                <input class="form-control me-2" type="search" placeholder="Search User" aria-label="Search">
+                                        
+                              <!-- <button class="btn btn-outline-dark" type="submit"></i></button> -->
+                            </div>
+                           
+                      
+                          </form>
+                      </div>
+                  </div>
+                    <button class="btn btn-dark mb-3 rounded" id="Add-User" data-bs-toggle="modal" data-bs-target="#addUserModal"><i class="fa-solid fa-user-plus" style="color: #ffffff;"></i> Add User</button>
+                    
+                <div class="table-responsive">
+                        <table class="table  table-hover" id="userTable">
+                            <thead>
+                                <tr>
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <!-- <tr class="row">
+                                <td class="col-sm-2">1</td>
+                                <td class="col-sm-2">customer1</td>
+                                <td class="col-sm-2">customer1</td>
+                                <td class="col-sm-2">password123</td>
+                                <td class="col-sm-2">Customer</td>
+                                <td class="col-sm-2">
+                                    <button class="btn btn-secondary  rounded-circle "><i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i></button>
+                                    <button class="btn btn-danger rounded-circle"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+                                </td>
+                            </tr> -->
+                        </tbody>
+                        </table>
+                </div> 
+            
+             <!-- ************************** Pagination  ****************************-->
+             <div class="row justify-content-center mt-3">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" id="prevPage" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <div class="pagination-numbers">
+
+                        </div>
+                        
+                      
+                        
+                        <li class="page-item">
+                            <a class="page-link" href="#" id="nextPage" aria-label="Next">
+                                <span aria-hidden="true">&raquo; </span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div> 
+            
+            </div>
+            
+              </div>
+            </div>
+        </section>
+      
+      </div>
+    
+<main>
+
+   
+   <!-- **************************  MODALS ****************************-->
+      <!-- *********************ADD New User Modal******************-->
+    
+        <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title " id="exampleModalLabel">Add New User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                         <!-- My Add User Form-->
+                <form  >
+                    <div class="modal-body">
+                    
+                        <div class="mb-3 input-group">
+                        <span class="input-group-text"><i class="fa-regular fa-user" style="color: #000000;"></i></span>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="mb-3 input-group">
+                            <span class="input-group-text"><i class="fa-regular fa-envelope" style="color: #000000;"></i></span>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                            </div>
+                        <div class="mb-3 input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-key" style="color: #000000;"></i></span>
+                        <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                        </div>
+                        <div class="mb-3 input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-user-check" style="color: #000000;"></i></span>
+                        <select class="form-select" id="role" required>
+                            <option value="" disabled selected>Select a role</option>
+                            <option value="seller">Seller</option>
+                            <option value="customer">Customer</option>
+                            <!-- Add more roles as needed -->
+                        </select>
+                        </div>
+                        <div class="alert alert-light d-flex align-items-center d-none" id="errorMsg" role="alert">
+                            <i class="fa-solid fa-triangle-exclamation px-2 " style="color: #c01111;"></i>
+                            <div id="errorMsg-text">
+                              error msg
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button"  class="btn btn-primary" id="submitAddUser">Save changes</button>
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+ <!-- *********************Edit  User Modal******************-->
+    
+ <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title " id="exampleModalLabel">Edit New User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+                 <!-- My Edit User Form-->
+        <form  >
+            <div class="modal-body">
+            
+                <div class="mb-3 input-group">
+                <span class="input-group-text"><i class="fa-regular fa-user" style="color: #000000;"></i></span>
+                <!-- hidden input that has the id-->
+                <input type="text" class="form-control" id="edit-id" hidden>
+                <input type="text" class="form-control" id="edit-name" placeholder="Enter your name" required>
+                </div>
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa-regular fa-envelope" style="color: #000000;"></i></span>
+                    <input type="email" class="form-control" id="edit-email" placeholder="Enter your email" required>
+                    </div>
+                <div class="mb-3 input-group">
+                <span class="input-group-text"><i class="fa-solid fa-key" style="color: #000000;"></i></span>
+                <input type="password" class="form-control" id="edit-password" placeholder="Enter your password" required>
+                </div>
+                <div class="mb-3 input-group">
+                <span class="input-group-text"><i class="fa-solid fa-user-check" style="color: #000000;"></i></span>
+                <select class="form-select" id="edit-role" required>
+                    <option value="" disabled selected>Select a role</option>
+                    <option value="seller">Seller</option>
+                    <option value="customer">Customer</option>
+                    <!-- Add more roles as needed -->
+                </select>
+                </div>
+                <div class="alert alert-light d-flex align-items-center d-none" id="errorMsg" role="alert">
+                    <i class="fa-solid fa-triangle-exclamation px-2 " style="color: #c01111;"></i>
+                    <div id="errorMsg-text">
+                      error msg
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button"  class="btn btn-primary" id="submitEditUser">Update changes</button>
+            </div>
+        </form>
+    </div>
+    </div>
+</div>
+<!-- ************************** Pagination  ****************************-->
+
+
+
+</main>
+
+
+<!-- **************************  FOOTER  ****************************-->
+<!-- Mayar -->
+    <!-- <footer class="footer">
+        <div class="container">
+            <div class="row">
+               <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img width="150px" src="Resources/Images/logo/png/White logo - no background.png" alt=""></a>
+                        </div>
+                        <p>The joy of our customers is the narrative that we continuously write and enrich through the pages of our bookstore</p>
+                    </div>
+               </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Shopping</h6>
+                        <ul>
+                            <li><a href="#">Clothing Store</a></li>
+                            <li><a href="#">Trending Shoes</a></li>
+                            <li><a href="#">Accessories</a></li>
+                            <li><a href="#">Sale</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Shopping</h6>
+                        <ul>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Payment Methods</a></li>
+                            <li><a href="#">Delivary</a></li>
+                            <li><a href="#">Return & Exchanges</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>NewLetter</h6>
+                        <div class="footer__newslatter">
+                            <p>Be the first to know about new arrivals, look books, sales & promos!</p>
+                            <form action="#">
+                                <input type="text" placeholder="Your email">
+                                <button type="submit"><span class="icon_mail_alt"></span><i class="fa-regular fa-envelope" style="color: #ffffff;"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+             
+                </div>
+                    <div class="row">
+                         <div class="col-lg-12 text-center">
+                            <div class="footer__copyright__text">
+                        
+                                 <p>Copyright ©
+                                 <script>
+                                    document.write(new Date().getFullYear());
+                                </script>2020
+                            All rights reserved | This website is made with <i class="fa fa-heart-o"
+                            aria-hidden="true"></i> by Team 10
+                        </p>
+                       
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+    </footer> -->
+    <script src="../Scripts/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="navigation_script.js"></script>
+    <script src="admin_script.js"></script>
+    <script src="../Scripts/bootstrap.bundle.js"></script>
+</body>
+</html>
