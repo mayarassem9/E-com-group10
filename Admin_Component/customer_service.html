@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="../Styles/all.min.css">
+    <link rel="stylesheet" href="../Styles/font-awesome.min.css">
+    <link rel="stylesheet" href="../Styles/bootstrap.css">
+    <link rel="stylesheet" href="../Styles/navbar_footer_styles.css">
+    <link rel="stylesheet" href="admin_style.css">
+    <link rel="icon" href="../Resources/Images/logo/svg/White logo - no background.svg" type="image/png">
+    </head>
+<body>
+
+    <div id="wrapper">
+        <!-- ************************** Side Bar ****************************-->
+        <aside id="sidebar-wrapper">
+            <div class="sidebar-brand">
+                <img src="../Resources/Images/logo/png/White logo - no background.png" alt="" srcset="">
+            </div>
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="admin.html" data-tab="0"><i class=" fa fa-user" ></i>Manage Users</a>
+                </li>
+                <li>
+                    <a href="#" data-tab="1"><i class="fa fa-boxes-stacked " ></i>Manage Products</a>
+                </li>
+                <li>
+                    <a href="customer_service.html" data-tab="2"><i class="fa fa-headset"></i>Customer Service</a>
+                </li>
+                <li>
+                    <a href="../index.html" data-tab="3"><i class="fa fa-home"></i>Back To Home</a>
+                </li>
+            </ul>
+        </aside>
+             <!-- ************************** NEW NAV BAR  ****************************-->
+              <div id="navbar-wrapper">
+                <nav class="navbar navbar-inverse sticky-top">
+                  <div class="container-fluid">
+                    <div class="navbar-header">
+                      <a href="#" class="navbar-brand" id="sidebar-toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav ml-auto">
+                      <li><a href="#" id="signOut"> <i class="fa-solid fa-right-from-bracket"></i></a></li>
+                  </ul>
+                  </div>
+                </nav>
+              </div>
+
+              <section id="content-wrapper">
+                <div class="container my-5 border rounded">
+        
+                    <h3 class="text text-center p-3 "> Inbox</h3>
+            
+                <div class="table-responsive">
+                    <table class="table  table-hover" id="messagesTable">
+                        <thead>
+                            <tr>
+                            <th>Message ID</th>
+                            <th>User ID</th>
+                            <th>Email</th>
+                            <th>Message</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <!-- <tr class="row">
+                            <td class="col-sm-2">1</td>
+                            <td class="col-sm-2">customer1</td>
+                            <td class="col-sm-2">customer1</td>
+                            <td class="col-sm-2">password123</td>
+                            <td class="col-sm-2">Customer</td>
+                            <td class="col-sm-2">
+                                <button class="btn btn-secondary  rounded-circle "><i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i></button>
+                                <button class="btn btn-danger rounded-circle"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+                            </td>
+                        </tr> -->
+                    </tbody>
+                    </table>
+                </div> 
+            </div> 
+        </section>
+    </div>
+
+
+
+<!-- The Read Message Modal -->
+
+  <div class="modal fade" id="readMessageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">User Message</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> </div>
+      </div>
+    </div>
+  </div>
+
+    <script src="../Scripts/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="navigation_script.js"></script>
+    <script src="cService_script.js"></script>
+    <script src="../Scripts/bootstrap.bundle.js"></script>
+</body>
+</html>
