@@ -1,0 +1,73 @@
+.fa {
+    font-size: 18px;
+}  
+@keyframes rotateAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(20deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+table .btn:hover {
+    animation: rotateAnimation 0.5s ease-in-out infinite;
+}
+.actionIcon{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+table .btn table {
+  width: 1vw;
+}
+      body{
+        padding: 0;
+        margin: 0;
+      }
+      table {
+        text-align: left;
+        
+      }
+        
+
+        
+        .row{
+          margin-bottom: 3%;
+        }
+        .InfoDiv h3{
+          text-align: center;
+        }
+        /****/
+.sidebarr{
+    padding-left: -5%;
+}
+.sidebarr .imgul li{
+    height: 15%;
+    margin-top: 30%;
+    cursor: pointer;
+}
+.sidebarr .imgul{
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+.imgul img{
+    width: 70%;
+    height: 70%;
+}
+.pagination {
+    justify-content: center;
+    color: black; 
+}
+.pagination .page-item a {
+    color: black; 
+}
+.pagination .page-item.active a {
+    background-color: black; 
+    border-color: black; 
+    color: white; 
+}
