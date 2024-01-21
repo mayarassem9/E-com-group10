@@ -229,10 +229,14 @@ row.classList.add("row");
 function createBookCard(bookId, title, author, description, price, imageSrc, isBestSeller, isRecentlyAdded) {
     var colDiv = document.createElement('div');
     colDiv.classList.add('col-md-3', 'mb-4');
+    console.log(bookId);
 
     // Create an anchor for the entire card
-    var cardLink = document.createElement('a');
-    cardLink.href = 'Productdetails.html?id=' + bookId; // Construct the URL with the book ID
+    var cardLink = document.createElement('div');
+    //cardLink.href = 'Productdetails.html?id=' + bookId; // Construct the URL with the book ID
+    cardLink.addEventListener("click",function(){
+        goToProductDetails(bookId);
+    });
     cardLink.classList.add('card-link'); // You can add a custom class for styling if needed
 
     var cardDiv = document.createElement('div');
@@ -301,6 +305,10 @@ function createBookCard(bookId, title, author, description, price, imageSrc, isB
 }
 
 
+function  goToProductDetails(bookId){
+    window.location.href = 'Productdetails.html?id=' + bookId;
+    
+}
 
 sectionProducts.appendChild(myTabContent);
 
