@@ -400,11 +400,12 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    width: 70%;
 }
 
 .card {
     height: 100%; /* Set fixed height for cards */
-    width: 100%;  /* Set fixed width for cards */
+    width: 70%;  /* Set fixed width for cards */
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
