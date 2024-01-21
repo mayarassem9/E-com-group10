@@ -41,6 +41,9 @@
                     <div class="navbar-header">
                       <a href="#" class="navbar-brand" id="sidebar-toggle"><i class="fa fa-bars"></i></a>
                     </div>
+                    <ul class="nav navbar-nav ml-auto">
+                      <li><a href="#" id="signOut"> <i class="fa-solid fa-right-from-bracket"></i></a></li>
+                  </ul>
                   </div>
                 </nav>
               </div>
@@ -48,15 +51,17 @@
               <section id="content-wrapper">
                 <div class="container my-5 border rounded">
         
-                    <h3 class="text text-center p-3 "> User Management</h3>
+                    <h3 class="text text-center p-3 "> Inbox</h3>
             
                 <div class="table-responsive">
-                    <table class="table  table-hover" id="userTable">
+                    <table class="table  table-hover" id="messagesTable">
                         <thead>
                             <tr>
+                            <th>Message ID</th>
                             <th>User ID</th>
                             <th>Email</th>
                             <th>Message</th>
+                            <th>Date</th>
                             <th>Actions</th>
                             </tr>
                         </thead>
@@ -79,6 +84,25 @@
         </section>
     </div>
 
+
+
+<!-- The Read Message Modal -->
+
+  <div class="modal fade" id="readMessageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">User Message</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> </div>
+      </div>
+    </div>
+  </div>
 
     <script src="../Scripts/jquery-3.7.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

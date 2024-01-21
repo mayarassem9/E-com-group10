@@ -277,3 +277,6 @@ body {
     display: flex;
     flex-direction: row;
   }
+  .read-message {
+    background-color: #c2dbff;
+}

@@ -593,3 +593,22 @@ body {
 	color: #e53637;
 }
 
+/*Customer Service Floating Button*/
+
+.fixed-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
+}
+
+.fixed-button button {
+  width: 50px; /* Adjust the button size */
+  height: 50px; /* Adjust the button size */
+  font-size: 24px; /* Adjust the button icon size */
+}
+
+.fixed-button button:hover {
+  transform: scale(1.2); /* Add a hover effect to make it slightly bigger on hover */
+}
