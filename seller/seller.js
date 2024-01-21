@@ -200,7 +200,7 @@ function validateFormEdit() {
     if (!isnumbervalid(numOfStock)) {
         document.getElementById("NumberOfStockEdit").classList.add("is-invalid");
         isnotvalidForm=false;
-      //return false 
+      //return false; 
     }else{
         document.getElementById("NumberOfStockEdit").classList.remove("is-invalid");
     }if (!isnumbervalid(price)) {
