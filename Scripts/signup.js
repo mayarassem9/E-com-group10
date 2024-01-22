@@ -101,16 +101,20 @@ function samepass(password, againpassword) {
 }
 function isSellerEmail(email) {
     let sellers = localStorage.getItem("sellers");
-    // if (!sellers) {
-    //     return false; 
-    // }
+    if (!sellers) {
+        return false; 
+    }
     sellers = JSON.parse(sellers);
     return (sellers.some(sellers => sellers.email === email));
 }
 function saveUserData(username, email, password) {
     let users = localStorage.getItem("users");
+    let newid=1;
     users = users ? JSON.parse(users) : [];
-    let newid=users[users.length-1].id+1
+    if(users.length!==0){
+            newid=users[users.length-1].id+1
+    }
+    
 
     let newUser = {
         id:newid,

@@ -1,3 +1,4 @@
+import { validateCredentials } from "./validateCredentials.js"
 let isEmailValid = false;
 let isPasswordValid = false;
 
@@ -7,8 +8,9 @@ document.getElementById("login").addEventListener('click', function (e) {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     emailvalid(email);
-    passvalid(password);
+     passvalid(password);
     if ( isEmailValid && isPasswordValid ){
+        console.log("inside event")
         validateCredentials(email, password);
 
     }
@@ -17,7 +19,7 @@ document.getElementById("login").addEventListener('click', function (e) {
 
 
 function emailvalid(email) {
-    email_message=document.getElementById("emailmessage");
+   let email_message=document.getElementById("emailmessage");
     
     if (/^[a-zA-Z0-9._%+-]+@(gmail|yahoo)\.com$/.test(email)) {
         isEmailValid = true;
@@ -34,7 +36,7 @@ function emailvalid(email) {
     }
 }
 function passvalid(password) {
-    pass_message=document.getElementById("passmassege");
+   let pass_message=document.getElementById("passmassege");
     if (/^\S{8,}$/.test(password)) {
         isPasswordValid = true;
         pass_message.textContent = ('valid password');
@@ -49,43 +51,60 @@ function passvalid(password) {
         document.getElementById('password').classList.add('border-danger');
     }
 }
-function validateCredentials(email, password) {
-    let users = localStorage.getItem("users");
-    let sellers = localStorage.getItem("sellers");
-    if (!users && !sellers) {
-        alert('Login Failed: No users registered');
-        return;
-    }
-    users = JSON.parse(users);
-    sellers=JSON.parse(sellers);
-    const userExists = users.find(user => user.email === email && user.password === password);
-    const sellerExists = sellers.find(sellers => sellers.email === email && sellers.password === password);
+// function validateCredentials(email, password) {
+//     let users = localStorage.getItem("users");
+//     let sellers = localStorage.getItem("sellers");
+//     let admin=localStorage.getItem("Admin")
+
+//     if(!admin){
+//         alert('no admin');
+//         return
+//     }
+//     if (!users && !sellers) {
+//         alert('Login Failed: No users or sellers registered');
+        
+//         return;
+//     }
     
-    if (userExists) {
-        localStorage.removeItem("currentUser");
-        const currentUser = [userExists];
-        // Save the current user's data in local storage
-        localStorage.setItem("currentUser", JSON.stringify(currentUser));
-        alert('Login Success');
-        return;
-    } 
-    if(sellerExists){
-        localStorage.removeItem("currentUser");
-        const currentUser = [sellerExists];
-        localStorage.setItem("currentUser", JSON.stringify(currentUser));
-        alert('Login Success');
-        return;
+//     users = JSON.parse(users);
+//     sellers=JSON.parse(sellers);
+//     admin=JSON.parse(admin);
+//     const adminExists = admin.find(admin => admin.email === email && admin.password === password);
+//     const userExists = users.find(user => user.email === email && user.password === password);
+//     const sellerExists = sellers.find(sellers => sellers.email === email && sellers.password === password);
+    
+//     if(adminExists){
+//         console.log("tat"); 
+//         window.location.href="index.html"
+//         return;
+//     }
+//     else if (userExists) {
+//         localStorage.removeItem("currentUser");
+//         const currentUser = [userExists];
+//         // Save the current user's data in local storage
+//         localStorage.setItem("currentUser", JSON.stringify(currentUser));
+//         window.location.href="index.html"
 
-    }
-    else {
-        email_message.textContent = ('incorrect email or password');
-        email_message.style.color='red'
-        document.getElementById('email').classList.remove('border-success');
-        document.getElementById('email').classList.add('border-danger');
-        pass_message.textContent = ('incorrect email or password')
-        pass_message.style.color='red'
-        document.getElementById('password').classList.remove('border-success');
-        document.getElementById('password').classList.add('border-danger');
+        
+//         return;
+//     } 
+//     else if(sellerExists){
+//         localStorage.removeItem("currentUser");
+//         const currentUser = [sellerExists];
+//         localStorage.setItem("currentUser", JSON.stringify(currentUser));
+//         window.location.href="seller.html"
+//         return;
 
-     }
-}
+//     }
+//     else {
+//         email_message.textContent = ('incorrect email or password');
+//         email_message.style.color='red'
+//         document.getElementById('email').classList.remove('border-success');
+//         document.getElementById('email').classList.add('border-danger');
+//         pass_message.textContent = ('incorrect email or password')
+//         pass_message.style.color='red'
+//         document.getElementById('password').classList.remove('border-success');
+//         document.getElementById('password').classList.add('border-danger');
+
+//      }
+// }
