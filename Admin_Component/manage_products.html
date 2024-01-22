@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="../Styles/all.min.css">
+    <link rel="stylesheet" href="../Styles/font-awesome.min.css">
+    <link rel="stylesheet" href="../Styles/bootstrap.css">
+    <link rel="stylesheet" href="../Styles/navbar_footer_styles.css">
+    <link rel="stylesheet" href="admin_style.css">
+    <link rel="icon" href="../Resources/Images/logo/svg/White logo - no background.svg" type="image/png">
+
+    </head>
+<body>
+
+    <div id="wrapper">
+        <!-- ************************** Side Bar ****************************-->
+        <aside id="sidebar-wrapper">
+            <div class="sidebar-brand">
+                <img src="../Resources/Images/logo/png/White logo - no background.png" alt="" srcset="">
+            </div>
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="admin.html" data-tab="0"><i class=" fa fa-user" ></i>Manage Users</a>
+                </li>
+                <li>
+                    <a href="manage_products.html" data-tab="1"><i class="fa fa-boxes-stacked " ></i>Manage Products</a>
+                </li>
+                <li>
+                    <a href="customer_service.html" data-tab="2"><i class="fa fa-headset"></i>Customer Service</a>
+                </li>
+                <li>
+                    <a href="../index.html" data-tab="3"><i class="fa fa-home"></i>Back To Home</a>
+                </li>
+            </ul>
+        </aside>
+             <!-- ************************** NEW NAV BAR  ****************************-->
+              <div id="navbar-wrapper">
+                <nav class="navbar navbar-inverse sticky-top">
+                  <div class="container-fluid">
+                    <div class="navbar-header">
+                      <a href="#" class="navbar-brand" id="sidebar-toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav ml-auto">
+                      <li><a href="#" id="signOut"> <i class="fa-solid fa-right-from-bracket"></i></a></li>
+                  </ul>
+                  </div>
+                </nav>
+              </div>
+
+            <section id="content-wrapper">
+                <!-- Content-->
+
+                        <!-- Main Content -->
+                        <div class="col-9 offset-1">
+                            <div class="container">
+                            <div class="main-content">
+                                <div class="row">
+                                    <div class="col-4">
+                                    <button  class="btn btn-dark"  type="button"  data-bs-toggle="modal" data-bs-target="#AddBook"><i class="fa-solid fa-book-open"></i>  New Book</button>
+                                    </div>
+                                    <div class="col-7">
+                                    <div class="container-fluid">
+                                        <form class="d-flex">
+                                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+                                        
+                                        </form>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class="table table-hover table-responsive">
+                                            <thead>
+                                                <th>ID</th>
+                                                <th>Title</th>
+                                                <th>Author</th>
+                                                <th>Mount Available</th>
+                                                <th>Action</th>
+
+                                            </thead>
+                                            <tbody>
+                                                <!-- Your table body goes here -->
+                                            </tbody>
+                                        </table>
+                                        <nav aria-label="Page navigation example">
+                                        <ul class="pagination">
+                                            
+                                        </ul>
+                                    </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            </div>
+                        
+            </section>
+
+    </div>
+
+
+
+<!-- ***********************************  Modals ***********************************   -->
+<div class="modal fade" id="Info" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="width: 80%;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <div class="container InfoDiv">
+        <div class="row">
+          <h3 id="titleInfo"></h3>
+        </div>
+        <div class="row">
+          <div class="col-5" id="ImgInfo">
+
+          </div>
+          <div class="col-7">
+            
+            <h5 id="authorInfo"></h5>
+            <h6 id="catagoryInfo"></h6>
+            <p id="descriptionInfo"></p>
+            <h6 id="priceInfo"></h6>
+
+          </div>
+        </div>
+       </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Modal for Adding Book -->
+   
+    <div class="modal fade" id="EditBook" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit Info About a Book</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form class="row g-3 needs-validation" novalidate>
+                <div class="">
+                  <input type="text" class="form-control" id="idd"  style="display:none;">
+                </div>
+                  <div class="col-md-6">
+                    <label for="titleEdit" class="form-label">Tittle</label>
+                    <input type="text" class="form-control" id="titleEdit"  required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="AuthorNameEdit" class="form-label">Author Name</label>
+                    <input type="text" class="form-control" id="AuthorNameEdit"  required>
+                  </div>
+                  
+                  <div class="col-md-4">
+                    <label for="NumberOfStockEdit" class="form-label">Number Of Stock</label>
+                    <input type="number" class="form-control" id="NumberOfStockEdit" required>
+                  </div>
+  
+                  <div class="col-md-4">
+                      <label for="PriceEdit" class="form-label">Price</label>
+                      <input type="text" class="form-control" id="PriceEdit" required>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="CatogryEdit" class="form-label">Catogry</label>
+                      <select class="form-select" id="CatogryEdit" required>
+                        <option selected disabled value="">Choose...</option>
+                        <option>Children</option>
+                        <option>Fiction</option>
+                        <option>History</option>
+                        <option>Motivational</option>
+                      </select>
+                      
+                    </div>
+                    <div class="col-md-12">
+                      <label for="DescriptionEdit" class="form-label">Description</label>
+                      <textarea class="form-control" id="DescriptionEdit" rows="3"></textarea>
+                      
+                    </div>
+                  
+                  
+  
+                    <div class="col-md-12">
+  
+                
+                      <label for="BookImageEdit" class="form-label">Book Image</label>
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" >Resources/Images/books/</span>
+                              <input type="file" class="form-control" id="BookImageEdit" >
+                              
+                          </div>
+      
+                            
+                        </div>
+                  
+                  
+                
+                
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" id="EditBookBtn">Edit</button>
+              
+  
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Modal for Editing Book -->
+      <div class="modal fade" id="AddBook" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit Info About a Book</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form class="row g-3 needs-validation" novalidate>
+                <div class="">
+                  <input type="text" class="form-control" id="idd"  style="display:none;">
+                </div>
+                  <div class="col-md-6">
+                    <label for="title" class="form-label">Tittle</label>
+                    <input type="text" class="form-control" id="title"  required>
+                    
+                  </div>
+                  <div class="col-md-6">
+                    <label for="AuthorName" class="form-label">Author Name</label>
+                    <input type="text" class="form-control" id="AuthorName"  required>
+                    
+                  </div>
+                  
+                  <div class="col-md-4">
+                    <label for="NumberOfStock" class="form-label">Number Of Stock</label>
+                    <input type="number" class="form-control" id="NumberOfStock" required>
+                    
+                  </div>
+                  <div class="col-md-4">
+                      <label for="Price" class="form-label">Price</label>
+                      <input type="text" class="form-control" id="Price" required>
+                      
+                    </div>
+                    <div class="col-md-4">
+                      <label for="Catogry" class="form-label">Category</label>
+                      <select class="form-select" id="Catogry" required>
+                        <option selected disabled value="">Choose...</option>
+                        <option>Children</option>
+                        <option>Fiction</option>
+                        <option>History</option>
+                        <option>Motivational</option>
+                      </select>
+                      
+                    </div>
+                    <div class="col-md-12">
+                      <label for="Description" class="form-label">Description</label>
+                      <textarea class="form-control" id="Description" rows="3"></textarea>
+                      
+                    </div>
+                  
+                  
+  
+                    <div class="col-md-12">
+  
+                
+                      <label for="BookImage" class="form-label">Book Image</label>
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" >Resources/Images/books/</span>
+                              <input type="file" class="form-control" id="BookImage" >
+                              
+                          </div>
+      
+                            
+                        </div>
+                  
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="addBookBtn">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <script src="../Scripts/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="navigation_script.js"></script>
+    <script src="manage_products_script.js"></script>
+    <script src="../Scripts/bootstrap.bundle.js"></script>
+</body>
+</html>

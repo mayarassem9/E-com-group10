@@ -1,0 +1,162 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000; /* Assuming a dark header from the image */
+    color: #fff;
+    padding: 10px 20px;
+   
+}
+
+@media (max-width: 650px) {
+    .left-section {
+        font-size: small;
+    }
+
+}
+#NavBar {
+    width: 100%;
+    top: 0;
+    position: fixed;
+    z-index: 1000;
+  }
+  
+
+.left-section {
+   margin-left: 70px;
+}
+
+.right-section {
+    margin-right: 60px;
+    
+
+}
+
+.right-section a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    
+}
+
+.currency-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.currency-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.currency-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.currency-dropdown:hover .currency-content {
+    display: block;
+}
+
+.main-navigation {
+ margin-top:65px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 0 20px;
+}
+
+.logo img {
+    /* max-height: 50px; Adjust this value as needed */
+    height: 100px;
+    width: 10vw; /* T   his will maintain the aspect ratio of the image */
+    margin-left:20%;
+}
+table th,table td{
+  text-align: center;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    position: relative;
+    padding: 5px 5px;
+}
+
+.nav-links li a:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background: red;
+    transition: width 0.3s;
+}
+
+
+/* .nav-links li a:hover{
+    
+    
+} */
+.nav-links li a:hover:after {
+width: 90%;
+text-decoration: underline red;
+}
+.nav-icons {
+    
+    margin-right:30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    }
+.nav-icons a {
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    }
+    
+.nav-icons span {
+    font-size: 18px;
+    color: #000;
+}
+    
+.fa {
+    font-size: 18px;
+} 
+/*=====================================*/ 
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: rgb(243, 239, 239);
+}
+.sidebarr{
+    height: 68vh;
+}
+
+.sidebarr,.Graph,.bestSeller,.orderTable{
+    background-color: white;
+    border-radius: 5%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1); /* Adjust the shadow as needed */
+}
+.Graph,.bestSeller,.orderTable{
+    height: 32vh;
+    margin-left: 1.5%;
+    margin-top: 1%;
+
+}
