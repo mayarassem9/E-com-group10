@@ -437,6 +437,10 @@ viewMoreButton.addEventListener('click', () => {
 // Asmaa
 
 // **************************** Cutomer Service Area *****************************
+function getCurrentUserFromLocalStorage(){
+    let current_user = JSON.parse(localStorage.getItem('currentUser'));
+    return current_user;
+}
 
 function closeFloatingBtn() {
     document.querySelector('.floating-btn-container').style.display = 'none';
@@ -447,10 +451,12 @@ function sendComplain()
     let myMessage= $('#complainTextarea').val();
     let messages = loadMessagesFromLocalStorage();
     console.log(messages);
+    let current_user = getCurrentUserFromLocalStorage();
+
 
     let messageID = createNewMessageID(messages);
-    let userID =1;  // static for now will get it from cookie later
-    let userEmail  = "jjj@gmail.com";
+    let userID =current_user[0].id;  
+    let userEmail  = current_user[0].email;
     let currentDate = new Date();
     let formattedDate = currentDate.toLocaleString('en-US', {
       year: 'numeric',
@@ -469,7 +475,7 @@ function sendComplain()
     Swal.fire({
         position: "top-end",
         icon: "success",
-        title: "Your Email Has been sent",
+        title: "Your Message Has been sent",
         showConfirmButton: false,
         timer: 1500
     });

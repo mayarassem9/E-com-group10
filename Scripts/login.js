@@ -10,7 +10,6 @@ document.getElementById("login").addEventListener('click', function (e) {
     passvalid(password);
     if ( isEmailValid && isPasswordValid ){
         validateCredentials(email, password);
-
     }
 });
 
@@ -51,41 +50,22 @@ function passvalid(password) {
 }
 function validateCredentials(email, password) {
     let users = localStorage.getItem("users");
-    let sellers = localStorage.getItem("sellers");
-    if (!users && !sellers) {
-        alert('Login Failed: No users registered');
-        return;
-    }
+    if(!users) return;
     users = JSON.parse(users);
-    sellers=JSON.parse(sellers);
+
     const userExists = users.find(user => user.email === email && user.password === password);
-    const sellerExists = sellers.find(sellers => sellers.email === email && sellers.password === password);
-    
     if (userExists) {
         localStorage.removeItem("currentUser");
         const currentUser = [userExists];
         // Save the current user's data in local storage
         localStorage.setItem("currentUser", JSON.stringify(currentUser));
-        alert('Login Success');
-        return;
-    } 
-    if(sellerExists){
-        localStorage.removeItem("currentUser");
-        const currentUser = [sellerExists];
-        localStorage.setItem("currentUser", JSON.stringify(currentUser));
-        alert('Login Success');
-        return;
-
+        window.location.href = "index.html";
+    } else{
+        Swal.fire({
+            icon: "error",
+            title: "Wrong Email or Password",
+            text: "Something went wrong!"
+          });
+          return;
     }
-    else {
-        email_message.textContent = ('incorrect email or password');
-        email_message.style.color='red'
-        document.getElementById('email').classList.remove('border-success');
-        document.getElementById('email').classList.add('border-danger');
-        pass_message.textContent = ('incorrect email or password')
-        pass_message.style.color='red'
-        document.getElementById('password').classList.remove('border-success');
-        document.getElementById('password').classList.add('border-danger');
-
-     }
 }

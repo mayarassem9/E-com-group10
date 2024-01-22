@@ -126,6 +126,7 @@ body {
     font-size: 24px;
     margin-bottom: 0;
     border-radius: 0;
+    display: flex;
   }
   #navbar-wrapper .navbar a {
     color: #757575;
