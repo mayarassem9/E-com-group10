@@ -44,3 +44,62 @@ $(document).ready(function(){
     
 });
 
+// Asmaa
+
+// **************************** Cutomer Service Area *****************************
+
+function closeFloatingBtn() {
+    document.querySelector('.floating-btn-container').style.display = 'none';
+  }
+
+function sendComplain() 
+{
+    let myMessage= $('#complainTextarea').val();
+    let messages = loadMessagesFromLocalStorage();
+
+    let messageID = createNewMessageID(messages);
+    let userID =1;  // static for now will get it from cookie later
+    let userEmail  = "jjj@gmail.com";
+    let currentDate = new Date();
+    let formattedDate = currentDate.toLocaleString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      timeZoneName: 'short'
+    });
+
+    if(myMessage!==''){
+        messages.push( {id:messageID,userId:userID,userEmail:userEmail,message:myMessage,isRead:false,date:formattedDate});
+    }
+    console.log(messages);
+    saveMessagesToLocalStorage(messages);
+    Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your Email Has been sent",
+        showConfirmButton: false,
+        timer: 1500
+    });
+    $('#dismissCustomerComplain').click();
+}
+function loadMessagesFromLocalStorage(){
+    let myMessages = JSON.parse(localStorage.getItem('customerServiceMessages'));
+    return myMessages;
+}
+function saveMessagesToLocalStorage(_customerServiceMessages){
+    let messagesJSON = JSON.stringify(_customerServiceMessages);
+    localStorage.setItem('customerServiceMessages', messagesJSON);
+}
+function createNewMessageID(messages) {
+
+    if (messages.length > 0) {
+        return messages[messages.length - 1].id + 1;
+    } else {
+        return 1;
+    }
+}
+
+// **************************** End of Cutomer Service Area *****************************
+
