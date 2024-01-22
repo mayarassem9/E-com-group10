@@ -187,11 +187,11 @@ const filterBooks = (searchTerm) => {
 
 const saveBooksToLocalStorage = (books) => {
     
-    localStorage.setItem('booksData', JSON.stringify(books));
+    localStorage.setItem('books', JSON.stringify(books));
 };
 
 const getBooksFromLocalStorage = () => {
-    const storedBooks = localStorage.getItem('booksData');
+    const storedBooks = localStorage.getItem('books');
     return storedBooks ? JSON.parse(storedBooks) : [];
 };
 
