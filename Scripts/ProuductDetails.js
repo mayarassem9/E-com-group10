@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 const getBooksFromLocalStorage = () => {
-    const storedBooks = localStorage.getItem('booksData');
+    const storedBooks = localStorage.getItem('books');
     return storedBooks ? JSON.parse(storedBooks) : [];
 
 };
