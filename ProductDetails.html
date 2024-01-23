@@ -1,3 +1,4 @@
+<!-- Mayar -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,10 +10,10 @@
     <link rel="stylesheet" href="Styles/bootstrap.css">
     <link rel="stylesheet" href="Styles/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="Scripts/ProuductDetails.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- Mayar -->
     <!-- **************************  NAV BAR  ****************************-->
     <header>
         <nav id="NavBar" >
@@ -71,6 +72,7 @@
                                         <div class="product__details__text">
                                             <!-- add book name dynamically from local storage -->
                                             <h4>Book Name</h4>
+                                            <h5>author name</h5>
                                             <div class="rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -86,7 +88,7 @@
                                             <div class="product__details__cart__option">
                                                 <div class="quantity">
                                                     <div class="pro-qty">
-                                                        <input type="text" value="1">
+                                                        <input type="number" value="1" min="1">
                                                     </div>
                                                 </div>
                                                 <a href="#" class="primary-btn">add to cart</a>
@@ -101,7 +103,7 @@
                     <!-- PRODUCT details pic -->
                     <div class="col-lg-6 col-md-12 col-12 order-md-2 order-1">
                         <div class="card">
-                            <img src="Resources/Images/books/image1.jpg" class="card-img-top img-fluid" alt="">
+                            <img src="Resources/Images/books/image1.jpg" class="card-img-top img-fluid" alt="" id="bookCover">
                         </div>
                     </div>
                 </div>
