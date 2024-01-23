@@ -404,6 +404,7 @@ body {
 
 .tab-content {
     padding: 10px;
+    margin-left: 20px;
     border: none;
 }
 
@@ -628,3 +629,190 @@ body {
 .fixed-button button:hover {
   transform: scale(1.2); /* Add a hover effect to make it slightly bigger on hover */
 }
+
+/*The Item Listing Section*/
+
+.nav-tabs {
+    justify-content: space-evenly;
+    padding: 10px;
+}
+
+.nav-tabs .nav-link {
+    color: #b7b7b7;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 10px 20px;
+    transition: color 0.3s ease;
+}
+
+.nav-tabs .nav-link:hover {
+    color: #111111;
+}
+
+.nav-tabs .nav-link.active {
+    color: #111111;
+    border: none;
+}
+
+.nav-tabs .nav-link.active:focus,
+.nav-tabs .nav-link.active:active {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.tab-content {
+    padding: 10px;
+    border: none;
+}
+
+body {
+    overflow-x: hidden;
+}
+/mourad/
+/* Custom Styles for Book Cards */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+
+.card {
+    height: 800px; /* Set a fixed height for cards */
+    width: 75%;  /* Set fixed width for cards */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.custom-card-img {
+    position: relative;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 480px;
+    border-bottom: 1px solid #ddd;
+}
+
+.card-body {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.card-author {
+    font-size: 0.9rem;
+    color: #0d0a0a;
+    font-weight: 900;
+    margin-bottom: 8px;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Show max 3 lines of description */
+    -webkit-box-orient: vertical;
+}
+
+.price {
+    font-weight: bold;
+    color: #007bff; /* Blue color for the price */
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.btn-dark {
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background-color: #343a40;
+    color: #fff;
+    transition: background-color 0.3s ease-in-out;
+    
+}
+.btn-dark:hover {
+    background-color: #1d2124;
+}
+.ribbon-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.ribbon-new {
+    font-size: 12px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 3px 8px;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 15px;
+    right: -25px;
+    z-index: 1;
+}
+
+@keyframes scaleAndFadeIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.card {
+    animation: scaleAndFadeIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+
+/* Media Queries for Responsive Design */
+@media (min-width: 992px) {
+    .col-md-3 {
+        width: 25%; /* 4 cards per row for wider screens */
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .col-md-3 {
+        width: 33.3333%; /* 3 cards per row for medium screens */
+    }
+}
+
+@media (max-width: 767px) and (min-width: 576px) {
+    .col-md-3 {
+        width: 50%; /* 2 cards per row for small screens */
+    }
+}
+@media (max-width: 575px) {
+    .col-md-3 {
+        width: 100%; /* 2 cards per row for small screens */
+    }
+}
+

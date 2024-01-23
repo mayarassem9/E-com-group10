@@ -2,6 +2,7 @@
 let is_admin=false;
 let is_user=false;
 let is_seller=false;
+
 export function isadmin(email ,password){
     let admin=localStorage.getItem("users");
 
