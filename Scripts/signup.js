@@ -101,10 +101,10 @@ function samepass(password, againpassword) {
     }
 }
 function isSellerEmail(email) {
-    let sellers = localStorage.getItem("sellers");
-    // if (!sellers) {
-    //     return false; 
-    // }
+    let sellers = localStorage.getItem("users");
+    if (!sellers) {
+        return false; 
+    }
     sellers = JSON.parse(sellers);
     return (sellers.some(sellers => sellers.email === email));
 }
@@ -118,7 +118,7 @@ function saveUserData(username, email, password) {
         username: username,
         email: email,
         password: password,
-        role:"user"
+        role:"customer"
 }
     localStorage.removeItem("currentUser");
     const currentUser = [newUser];

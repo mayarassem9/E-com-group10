@@ -22,7 +22,7 @@ document.getElementById("signup").addEventListener('click', function (e) {
         } else {
             // Email is unique, proceed with the sign-up process
             saveUserData(username, email, password);
-            window.location.href="index.html"
+            window.location.href="seller.html"
 
         }
    }
@@ -48,7 +48,7 @@ function uservalid(username) {
 function emailvalid(email) {
     email_message=document.getElementById("emailmessage");
     
-    if (/^[a-zA-Z0-9._%+-]+@(gmail|yahoo)\.com$/.test(email) && isCustomerEmail()) {
+    if (/^[a-zA-Z0-9._%+-]+@(gmail|yahoo)\.com$/.test(email) && !isCustomerEmail()) {
         isEmailValid = true;
         email_message.textContent = ('valid email');
         email_message.style.color='green'
@@ -98,16 +98,20 @@ function samepass(password, againpassword) {
 }
 function isCustomerEmail(email) {
     let users = localStorage.getItem("users");
-    // if (!sellers) {
-    //     return false; 
-    // }
+    if (!users) {
+        return false; 
+    }
     users = JSON.parse(users);
     return (users.some(users => users.email === email));
 }
 function saveUserData(username, email, password) {
-    let sellers = localStorage.getItem("sellers");
+    let sellers = localStorage.getItem("users");
+    let newid=1;
     sellers = sellers ? JSON.parse(sellers) : [];
-    let newid=sellers[sellers.length-1].id+1
+    if(sellers.length!==0){
+        newid=sellers[sellers.length-1].id+1
+    }
+    
 
     let newSeller = {
         id:newid,
@@ -115,16 +119,16 @@ function saveUserData(username, email, password) {
         email: email,
         password: password,
         role:"seller"
-}
+    }
     localStorage.removeItem("currentUser");
     const currentUser = [newSeller];
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
     
     sellers.push(newSeller);
-    localStorage.setItem("sellers", JSON.stringify(sellers));
+    localStorage.setItem("users", JSON.stringify(sellers));
 }
 function emailExists(email) {
-    let sellers = localStorage.getItem("sellers");
+    let sellers = localStorage.getItem("users");
     if (!sellers) {
         return false; // No users stored yet
     }

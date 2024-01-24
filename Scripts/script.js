@@ -1,39 +1,47 @@
 
 
-
-
-$(document).ready(function () {
+$(document).ready(function(){
 
     /* poster Section Index.html*/
+    
+        var imageContainer = document.querySelector('.image-container');
+        var images = Array.from(imageContainer.querySelectorAll('.image'));
 
-    var imageContainer = document.querySelector('.image-container');
-    var images = Array.from(imageContainer.querySelectorAll('.image'));
+        function resetImagesPosition() {
+            imageContainer.style.transition = 'transform 2s ease';
+            imageContainer.style.transform = 'translateY(0)';
+            // Force reflow to apply the changes immediately
+            void imageContainer.offsetWidth;
+            imageContainer.style.transition = 'transform 2s ease-in-out';
+        }
 
-    function resetImagesPosition() {
-        imageContainer.style.transition = 'transform 2s ease';
-        imageContainer.style.transform = 'translateY(0)';
-        // Force reflow to apply the changes immediately
-        void imageContainer.offsetWidth;
-        imageContainer.style.transition = 'transform 2s ease-in-out';
-    }
+        setInterval(function () {
+            // Apply a transform to move images to the top smoothly
+            imageContainer.style.transform = 'translateY(-25%)';
 
-    setInterval(function () {
-        // Apply a transform to move images to the top smoothly
-        imageContainer.style.transform = 'translateY(-25%)';
+            setTimeout(function () {
+                // Move the first image to the end
+                var firstImage = images.shift();
+                images.push(firstImage);
 
-        setTimeout(function () {
-            // Move the first image to the end
-            var firstImage = images.shift();
-            images.push(firstImage);
+                // Update the container with the new order
+                images.forEach(function (image) {
+                    imageContainer.appendChild(image);
+                });
 
-            // Update the container with the new order
-            images.forEach(function (image) {
-                imageContainer.appendChild(image);
-            });
+                // Reset the transform
+                resetImagesPosition();
+            }, 1000); // Set a timeout to match the transition duration
+        }, 2000); // Set the interval (in milliseconds) between image movements
 
-            // Reset the transform
+        // Reset images position when transitioning to the next or previous slide
+        var carousel = new bootstrap.Carousel(document.getElementById('carouselExampleIndicators'), {
+            interval: 5000, // Set the interval (in milliseconds) between slide transitions
+            wrap: true
+        });
+
+        carousel._element.addEventListener('slide.bs.carousel', function () {
             resetImagesPosition();
-
         });
     
 });
@@ -46,12 +54,15 @@ $(document).ready(function () {
 
 
 
+<<<<<<< HEAD
 
 
 
 
 
 
+=======
+>>>>>>> b27aee95b22e3e0c2bcebd62b6533d71c95d8dc8
 // ************  Creation of tabs ***************
 
 
@@ -199,6 +210,10 @@ const filterBooks = (searchTerm) => {
 };
 //function to saveBooksToLocalStorage
 const saveBooksToLocalStorage = (books) => {
+<<<<<<< HEAD
+=======
+    
+>>>>>>> b27aee95b22e3e0c2bcebd62b6533d71c95d8dc8
     localStorage.setItem('books', JSON.stringify(books));
 };
 //function to getBooksFromLocalStorage
@@ -407,28 +422,17 @@ document.addEventListener('DOMContentLoaded', getBooks);
 
 
 
-=======
-// nada_v2
-        }, 1000); // Set a timeout to match the transition duration
-    }, 2000); // Set the interval (in milliseconds) between image movements
 
-    // Reset images position when transitioning to the next or previous slide
-    var carousel = new bootstrap.Carousel(document.getElementById('carouselExampleIndicators'), {
-        interval: 5000, // Set the interval (in milliseconds) between slide transitions
-        wrap: true
-    });
-
-    carousel._element.addEventListener('slide.bs.carousel', function () {
-        resetImagesPosition();
-    });
-
-});
-
+  
 
 
 // Asmaa
 
 // **************************** Cutomer Service Area *****************************
+function getCurrentUserFromLocalStorage(){
+    let current_user = JSON.parse(localStorage.getItem('currentUser'));
+    return current_user;
+}
 
 function closeFloatingBtn() {
     document.querySelector('.floating-btn-container').style.display = 'none';
@@ -439,10 +443,12 @@ function sendComplain()
     let myMessage= $('#complainTextarea').val();
     let messages = loadMessagesFromLocalStorage();
     console.log(messages);
+    let current_user = getCurrentUserFromLocalStorage();
+
 
     let messageID = createNewMessageID(messages);
-    let userID =1;  // static for now will get it from cookie later
-    let userEmail  = "jjj@gmail.com";
+    let userID =current_user[0].id;  
+    let userEmail  = current_user[0].email;
     let currentDate = new Date();
     let formattedDate = currentDate.toLocaleString('en-US', {
       year: 'numeric',
@@ -461,7 +467,7 @@ function sendComplain()
     Swal.fire({
         position: "top-end",
         icon: "success",
-        title: "Your Email Has been sent",
+        title: "Your Message Has been sent",
         showConfirmButton: false,
         timer: 1500
     });
