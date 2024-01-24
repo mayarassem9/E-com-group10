@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details</Details></title>
+    <title>Product Details</title>
+    <script src="Scripts/scriptForDetails.js"></script>
     <link rel="stylesheet" href="Styles/all.min.css">
     <link rel="stylesheet" href="Styles/font-awesome.min.css">
     <link rel="stylesheet" href="Styles/bootstrap.css">
@@ -58,57 +59,10 @@
     </header>
 
     <!--****************************  PRODUCT DETAILS  **************************** -->
-    <section class="shop-details">
-        <div class="product__details__pic">
-            <div class="container">
-                <div class="row mt-5">
-                    <!-- PRODUCT details content -->
-                    <div class="col-lg-6 col-md-12 col-12 order-md-1 order-2">
-                        <div class="product__details__content">
-                            <div class="container">
-                                <div class="row d-flex justify-content-center">
-                                    <div class="col-12">
-                                        <div class="product__details__text">
-                                            <!-- add book name dynamically from local storage -->
-                                            <h4>Book Name</h4>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <span> - 5 Reviews</span>
-                                            </div>
-                                            <!-- add book price dynamically -->
-                                            <h3>$19.99</h3>
-                                            <!-- add product details paragraph dynamically -->
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro hic quisquam vitae! A quae dolore voluptates at nobis incidunt vero numquam pariatur tenetur eius! Ipsa assumenda perferendis consequatur illum suscipit. </p>
-                                            <div class="product__details__cart__option">
-                                                <div class="quantity">
-                                                    <div class="pro-qty">
-                                                        <input type="text" value="1">
-                                                    </div>
-                                                </div>
-                                                <a href="#" class="primary-btn">add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <!-- PRODUCT details pic -->
-                    <div class="col-lg-6 col-md-12 col-12 order-md-2 order-1">
-                        <div class="card">
-                            <img src="Resources/Images/books/image1.jpg" class="card-img-top img-fluid" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     
+    <div id="productDetailsContainer" class="mt-5">
+        <!-- Book details will be displayed here -->
+    </div>
     <!-- **************************  FOOTER  ****************************-->
     <footer class="footer">
         <div class="container">

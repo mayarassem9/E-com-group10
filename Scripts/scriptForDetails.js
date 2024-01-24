@@ -1,58 +1,69 @@
-// document.addEventListener('DOMContentLoaded', function () {
-//     // Function to get product data from local storage
-//     const getProductDataFromLocalStorage = () => {
-//         const storedData = localStorage.getItem('booksData');
-//         return storedData ? JSON.parse(storedData) : [];
-//     };
+document.addEventListener('DOMContentLoaded', () => {
+    // Get the book ID from the URL
+    const bookId = getBookIdFromUrl();
+    console.log(bookId);
 
-//     // Function to get product details by ID
-//     const getProductDetailsById = (productId) => {
-//         const allBooksData = getProductDataFromLocalStorage();
-//         return allBooksData.find(book => book.id === productId) || null;
-//     };
+    if (bookId) {
+        // Retrieve book details from local storage
+        const allBooksData = getBooksFromLocalStorage();
+        const theBook = allBooksData.find(theBook => theBook.ID == bookId);
+        console.log(allBooksData);
+        console.log(theBook);
 
-//     // Function to populate the product details on the page
-//     const populateProductDetails = (productData) => {
-//         if (productData) {
-//             const container = document.getElementById('product-details-container');
-//             container.innerHTML = `
-//                 <img src="${productData.imgLink}" alt="${productData.title} Image">
-//                 <h1>${productData.title}</h1>
-//                 <h2>${productData.author}</h2>
-//                 <p>${productData.description}</p>
-//                 <p class="price">$${productData.price.toFixed(2)}</p>
-//                 ${productData.bestSeller ? '<span id="best-seller-label">Best Seller</span>' : ''}
-//                 ${productData.recentlyAdded ? '<span id="recently-added-label">Recently Added</span>' : ''}
-//                 <div class="quantity-section">
-//                     <label for="quantity">Quantity:</label>
-//                     <input type="number" id="quantity" value="1" min="1">
-//                 </div>
-//                 <button id="add-to-cart-btn" class="btn btn-dark">Add to Cart</button>
-//             `;
-            
-//             // Attach event listener to the "Add to Cart" button
-//             const addToCartBtn = document.getElementById('add-to-cart-btn');
-//             addToCartBtn.addEventListener('click', function () {
-//                 const quantity = parseInt(document.getElementById('quantity').value);
-//                 addToCart(productData, quantity);
-//             });
-//         } else {
-//             // Handle the case where product data is not available
-//             console.error('Product data not found.');
-//         }
-//     };
+        if (theBook) {
+            // Display book details on the page
+            displayBookDetails(theBook);
+        } else {
+            // Handle the case where the book with the specified ID is not found
+            console.error('Book not found');
+        }
+    } else {
+        // Handle the case where no book ID is provided in the URL
+        console.error('Book ID not provided in the URL');
+    }
+});
+const getBooksFromLocalStorage = () => {
+    const storedBooks = localStorage.getItem('booksData');
+    return storedBooks ? JSON.parse(storedBooks) : [];
 
-//     // Get product ID from the URL
-//     const urlParams = new URLSearchParams(window.location.search);
-//     const productId = parseInt(urlParams.get('id'));
+};
+function getBookIdFromUrl() {
+    const url = new URL(window.location.href);
+    return url.searchParams.get('id');
+}
 
-//     // Get product details and populate the page
-//     const productDetails = getProductDetailsById(productId);
-//     populateProductDetails(productDetails);
+function displayBookDetails(theBook) {
+    const productDetailsContainer = document.getElementById('productDetailsContainer');
 
-//     // Function to handle adding product to the cart
-//     const addToCart = (product, quantity) => {
-//         // Implement your logic for adding the product to the cart
-//         console.log(`Added ${quantity} ${product.title}(s) to the cart.`);
-//     };
-// });
+    // Create elements to display book details
+    // const imageElement = document.createElement('img');
+    // imageElement.src = theBook.imgLink;
+
+    const titleElement = document.createElement('h1');
+    titleElement.textContent = theBook.title;
+
+    const authorElement = document.createElement('p');
+    authorElement.textContent = `Author: ${theBook.author}`;
+
+    const descriptionElement = document.createElement('p');
+    descriptionElement.textContent = theBook.description;
+
+    const priceElement = document.createElement('p');
+    const formattedPrice = typeof theBook.price === 'number' ? `$${theBook.price.toFixed(2)}` : 'Invalid Price';
+    priceElement.textContent = `Price: ${formattedPrice}`;
+
+    // Add elements to the container
+
+    productDetailsContainer.appendChild(titleElement);
+    productDetailsContainer.appendChild(imageElement);
+
+    productDetailsContainer.appendChild(authorElement);
+    productDetailsContainer.appendChild(descriptionElement);
+    productDetailsContainer.appendChild(priceElement);
+}
+
+
+
+
+
+

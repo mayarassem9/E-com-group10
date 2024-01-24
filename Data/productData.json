@@ -9,7 +9,7 @@
         "category":"Fiction",
         "userID":1,
         "imgLink":"Resources/Images/books/abuAlhoulBook.jpg",
-        "stockNum":10,
+        "stockNum":0,
         "bestSeller": false,
         "recentlyAdded": true
 
