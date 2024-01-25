@@ -101,15 +101,29 @@ $('document').ready(function () {
   
         displayCartToDOM(myCart);
 
-        $('#confirm_payment').click(function () {
-          if (validateBillingAddress()) {
-            // Confirm payment
-            confirmPayment();
+        // update form state when action happen
+        $('.needs-validation').on('input', 'input', function (event) {
+          const target = $(event.target);
     
-            // Save the order to local storage
+          // Example: Custom validation for email format
+          if (target.attr('type') === 'email') {
+            if (!validateEmail(target.val())) {
+              target[0].setCustomValidity('Please enter a valid email address.');
+            } else {
+              target[0].setCustomValidity('');
+            }
+          }
+        });
+
+        $('#confirm_payment').click(function (event) {
+          if (validateForm()) {
+            event.preventDefault();
+            event.stopPropagation();
+            alert('weldone')
             saveOrderToLocalStorage(myOrder);
-          } else {
-            alert('Please provide a valid billing address.');
+          }
+          else{
+            alert('no');
           }
         });
     } else {
@@ -210,71 +224,30 @@ function displayCartToDOM(cart) {
   }
 }
 
-function validateBillingAddress() {
-  // Get values from input fields
-  console.log("ggg");
-  debugger;
-  var firstName = document.getElementById('firstName').value;
-  var lastName = document.getElementById('lastName').value;
-  var username = document.getElementById('username').value;
-  var email = document.getElementById('email').value;
-  var address = document.getElementById('address').value;
-  var country = document.getElementById('country').value;
-  var state = document.getElementById('state').value;
-  var zip = document.getElementById('zip').value;
+function validateEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
 
-  // Validation messages
-  var validationMessages = {
-    firstName: 'Valid first name is required.',
-    lastName: 'Valid last name is required.',
-    username: 'Your username is required.',
-    email: 'Please enter a valid email address for shipping updates.',
-    address: 'Please enter your shipping address.',
-    country: 'Please select a valid country.',
-    state: 'Please provide a valid state.',
-    zip: 'Zip code required.'
-  };
+// Function to perform form validation
+function validateForm() {
+  const form = $('.needs-validation')[0];
 
-  // Iterate through fields and validate
-  var isValid = true;
-  for (var field in validationMessages) {
-    var value = eval(field); // Get the value dynamically
-    var tooltip = document.getElementById(field + 'Tooltip');
-
-    if (!value) {
-      isValid = false;
-      showTooltip(field, validationMessages[field]);
-    } else {
-      hideTooltip(field);
-    }
+  if (!form.checkValidity()) {
+    form.classList.add('was-validated');
+    return false;
   }
 
-  return isValid;
-}
-
-function showTooltip(field, message) {
-  var inputElement = document.getElementById(field);
-  var tooltip = document.createElement('div');
-  tooltip.className = 'tooltip';
-  tooltip.textContent = message;
-
-  // Position tooltip relative to the input field
-  var rect = inputElement.getBoundingClientRect();
-  tooltip.style.top = rect.bottom + window.scrollY + 'px';
-  tooltip.style.left = rect.left + window.scrollX + 'px';
-
-  // Set a unique ID for the tooltip so we can hide it later
-  tooltip.id = field + 'Tooltip';
-
-  document.body.appendChild(tooltip);
-}
-
-function hideTooltip(field) {
-  var tooltip = document.getElementById(field + 'Tooltip');
-  if (tooltip) {
-    tooltip.parentNode.removeChild(tooltip);
+  // Additional custom validation
+  const emailInput = $('#email');
+  if (emailInput.length && !validateEmail(emailInput.val())) {
+    emailInput[0].setCustomValidity('Please enter a valid email address.');
+    return false;
   }
+
+  return true;
 }
+
 
 function confirmPayment() {
   // Logic to confirm the payment
