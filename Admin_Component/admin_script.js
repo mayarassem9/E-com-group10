@@ -80,7 +80,6 @@ $(document).ready(function (){
 
 
   function navigateLink(element) {
-    console.log("Hllll");
     // Remove 'active' class from all links
     $('.sidebar-nav li').removeClass('active');
 
@@ -194,7 +193,8 @@ function createNewUser(name,email, pass, role){
         // using sweet alert liberary to display successful message
 
         saveUsersInLocalStorage(allUsers);
-            Swal.fire({
+        
+        Swal.fire({
             position: "top",
             icon: "success",
             title: `You have created a new user `,

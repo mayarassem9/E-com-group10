@@ -1,0 +1,27 @@
+{
+    "cart": [
+      {
+        "productName": "Product name",
+        "description": "Brief description",
+        "price": 12
+      },
+      {
+        "productName": "Second product",
+        "description": "Brief description",
+        "price": 8
+      },
+      {
+        "productName": "Third item",
+        "description": "Brief description",
+        "price": 5
+      }
+    ],
+    "promoCode": {
+      "code": "EXAMPLECODE",
+      "discount": 5
+    },
+    "total": 20,
+    "countries": ["Egypt", "UAE"],
+    "states": ["Mansoura"]
+  }
+  

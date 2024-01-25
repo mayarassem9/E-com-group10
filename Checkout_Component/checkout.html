@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../Styles/all.min.css">
+    <link rel="stylesheet" href="../Styles/font-awesome.min.css">
+    <link rel="stylesheet" href="../Styles/style.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> 
+    <link rel="icon" href="../Resources/Images/logo/svg/White logo - no background.svg" type="image/png"> 
+
+  </head>
+<body>
+     
+    <!-- **************************  NAV BAR  ****************************-->
+    <header>
+      <nav id="NavBar" >
+          <div class="header">
+              <div class="left-section">
+                  Free shipping, 30-day return or refund guarantee.
+              </div>
+              <div class="dropdown">
+                  <a class="btn btn-secondary dropdown-toggle  " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-regular fa-user"></i> Account 
+                  </a>
+                
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="../sign_up.html">Sign Up</a></li>
+                    <li><a class="dropdown-item" href="../login.html">Login</a></li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+      <nav class="main-navigation "  >
+          <div class="logo">
+              <img src="../Resources/Images/logo/logo.png" alt="book logo" >
+          </div>
+          <ul class="nav-links"> 
+              <li><a href="#">Home</a></li>
+              <li><a href="#section-poster">Shop</a></li>
+              <li><a href="#">Contacts</a></li>
+          </ul>
+          <div class="nav-icons">
+              <a href="#search"><i class="fas fa-search"></i></i></a>
+              <a href="#"><i class="fa fa-heart"></i></a>
+              <a href="#"><i class="fa fa-shopping-bag"></i></a>
+              <!-- <span>$0.00</span> -->
+          </div>
+          <div class="hamburger-icon">
+              <i class="fas fa-bars"></i>
+          </div>
+        
+          
+      </nav>
+
+
+  </header>   
+<div class="container mb-5">
+
+    <main>
+      <div class="py-5 text-center">
+       <h2>Your Checkout </h2>
+        </div>
+  
+      <div class="row g-5">
+        <div class="col-md-5 col-lg-4 order-md-last">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-secondary">Your cart</span>
+            <span class="badge bg-secondary rounded-pill" id="total-Items"></span>
+          </h4>
+          <ul class="list-group mb-3" >
+            <div id="list-container">
+
+            </div>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total (USD)</span>
+              <strong id="total-price">$0</strong>
+            </li>
+          </ul>
+  
+          <form class="card p-2">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Promo code">
+              <button type="button"  class="btn btn-secondary" >Redeem</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-7 col-lg-8">
+          <h4 class="mb-3">Billing address</h4>
+          <form class="needs-validation" novalidate>
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="firstName" class="form-label">First name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              </div>
+  
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">Last name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
+              </div>
+  
+              <div class="col-12">
+                <label for="username" class="form-label">Username</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text">@</span>
+                  <input type="text" class="form-control" id="username" placeholder="Username" required>
+                <div class="invalid-feedback">
+                    Your username is required.
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-12">
+                <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
+                <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                <div class="invalid-feedback">
+                  Please enter a valid email address for shipping updates.
+                </div>
+              </div>
+  
+              <div class="col-12">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+                <div class="invalid-feedback">
+                  Please enter your shipping address.
+                </div>
+              </div>
+  
+              <div class="col-12">
+                <label for="address2" class="form-label">Address 2 <span class="text-muted">(Optional)</span></label>
+                <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+              </div>
+  
+              <div class="col-md-5">
+                <label for="country" class="form-label">Country</label>
+                <select class="form-select" id="country" required>
+                  <option value="">Choose...</option>
+                  <option>Egypt</option>
+                  <option>UAE</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select a valid country.
+                </div>
+              </div>
+  
+              <div class="col-md-4">
+                <label for="state" class="form-label">State</label>
+                <select class="form-select" id="state" required>
+                  <option value="">Choose...</option>
+                  <option>Mansoura</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please provide a valid state.
+                </div>
+              </div>
+  
+              <div class="col-md-3">
+                <label for="zip" class="form-label">Zip</label>
+                <input type="text" class="form-control" id="zip" placeholder="" required>
+                <div class="invalid-feedback">
+                  Zip code required.
+                </div>
+              </div>
+            </div>
+  
+            <hr class="my-4">
+  
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="same-address">
+              <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
+            </div>
+  
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="save-info">
+              <label class="form-check-label" for="save-info">Save this information for next time</label>
+            </div>
+  
+            <hr class="my-4">
+  
+            <h4 class="mb-3">Payment</h4>
+  
+            <div class="my-3">
+              <div class="form-check">
+                <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+                <label class="form-check-label" for="credit">Credit card</label>
+              </div>
+              <div class="form-check">
+                <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+                <label class="form-check-label" for="debit">Debit card</label>
+              </div>
+              <div class="form-check">
+                <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+                <label class="form-check-label" for="paypal">PayPal</label>
+              </div>
+            </div>
+  
+            <div class="row gy-3">
+              <div class="col-md-6">
+                <label for="cc-name" class="form-label">Name on card</label>
+                <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                <small class="text-muted">Full name as displayed on card</small>
+                <div class="invalid-feedback">
+                  Name on card is required
+                </div>
+              </div>
+  
+              <div class="col-md-6">
+                <label for="cc-number" class="form-label">Credit card number</label>
+                <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                <div class="invalid-feedback">
+                  Credit card number is required
+                </div>
+              </div>
+  
+              <div class="col-md-3">
+                <label for="cc-expiration" class="form-label">Expiration</label>
+                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                <div class="invalid-feedback">
+                  Expiration date required
+                </div>
+              </div>
+  
+              <div class="col-md-3">
+                <label for="cc-cvv" class="form-label">CVV</label>
+                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                <div class="invalid-feedback">
+                  Security code required
+                </div>
+              </div>
+            </div>
+  
+            <hr class="my-4">
+  
+            <button class=" btn btn-dark btn-lg" id="confirm_payment"><span><i class="fa-solid fa-clipboard-check "></i> </span>Confirm Checkout</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+
+</div>
+  
+<!-- **************************  FOOTER  ****************************-->
+<!-- Mayar -->
+<footer class="footer">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="footer__about">
+                  <div class="footer__logo">
+                      <a href="#"><img width="150px"
+                              src="../Resources/Images/logo/png/White logo - no background.png" alt=""></a>
+                  </div>
+                  <p>The joy of our customers is the narrative that we continuously write and enrich through the
+                      pages of our bookstore</p>
+              </div>
+          </div>
+          <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+              <div class="footer__widget">
+                  <h6>Shopping</h6>
+                  <ul>
+                      <li><a href="#">Clothing Store</a></li>
+                      <li><a href="#">Trending Shoes</a></li>
+                      <li><a href="#">Accessories</a></li>
+                      <li><a href="#">Sale</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-6">
+              <div class="footer__widget">
+                  <h6>Shopping</h6>
+                  <ul>
+                      <li><a href="#">Contact Us</a></li>
+                      <li><a href="#">Payment Methods</a></li>
+                      <li><a href="#">Delivary</a></li>
+                      <li><a href="#">Return & Exchanges</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+              <div class="footer__widget">
+                  <h6>NewLetter</h6>
+                  <div class="footer__newslatter">
+                      <p>Be the first to know about new arrivals, look books, sales & promos!</p>
+                      <form action="#">
+                          <input type="text" placeholder="Your email">
+                          <button type="submit"><span class="icon_mail_alt"></span><i
+                                  class="fa-regular fa-envelope" style="color: #ffffff;"></i></button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+      <div class="row">
+          <div class="col-lg-12 text-center">
+              <div class="footer__copyright__text">
+
+                  <p>Copyright ©
+                      <script>
+                          document.write(new Date().getFullYear());
+                      </script>2020
+                      All rights reserved | This website is made with <i class="fa fa-heart-o"
+                          aria-hidden="true"></i> by Team 10
+                  </p>
+
+              </div>
+          </div>
+      </div>
+
+  </div>
+
+</footer>
+
+<script src="../Scripts/jquery-3.7.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../Scripts/validateCredentials.js" type="module"></script>
+<script src="checkout_script.js" type="module"></script>
+<script src="../Scripts/bootstrap.bundle.js"></script>
+</body>
+</html>

@@ -24,6 +24,10 @@ export function isadmin(email ,password){
 
 }
 
+export function Add(x,y){
+    return x+y;
+}
+
 
  function isuser(email , password){
     let users = localStorage.getItem("users");
@@ -89,4 +93,26 @@ export function validateCredentials(email, password) {
         });
 
     }
+}
+
+export function isCurrentCustomerAuthenticated(){
+let currentUser = localStorage.getItem('currentUser');
+
+    if(currentUser){
+        let _currentUser = JSON.parse(currentUser);
+        if(_currentUser[0].role ==="customer"){
+            return true;
+        }
+    }
+    console.log("user not logged in!");
+    return false;
+}
+
+export function getCurrentUser(){
+    let currentUser = localStorage.getItem('currentUser');
+    if (currentUser) {
+        let _currentUser = JSON.parse( currentUser);
+        return _currentUser[0];
+    }
+    return {};
 }
