@@ -28,7 +28,7 @@ export function isadmin(email ,password){
  function isuser(email , password){
     let users = localStorage.getItem("users");
     if(!users){
-        is_user= false;
+        is_user= false;     
         return;
     }
     users = JSON.parse(users);
