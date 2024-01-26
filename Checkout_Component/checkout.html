@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Checkout</title>
     <link rel="stylesheet" href="../Styles/all.min.css">
     <link rel="stylesheet" href="../Styles/font-awesome.min.css">
     <link rel="stylesheet" href="../Styles/style.css">
@@ -81,10 +81,12 @@
             </li>
           </ul>
   
-          <form class="card p-2">
+          <form class="card p-2" style="height: 200px;">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Promo code">
-              <button type="button"  class="btn btn-secondary" >Redeem</button>
+              <input type="text" class="form-control" placeholder="Promo code" id="promoCodeInput">
+              <button type="button" id="discount-redeem" class="btn btn-secondary" >Redeem</button>
+            </div>
+            <div id="discount-items">
             </div>
           </form>
         </div>
@@ -145,7 +147,6 @@
                 <select class="form-select" id="country" required>
                   <option value="">Choose...</option>
                   <option>Egypt</option>
-                  <option>UAE</option>
                 </select>
                 <div class="invalid-feedback">
                   Please select a valid country.
@@ -157,6 +158,10 @@
                 <select class="form-select" id="state" required>
                   <option value="">Choose...</option>
                   <option>Mansoura</option>
+                  <option>ALex</option>
+                  <option>Cairo</option>
+                  <option>Ismailia</option>
+                  <option>Tanta</option>
                 </select>
                 <div class="invalid-feedback">
                   Please provide a valid state.
@@ -166,15 +171,12 @@
               <div class="col-md-3">
                 <label for="zip" class="form-label">Zip</label>
                 <input type="text" class="form-control" id="zip" placeholder="" required>
-                <div class="invalid-feedback">
-                  Zip code required.
+                  <div class="invalid-feedback">
+                    Zip code required.
+                  </div>
                 </div>
               </div>
-            </div>
-  
       
-  
-         
   
             <div class="form-check mt-4">
               <input type="checkbox" class="form-check-input" id="save-info">

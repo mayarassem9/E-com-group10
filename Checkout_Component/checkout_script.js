@@ -1,229 +1,402 @@
-import { isCurrentCustomerAuthenticated, getCurrentUser} from "../Scripts/validateCredentials.js";
+import {
+  isCurrentCustomerAuthenticated,
+  getCurrentUser,
+} from "../Scripts/validateCredentials.js";
 
-
-const sampleCartData = {
-  userId: 1,
-  items: [
-      {
-          ID: 1,
-          title: "Abu Alhoul",
-          author: "Ahmed Mourad",
-          description: "Mourads novel details the life of photographer and crime expert Sulaiman ElSeyofy known for investigating a mysterious century crime during the Egyptian plague",
-          price: 115,
-          category: "Fiction",
-          salerID: "11",
-          imgLink: "Resources/Images/books/abuAlhoulBook.jpg",
-          stockNum: 10
-      },
+// *********************Sample Data**********************
+const sampleCartData = [
+  {
+    orderId: 1,
+    userId: 1,
+    status: "pending",
+    total: 1260,
+    items: [
       {
         ID: 1,
-        title: "Abu Alhoul",
-        author: "Ahmed Mourad",
-        description: "Mourads novel details the life of photographer and crime expert Sulaiman ElSeyofy known for investigating a mysterious century crime during the Egyptian plague",
-        price: 115,
-        category: "Fiction",
-        salerID: "11",
-        imgLink: "Resources/Images/books/abuAlhoulBook.jpg",
-        stockNum: 10
-    },
-    
-  ],
-  total: 21.98 
-};
-const sampleOrderData = {
-  orderId: 1,
-  userId: 1,
-  items: [
-      {
-          ID: 1,
-          title: "Abu Alhoul",
-          author: "Ahmed Mourad",
-          description: "Mourad's novel details the life of photographer and crime expert Sulaiman ElSeyofy known for investigating a mysterious century crime during the Egyptian plague",
-          price: 115,
-          category: "Fiction",
-          salerID: "11",
-          imgLink: "Resources/Images/books/abuAlhoulBook.jpg",
-          stockNum: 10
+        name: "Tale of Two Cities",
+        price: 135,
+        quantity: 2,
+        sellerId: 1,
+        imgLink: "Resources/Images/books/TaleofTwoCities.jpg",
       },
       {
-          ID: 2,
-          title: "Abu",
-          author: "Ahmed Mourad",
-          description: "Mourad's novel details the life of photographer and crime expert Sulaiman ElSeyofy known for investigating a mysterious century crime during the Egyptian plague",
-          price: 115,
-          category: "Fiction",
-          salerID: "11",
-          imgLink: "Resources/Images/books/abuAlhoulBook.jpg",
-          stockNum: 10
-      }
-  ],
-  total: 21.98,
-  date: '24/1/2024',
-  promoCode:"hamada",
-  promoCodeDiscount:20
-};
+        ID: 2,
+        name: "The final Gambit",
+        price: 125,
+        quantity: 4,
+        sellerId: 5,
+        imgLink: "Resources/Images/books/TheFinalGambit.jpg",
+      },
+      {
+        ID: 3,
+        name: "Abu Alhoul",
+        price: 115,
+        quantity: 3,
+        sellerId: 6,
+        imgLink: "Resources/Images/books/abuAlhoulBook.jpg",
+      },
+    ],
+  },
+];
+const discounts = [
+  {
+    promocode: "SALE2024",
+    discountPercentage: 15,
+  },
+  {
+    promocode: "SALE2023",
+    discountPercentage: 10,
+  },
+];
 
-console.log(sampleOrderData);
-
-
-
-class ShoppingCart {
-  constructor(userId, books) {
-      this.userId = userId;
-      this.books = books;
-  }
-}
-
+// *********************My CLasses**********************
 class Order {
-  constructor(orderId, userId, cart,date) {
-      this.orderId = orderId;
-      this.userId = userId;
-      this.cart = cart;
-      this.date= date;
+  constructor(orderId, userId, status, total, items, date) {
+    this.orderId = orderId;
+    this.userId = userId;
+    this.status = status;
+    this.total = total;
+    this.items = items;
+    this.date = date;
   }
 }
-let myCart =new ShoppingCart();
+class OrderItem {
+  constructor(ID, name, price, quantity, sellerId, imgLink) {
+    this.ID = ID;
+    this.name = name;
+    this.price = price;
+    this.quantity = quantity;
+    this.sellerId = sellerId;
+    this.imgLink = imgLink;
+  }
+}
+// *********************Global Variables**********************
+let myCart;
+let myPromoCodePercentage;
+let currentOrder;
 
-
-
-
-$('document').ready(function () {
+$("document").ready(function () {
   // check if the user is authenticated and authorized as a customer
- 
-    if (isCurrentCustomerAuthenticated()) {
-      console.log("authenticated");
-      myCart = sampleCartData;
-      //myCart = getCartFromLocalStorage();
-  
-   
-        let myOrder = new Order(1, getCurrentUser().id, sampleCartData, '1/10/2020');
-        console.log(myOrder);
-  
-        displayCartToDOM(myCart);
 
-        // update form state when action happen
-        $('.needs-validation').on('input', 'input', function (event) {
-          const target = $(event.target);
-    
-          // Example: Custom validation for email format
-          if (target.attr('type') === 'email') {
-            if (!validateEmail(target.val())) {
-              target[0].setCustomValidity('Please enter a valid email address.');
-            } else {
-              target[0].setCustomValidity('');
-            }
+  if (isCurrentCustomerAuthenticated()) {
+    //***************Loading Page************************
+    //myCart = sampleCartData;
+
+    //localStorage.setItem('userOrder',JSON.stringify(myCart));
+    myCart = getCartFromLocalStorage();
+    displayCartToDOM(myCart);
+    loadAddressToDOM();
+    //***************end of Loading Page************************
+
+    //***************Event Listeners************************
+    $(".needs-validation").on("input", "input", function (event) {
+      const target = $(event.target);
+
+      // Example: Custom validation for email format
+      if (target.attr("type") === "email") {
+        if (!validateEmail(target.val())) {
+          target[0].setCustomValidity("Please enter a valid email address.");
+        } else {
+          target[0].setCustomValidity("");
+        }
+      }
+    });
+    $("#discount-redeem").click(function () {
+      redeemDiscount();
+      displayCartToDOM(myCart);
+    });
+
+    $("#confirm_payment").click(function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      if (validateForm()) {
+        //***************Confirm the payment***********************
+
+        if ($("#save-info").is(":checked")) {
+          saveBillingAddress();
+        }
+        debugger;
+        let myOrder = createNewOrder(myCart);
+
+        if (myOrder) {
+          currentOrder = myOrder;
+          saveOrderToLocalStorage(currentOrder);
+          let books = getBooksFromLocalStorage();
+
+          if (updateProductStock(books, currentOrder)) {
+            Swal.fire({
+              icon: "success",
+              title: "Checkout",
+              text: "Your Order Has been Successfully Completed",
+              footer: '<a href="../index.html">Go back To the Home Page?</a>',
+            });
+            // remove the order
+            localStorage.removeItem("userOrder");
+            myCart = null;
           }
-        });
-
-        $('#confirm_payment').click(function (event) {
-          if (validateForm()) {
-            event.preventDefault();
-            event.stopPropagation();
-            alert('weldone')
-            saveOrderToLocalStorage(myOrder);
-          }
-          else{
-            alert('no');
-          }
-        });
-    } else {
-      window.location.href = "../login.html";
-    }
-
-   
-  // get the cart object and check if not empty
-  
-  // copy the cart into the orders object
-
-  // view the order information  on the DOM
-  // when the confirm is clicked then 
-  //1.  decrement the user balance
-  //2. decrement the sold product from the stock
+        }
+      }
+    });
+    //***************end ofEvent Listeners************************
+  } else {
+    window.location.href = "../login.html";
+  }
 });
-
-function getCartFromLocalStorage() {
-  let cart = localStorage.getItem('cart');
-  if(cart){
-    let _cart = JSON.parse(cart);
-    return _cart;
+function getBooksFromLocalStorage() {
+  let books = localStorage.getItem("books");
+  if (books) {
+    return JSON.parse(books);
   }
   return [];
 }
-function saveOrderToLocalStorage(order) {
-  let orders = getOrdersFromLocalStorage();
-  orders.push(order);
-  localStorage.setItem('orders', JSON.stringify(orders));
-}
 
+function createNewOrder(myCart) {
+  if (myCart&&myCart!={}) {
+    let newOrderID = createNewOrderId();
+    let orderDate = new Date();
+
+    let newOrder = new Order(
+      newOrderID,
+      getCurrentUser().id,
+      "pending",
+      myCart[0].total,
+      myCart[0].items,
+      orderDate
+    );
+
+    return newOrder;
+  }
+}
+function createNewOrderId() {
+  let myOrder = getOrdersFromLocalStorage();
+  if (myOrder.length > 0) {
+    return myOrder[myOrder.length - 1].orderId + 1;
+  } else {
+    return 1;
+  }
+}
 function getOrdersFromLocalStorage() {
-  let orders = localStorage.getItem('orders');
+  let orders = localStorage.getItem("orders");
   if (orders) {
     return JSON.parse(orders);
   }
   return [];
 }
-function createNewOrderId() {
-  let myOrder = getOrdersFromLocalStorage();
-  if(myOrder){
-    return myOrder[myOrder.length-1].orderId+1;
-  }
-  else{
-    return 1;
+
+function redeemDiscount() {
+  const promoCodeInput = document.getElementById("promoCodeInput");
+  const discountItemsContainer = document.getElementById("discount-items");
+  discountItemsContainer.innerHTML = "";
+  const enteredPromoCode = promoCodeInput.value;
+
+  const matchingDiscount = discounts.find(
+    (discount) => discount.promocode === enteredPromoCode
+  );
+
+  if (matchingDiscount) {
+    const discountDiv = document.createElement("div");
+    discountDiv.className =
+      "list-group-item d-flex my-3 justify-content-between";
+    discountDiv.innerHTML = `<span >${matchingDiscount.promocode}</span><span>${matchingDiscount.discountPercentage}% off</span>`;
+
+    discountItemsContainer.appendChild(discountDiv);
+    myPromoCodePercentage = matchingDiscount.discountPercentage;
+    promoCodeInput.value = "";
+  } else {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Invalid promo code. Please try again.",
+    });
   }
 }
-function displayCartToDOM(cart) {
-  //computing the total 
-  console.log(cart);
-  if(cart.items.length>0){
+function updateProductStock(books, order) {
+  debugger;
+  if (!order) {
+    console.error("Invalid order data. Unable to update product stock.");
+    return false;
+  } else if (!order.items) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "No Orders To Purchase.",
+    });
+    return false;
+  }
+  const soldItems = order.items;
+  console.log(order);
+  soldItems.forEach((soldItem) => {
+    const bookToUpdate = books.find((book) => book.ID === soldItem.ID);
+
+    if (bookToUpdate) {
+      console.log(bookToUpdate.stockNum, soldItems.quantity);
+      bookToUpdate.stockNum -= soldItem.quantity;
+    } else {
+      console.warn(`Book with ID ${soldItem.ID} not found.`);
+    }
+  });
+  updateBooksToLocalStorage(books);
+  return true;
+}
+function updateBooksToLocalStorage(books) {
+  if (books) localStorage.setItem("books", JSON.stringify(books));
+}
+function getProductStockFromLocalStorage() {}
+function saveBillingAddress() {
+  const firstName = $("#firstName").val();
+  const lastName = $("#lastName").val();
+  const username = $("#username").val();
+  const email = $("#email").val();
+  const address = $("#address").val();
+  const address2 = $("#address2").val();
+  const country = $("#country").val();
+  const state = $("#state").val();
+  const zip = $("#zip").val();
+
+  // Create a userAddress object
+  const userAddress = {
+    userID: getCurrentUser().id,
+    firstName: firstName,
+    lastName: lastName,
+    username: username,
+    email: email,
+    address: address,
+    address2: address2,
+    country: country,
+    state: state,
+    zip: zip,
+  };
+
+  saveAddressToLocalStorage(userAddress);
+}
+
+function saveAddressToLocalStorage(userAddress) {
+  let addresses = getAddressesFromLocalStorage();
+  addresses.push(userAddress);
+  localStorage.setItem("userAddress", JSON.stringify(addresses));
+}
+
+function getAddressesFromLocalStorage() {
+  let addresses = localStorage.getItem("userAddress");
+  if (addresses) {
+    return JSON.parse(addresses);
+  }
+  return [];
+}
+function loadAddressToDOM() {
+  const savedAddresses = getAddressesFromLocalStorage();
+
+  // Assuming you have only one address for simplicity; modify as needed if there are multiple addresses
+  if (savedAddresses.length > 0) {
+    const lastSavedAddress = savedAddresses.find(
+      (address) => address.userID === getCurrentUser().id
+    );
+
+    // Populate form fields with the saved address
+    $("#firstName").val(lastSavedAddress.firstName);
+    $("#lastName").val(lastSavedAddress.lastName);
+    $("#username").val(lastSavedAddress.username);
+    $("#email").val(lastSavedAddress.email);
+    $("#address").val(lastSavedAddress.address);
+    $("#address2").val(lastSavedAddress.address2);
+    $("#country").val(lastSavedAddress.country);
+    $("#state").val(lastSavedAddress.state);
+    $("#zip").val(lastSavedAddress.zip);
+  }
+}
+
+function getCartFromLocalStorage() {
+  let cart = localStorage.getItem("userOrder");
+
+  if (cart) {
+    let _cart = JSON.parse(cart);
+    // console.log(_cart);
+    // const userCart = _cart.find(
+    //   (myCart) => myCart.userId === getCurrentUser().id
+    // );
+    return _cart;
+  }
+  return null;
+}
+function saveOrderToLocalStorage(order) {
+  let orders = getOrdersFromLocalStorage();
+  orders.push(order);
+  localStorage.setItem("orders", JSON.stringify(orders));
+}
+
+function displayCartToDOM(_cart) {
+  if (_cart && _cart[0]) {
+    //computing the total
+    let cart = _cart[0];
+    if (cart.items.length > 0) {
       let totalItems = cart.items.length;
-      $('#total-Items').text(totalItems);
+      $("#total-Items").text(totalItems);
 
-      let listContainer = document.getElementById('list-container');
-
-      let i =0;
-      cart.items.forEach(item => {
+      let listContainer = document.getElementById("list-container");
+      listContainer.innerHTML = ``;
+      let i = 0;
+      cart.items.forEach((item) => {
         const listItem = document.createElement("li");
-          listItem.className = "list-group-item d-flex justify-content-between";
+        listItem.className = "list-group-item d-flex justify-content-between";
 
-          const div = document.createElement("div");
-          const itemName = document.createElement("h6");
-          itemName.className = "my-0";
-          itemName.textContent = item.title;
+        const div = document.createElement("div");
+        const itemName = document.createElement("h6");
+        itemName.className = "my-0";
+        itemName.textContent = item.name;
 
-          const itemDescription = document.createElement("small");
-          itemDescription.className = "text-muted";
-          itemDescription.textContent = item.author;
+        const itemDescription = document.createElement("small");
+        itemDescription.className = "badge rounded-pill bg-secondary";
+        itemDescription.textContent = `Quantity: ${item.quantity}`;
 
-          div.appendChild(itemName);
-          div.appendChild(itemDescription);
+        div.appendChild(itemName);
+        div.appendChild(itemDescription);
 
-          const itemPrice = document.createElement("span");
-          itemPrice.className = "text-dark";
-          itemPrice.textContent = `$${item.price}`;
+        const itemPrice = document.createElement("span");
+        itemPrice.className = "text-dark";
+        itemPrice.textContent = `$${item.price * item.quantity}`;
 
-          listItem.appendChild(div);
-          listItem.appendChild(itemPrice);
+        listItem.appendChild(div);
+        listItem.appendChild(itemPrice);
 
-          if (i%2==1) {
-            listItem.classList.add("bg-light");
-            itemPrice.classList.add("text-success");
-            div.classList.add("text-success");
-          }
+        if (i % 2 == 1) {
+          listItem.classList.add("bg-light");
+          itemPrice.classList.add("text-success");
+          div.classList.add("text-success");
+        }
 
-          listContainer.appendChild(listItem);
-          i++;
+        listContainer.appendChild(listItem);
+        i++;
       });
-      $('#total-price').text(`$${cart.total}`);
-  }
-  else{
-    const emptyDiv = document.createElement("div");
-    emptyDiv.textContent = "No items available.";
-    emptyDiv.style.color = "gray"; 
-    listContainer.appendChild(emptyDiv);
+      $("#total-price").text(`$${computeDiscountTotal(cart)}`);
+    } else {
+      const emptyDiv = document.createElement("div");
+      emptyDiv.textContent = "No items available.";
+      emptyDiv.style.color = "gray";
+      listContainer.appendChild(emptyDiv);
+    }
+  } else {
+    let listContainer = document.getElementById("list-container");
+    listContainer.innerHTML = ``;
 
+    const errorMessage = document.createElement("div");
+    const listItem = document.createElement("li");
+    listItem.className = "list-group-item d-flex justify-content-between";
+    listItem.textContent = "No items listed.";
+    listItem.classList.add("text-danger");
+    errorMessage.appendChild(listItem);
+
+    listContainer.appendChild(errorMessage);
   }
 }
-
+function computeDiscountTotal(cart) {
+  if (myPromoCodePercentage) {
+    let final = cart.total - cart.total * (myPromoCodePercentage / 100);
+    myCart.total = final;
+    return final;
+  } else {
+    return cart.total;
+  }
+}
 function validateEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
@@ -231,31 +404,19 @@ function validateEmail(email) {
 
 // Function to perform form validation
 function validateForm() {
-  const form = $('.needs-validation')[0];
+  const form = $(".needs-validation")[0];
 
   if (!form.checkValidity()) {
-    form.classList.add('was-validated');
+    form.classList.add("was-validated");
     return false;
   }
 
   // Additional custom validation
-  const emailInput = $('#email');
+  const emailInput = $("#email");
   if (emailInput.length && !validateEmail(emailInput.val())) {
-    emailInput[0].setCustomValidity('Please enter a valid email address.');
+    emailInput[0].setCustomValidity("Please enter a valid email address.");
     return false;
   }
 
   return true;
-}
-
-
-function confirmPayment() {
-  // Logic to confirm the payment
-  // You may want to interact with a payment gateway or simulate a successful payment
-  // Display a success message or handle the payment confirmation as needed
-  let order = createNewOrder();
-  saveOrderToLocalStorage(order);
-}
-function createNewOrder(){
-
 }
