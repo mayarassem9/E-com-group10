@@ -37,15 +37,6 @@ $(document).ready(function () {
   updatePagination();
   displayUsersByPage(currentPage);
 
-  // Event listeners for Navigation
-
-  // Event listeners for pagination
-
-  // $('#sidebar-toggle').click(function (e) {
-  //     e.preventDefault();
-  //     $('#wrapper').toggleClass('toggled');
-  // });
-
   $("#prevPage").click(function () {
     if (currentPage > 1) {
       currentPage--;
@@ -89,12 +80,15 @@ $(document).ready(function () {
   });
   $("#submitEditUser").click(function () {
     console.log("HERE");
+
     let target_id = $("#edit-id").val();
     let name = $("#edit-name").val();
     let password = $("#edit-password").val();
     let email = $("#edit-email").val();
     let role = $("#edit-role").val();
-    updateUser(target_id, name, email, password, role);
+    if (validateForm()) {
+      updateUser(target_id, name, email, password, role);
+    }
   });
 });
 
@@ -295,6 +289,7 @@ function loadUsersFromLocalStorage() {
 }
 
 function loadUserToForm(id) {
+  debugger;
   let myUser = allUsers.find((user) => user.id === id);
   console.log(myUser);
   if (myUser) {
@@ -305,34 +300,105 @@ function loadUserToForm(id) {
     $("#edit-role").val(myUser.role);
   }
 }
+function validateForm() {
+  // Reset previous error messages
+  clearErrors();
+  let isValidated = true;
+
+  // Get form fields
+  const name = $("#edit-name").val().trim();
+  const email = $("#edit-email").val().trim();
+  const password = $("#edit-password").val().trim();
+  const role = $("#edit-role").val();
+
+  if (name === "") {
+    displayError("Name is required.", "edit-name");
+    isValidated = false;
+  }
+
+  if (email === "") {
+    displayError("Email is required.", "edit-email");
+    isValidated = false;
+  } else if (!isValidEmail(email)) {
+    displayError("Invalid email format.", "edit-email");
+    isValidated = false;
+  }
+
+  if (password === "") {
+    displayError("Password is required.", "edit-password");
+    isValidated = false;
+  }
+
+  if (role === "") {
+    displayError("Role is required.", "edit-role");
+    isValidated = false;
+  }
+  return isValidated;
+}
+
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+function displayError(message, elementId) {
+  const errorDiv = $("<div>").addClass("alert text-danger").text(message).css({
+    "font-size": "0.8em", // Adjust the font size as needed
+    "margin-top": "0", // Remove top margin
+    "margin-bottom": "0", // Remove bottom margin
+  });
+
+  const inputField = $(`#${elementId}`);
+  inputField.addClass("is-invalid");
+
+  // Find the parent container (e.g., a div with class 'input-group')
+  const parentContainer = inputField.closest(".input-group");
+
+  if (parentContainer.length) {
+    // If there is a parent container, append the error message after it
+    parentContainer.after(errorDiv);
+  } else {
+    // If no parent container found, append it after the input field
+    inputField.after(errorDiv);
+  }
+}
+
+function clearErrors() {
+  $(".alert-danger").remove();
+  $(".is-invalid").removeClass("is-invalid");
+}
 
 function updateUser(userId, name, email, password, role) {
-  console.log(userId);
-  //let indexToUpdate = allUsers.findIndex(user => user.id === userId);
+  userId = Number(userId);
 
-  //  Validate Edit *******************
+  // Find the user to update
+  let myUser = allUsers.find((user) => user.id === userId);
 
-  allUsers[userId] = {
-    id: userId,
-    username: name,
-    email: email,
-    password: password,
-    role: role,
-  };
-  console.log(allUsers);
-  saveUsersInLocalStorage(allUsers);
+  if (myUser) {
+    // Update user properties
+    myUser.username = name;
+    myUser.email = email;
+    myUser.password = password;
+    myUser.role = role;
 
-  Swal.fire({
-    position: "top",
-    icon: "success",
-    title: `User updated successfuly `,
-    showConfirmButton: false,
-    timer: 1500,
-  });
-  $("#editUserModal").modal("hide");
+    saveUsersInLocalStorage(allUsers);
 
-  displayUsersByPage(currentPage);
+    Swal.fire({
+      position: "top",
+      icon: "success",
+      title: "User updated successfully",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+
+    $("#editUserModal").modal("hide");
+
+    displayUsersByPage(currentPage);
+  } else {
+    console.error("User not found for userId:", userId);
+  }
 }
+
 function deleteUser(id) {
   allUsers.forEach((user, index) => {
     if (user.id === id) {
