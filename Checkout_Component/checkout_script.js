@@ -78,11 +78,9 @@ let PurchaseError = "";
 
 $("document").ready(function () {
   // check if the user is authenticated and authorized as a customer
-
   if (isCurrentCustomerAuthenticated()) {
     //***************Loading Page************************
     //myCart = sampleCartData;
-
     //localStorage.setItem('userOrder',JSON.stringify(myCart));
     myCart = getCartFromLocalStorage();
     displayCartToDOM(myCart);
@@ -112,7 +110,6 @@ $("document").ready(function () {
       event.stopPropagation();
       if (validateForm()) {
         //***************Confirm the payment***********************
-
         if ($("#save-info").is(":checked")) {
           saveBillingAddress();
         }
@@ -409,7 +406,6 @@ function validateEmail(email) {
   return emailRegex.test(email);
 }
 
-// Function to perform form validation
 function validateForm() {
   const form = $(".needs-validation")[0];
 

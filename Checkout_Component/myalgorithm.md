@@ -10,10 +10,9 @@
    - copy the cart data into the order
    - get the products from the local storage
    - update it by decreasing the stock number for each order item that has been ordered loop through the books array decrease the stocknum by the quantity of each product
-   - check if it's out of stock where the quantity of sold book is less than the quantity of the main book stock
+   - check if it's out of stock where the quantity of sold book is less than the quantity of the main book stock --> return false with 
 
-5. if order has been sucessfully done
+5. if order has been successfully done
    - display Message
    - remove the order from localStorage
    - reset myCart
-
