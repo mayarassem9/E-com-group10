@@ -151,7 +151,7 @@ function getBooksFromLocalStorage() {
 }
 
 function createNewOrder(myCart) {
-  if (myCart&&myCart!={}) {
+  if (myCart && myCart != {}) {
     let newOrderID = createNewOrderId();
     let orderDate = new Date();
 
@@ -230,7 +230,16 @@ function updateProductStock(books, order) {
 
     if (bookToUpdate) {
       console.log(bookToUpdate.stockNum, soldItems.quantity);
-      bookToUpdate.stockNum -= soldItem.quantity;
+      if (bookToUpdate.stockNum >= soldItem.quantity) {
+        bookToUpdate.stockNum -= soldItem.quantity;
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `The item ${soldItem.name} is out of stock `,
+        });
+        return false;
+      }
     } else {
       console.warn(`Book with ID ${soldItem.ID} not found.`);
     }
@@ -241,7 +250,7 @@ function updateProductStock(books, order) {
 function updateBooksToLocalStorage(books) {
   if (books) localStorage.setItem("books", JSON.stringify(books));
 }
-function getProductStockFromLocalStorage() {}
+
 function saveBillingAddress() {
   const firstName = $("#firstName").val();
   const lastName = $("#lastName").val();
