@@ -74,6 +74,7 @@ class OrderItem {
 let myCart;
 let myPromoCodePercentage;
 let currentOrder;
+let PurchaseError = "";
 
 $("document").ready(function () {
   // check if the user is authenticated and authorized as a customer
@@ -133,6 +134,13 @@ $("document").ready(function () {
             // remove the order
             localStorage.removeItem("userOrder");
             myCart = null;
+            displayCartToDOM(myCart);
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: `${PurchaseError}`,
+            });
           }
         }
       }
@@ -163,6 +171,7 @@ function createNewOrder(myCart) {
       myCart[0].items,
       orderDate
     );
+    console.log(newOrder);
 
     return newOrder;
   }
@@ -211,33 +220,22 @@ function redeemDiscount() {
   }
 }
 function updateProductStock(books, order) {
-  debugger;
-  if (!order) {
-    console.error("Invalid order data. Unable to update product stock.");
-    return false;
-  } else if (!order.items) {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "No Orders To Purchase.",
-    });
+  if (!order || !order.items) {
+    PurchaseError = "Invalid order data. Unable to update product stock";
     return false;
   }
   const soldItems = order.items;
   console.log(order);
   soldItems.forEach((soldItem) => {
     const bookToUpdate = books.find((book) => book.ID === soldItem.ID);
-
+    debugger;
     if (bookToUpdate) {
       console.log(bookToUpdate.stockNum, soldItems.quantity);
       if (bookToUpdate.stockNum >= soldItem.quantity) {
-        bookToUpdate.stockNum -= soldItem.quantity;
+        let sNum = bookToUpdate.stockNum;
+        bookToUpdate.stockNum = sNum - soldItem.quantity;
       } else {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: `The item ${soldItem.name} is out of stock `,
-        });
+        PurchaseError = `Product  ${soldItem.name} is out of stock`;
         return false;
       }
     } else {
