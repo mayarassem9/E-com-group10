@@ -1,7 +1,9 @@
-
-
 /* header-nada*/
 .header {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -11,14 +13,12 @@
    
 }
 
-@media (max-width: 650px) {
-    .left-section {
-        font-size: small;
-    }
-    .logo img{
-        width:5vw ;
-    }
 
+.hamburger-icon{
+    display: none;
+}
+#Close{
+    display: none;
 }
 #NavBar {
     width: 100%;
@@ -29,7 +29,7 @@
   
 
 .left-section {
-   margin-left: 70px;
+   margin-left: 5%;
 }
 
 .right-section {
@@ -72,18 +72,19 @@
 }
 /*nav bar  */
 .main-navigation {
- margin-top:65px;
-    display: flex;  
+    display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
-    padding: 0 20px;
+    padding: 65px 20px 0;
+    position: relative;
+    z-index: 999;
 }
 
 .logo img {
     /* max-height: 50px; Adjust this value as needed */
-    height: 100px;
-    width: 10vw; /* T   his will maintain the aspect ratio of the image */
+    height: auto;
+    width: 5vw; /* T   his will maintain the aspect ratio of the image */
     margin-left:20%;
 }
 
@@ -121,6 +122,7 @@
 width: 90%;
 text-decoration: underline red;
 }
+
 .nav-icons {
     
     margin-right:30px;
@@ -142,8 +144,73 @@ text-decoration: underline red;
 .fa {
     font-size: 18px;
 }
+.hamburger-icon{
+    display: none;
+}
 /* end of nav bar nada */
 
+@media (max-width: 650px) {
+    .left-section  {
+        font-size: small;
+        
+    }
+    .logo img{
+        height: auto;
+        width:17vw ;
+    }
+
+
+}
+
+@media (max-width: 576px) { 
+    .hamburger-icon{
+        display: block;
+        z-index: 2;
+        transition: 1s;
+        
+    }
+    .hamburger-icon:hover{
+        transform: rotate(180deg);
+        color: #e53637;
+    }
+    .nav-links{
+        display: none;
+    }
+    .nav-links.mobile{
+        background-color: white;
+        color: black;
+        width: 195px;
+        position: absolute;
+        right: 0;
+        top: 70px;
+        height: 73vh;
+        z-index: 2;
+        flex-direction: column;
+        padding-top: 67px;
+        text-align: center;
+        align-items: center;
+        gap: 40px !important;
+        transition: 1s;
+        display: flex;
+    }
+    .nav-icons.mobile{
+        gap: 30px;
+        position: absolute;
+        z-index: 3;
+        top: 350px;
+        right: 20px;
+        display: flex;
+
+
+    }
+    
+    .nav-link ,.nav-icons{
+        display: none;
+    }
+   
+    
+
+}
 
 /*Asmaa*/
 
@@ -754,7 +821,7 @@ body {
 body {
     overflow-x: hidden;
 }
-/mourad/
+/* /mourad/ */
 /* Custom Styles for Book Cards */
 .container {
     display: flex;
