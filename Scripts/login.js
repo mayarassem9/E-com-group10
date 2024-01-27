@@ -11,6 +11,8 @@ document.getElementById("login").addEventListener('click', function (e) {
      passvalid(password);
     if ( isEmailValid && isPasswordValid ){
         console.log("inside event")
+        localStorage.setItem("userSignedUp",'true')
+
         validateCredentials(email, password);
 
     }

@@ -21,6 +21,7 @@ document.getElementById("signup").addEventListener('click', function (e) {
             document.getElementById('emailmessage').style.color='red'
         } else {
             // Email is unique, proceed with the sign-up process
+
             localStorage.setItem("userSignedUp",'true')
 
             saveUserData(username, email, password);

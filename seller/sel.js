@@ -21,7 +21,18 @@ var currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
 
 
 /*===============End Local Storge================*/
+//=====================log out=======================///
+    const logout=document.getElementById("logout");
+    logout.addEventListener('click',function(){
+        localStorage.removeItem("currentUser");
+        localStorage.setItem("userSignedUp",'false')
+        window.history.replaceState({},"","login.html");
+        window.location.href="login.html";
+    })
 
+
+
+//=====================end of log out================////
 /*================Display=================*/
 /*============================================*/
 var rowsPerPage = 6;

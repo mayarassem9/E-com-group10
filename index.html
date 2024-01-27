@@ -11,9 +11,12 @@
     <link rel="stylesheet" href="Styles/product listing.css">
     <!-- <link rel="stylesheet" href="Styles/bootstrap.css"> -->
     <link rel="stylesheet" href="Styles/style.css">
+    <script defer src="Scripts/logout.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> 
     <link rel="icon" href="/Resources/Images/logo/svg/White logo - no background.svg" type="image/png"> 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script defer src="Scripts/jsnav.js"></script>
 </head>
 
 <body>
@@ -33,23 +36,26 @@
                     </a>
                   
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="sign_up.html">Sign Up</a></li>
-                      <li><a class="dropdown-item" href="login.html">Login</a></li>
+                      <li id="signup"><a class="dropdown-item" href="sign_up.html">Sign Up</a></li>
+                      <li id="login"><a class="dropdown-item" href="login.html">Login</a></li>
+                      <li id="myaccount"><a class="dropdown-item" href="login.html"> <i class="fa-solid fa-house"></i> My Account</a></li>
+                      <li id="logout"><a class="dropdown-item" href="login.html"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
         <nav class="main-navigation "  >
             <div class="logo">
-                <img src="Resources/Images/logo/logo.png" alt="book logo" height="50">
+                <img class="navbar-brand" src="Resources/Images/logo/logo.png" alt="book logo" height="50">
             </div>
-            <ul class="nav-links"> 
+            <ul class="nav-links " > 
                 <li><a href="#">Home</a></li>
                 <li><a href="#section-poster">Shop</a></li>
                 <li><a href="#">Contacts</a></li>
             </ul>
             <div class="nav-icons">
                 <a href="#search"><i class="fas fa-search"></i></i></a>
+
                 <a href="orders.html"><i class="fa fa-heart"></i></a>
                 <button type="button" class=" position-relative" style="border: none; background-color: white;">
                     <a href="orders.html"><i class="fa fa-shopping-bag"></i></a>
@@ -62,7 +68,7 @@
             <div class="hamburger-icon">
                 <i class="fas fa-bars"></i>
             </div>
-          
+           
             
         </nav>
 
