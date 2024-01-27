@@ -1,56 +1,82 @@
 <!-- -------------------------------- created  by nada mohsen------------------------- -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LOGIN</title>
-    <link rel="stylesheet" href="Styles/font-awesome.min.css">
-    <link rel="stylesheet" href="Styles/bootstrap.css">
-    <link rel="stylesheet" href="Styles/login_style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="Styles/font-awesome.min.css" />
+    <link rel="stylesheet" href="Styles/bootstrap.css" />
+    <link rel="stylesheet" href="Styles/login_style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
     <script defer type="module" src="Scripts/login.js"></script>
-</head>
-<body>
-     <!----------------------- Main Container -------------------------->
-     <div class="main-container">
-        <!----------------------- Login Container -------------------------->
-        <div class="row border rounded-5 p-3 bg-white shadow box-area">
+  </head>
+  <body>
+    <!----------------------- Main Container -------------------------->
+    <div class="main-container">
+      <!----------------------- Login Container -------------------------->
+      <div class="row border rounded-5 p-3 bg-white shadow box-area">
         <!--------------------------- Left Box ----------------------------->
-           <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box  "  >
-               <!-- <div class="featured-image mb-3">
+        <div
+          class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box"
+        >
+          <!-- <div class="featured-image mb-3">
                 <img src="Resources/Images/login-sign in/loginimage.png" class="img-fluid " >
                </div> -->
-            </div> 
+        </div>
         <!-------------------- ------ Right Box ---------------------------->
-            
-           <div class="col-md-6 right-box">
-              <div class="row align-items-center">
-                    <div class="header-text mb-4">
-                         <h2>Hello,Again</h2>
-                         <p>We are happy to have you back.</p>
-                    </div>
-                    <div class=" mb-3">
-                        <input id="email" type="text" class="form-control form-control-lg bg-light fs-6" placeholder="Email address">
-                        <div id="emailmessage"></div>
-                    </div>
-                    <div  class="mb-3">
-                        <input id="password"type='password' class="form-control form-control-lg bg-light fs-6" placeholder="Password">
-                        <div id="passmassege"></div>
-                    </div>
-        
-                    <div class="input-group mb-3">
-                        <button id="login" class="btn btn-lg btn-dark w-100 fs-6">Login</button>
-                    </div>
-                    
-                    <div class="row   ">
-                        <small>Don't have account? <a href="sign_up.html" style="color: brown;" >Sign Up</a></small>
-                    </div>
-              </div>
-        </div> 
+
+        <div class="col-md-6 right-box">
+          <div class="row align-items-center">
+            <div class="header-text mb-4">
+              <h2>Hello,Again</h2>
+              <p>We are happy to have you back.</p>
+            </div>
+            <div class="mb-3">
+              <input
+                id="email"
+                type="text"
+                class="form-control form-control-lg bg-light fs-6"
+                placeholder="Email address"
+              />
+              <div id="emailmessage"></div>
+            </div>
+            <div class="mb-3">
+              <input
+                id="password"
+                type="password"
+                class="form-control form-control-lg bg-light fs-6"
+                placeholder="Password"
+              />
+              <div id="passmassege"></div>
+            </div>
+
+            <div class="input-group mb-3">
+              <button id="login" class="btn btn-lg btn-dark w-100 fs-6">
+                Login
+              </button>
+            </div>
+
+            <div class="row">
+              <small
+                >Don't have account?
+                <a href="sign_up.html" style="color: brown">Sign Up</a></small
+              >
+            </div>
           </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    </body>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
 </html>

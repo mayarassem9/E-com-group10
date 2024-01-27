@@ -103,7 +103,8 @@ function samepass(password, againpassword) {
 }
 
 function isSellerEmail(email) {
-    let sellers = localStorage.getItem("sellers");
+
+    let sellers = localStorage.getItem("users");
     if (!sellers) {
         return false; 
     }
@@ -123,7 +124,7 @@ function saveUserData(username, email, password) {
         username: username,
         email: email,
         password: password,
-        role:"user"
+        role:"customer"
 }
     localStorage.removeItem("currentUser");
     const currentUser = [newUser];
