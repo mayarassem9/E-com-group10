@@ -2,7 +2,6 @@ import { Item, Order } from "../Data/orderClass.js";
 import * as valid from "../../order/valid.js";
 import data from "../../Data/books.json" assert { type: "json" };
 $(document).ready(function () {
-  //Asmaa
   var orders = JSON.parse(localStorage.getItem("orders")) || [];
 
   localStorage.setItem("orders", JSON.stringify(orders));

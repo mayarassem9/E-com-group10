@@ -61,10 +61,10 @@ function createSearchAndTabs(sectionProducts) {
 
   // Create array of tab data
   const tabData = [
-    { id: "allBooks", iconClass: "fas fa-book pr-3", text: "All Books", active: true },
-    { id: "bestSeller", iconClass: "fas fa-fire pr-3", text: "Best Seller", active: false },
-    { id: "recentlyAdded", iconClass: "fas fa-clock pr-3", text: "Recently Added", active: false },
-    { id: "category", iconClass: "fas fa-list pr-3", text: "Categories", active: false },
+    { id: "allBooks", iconClass: "fas fa-book pe-3", text: "All Books", active: true },
+    { id: "bestSeller", iconClass: "fas fa-fire pe-3", text: "Best Seller", active: false },
+    { id: "recentlyAdded", iconClass: "fas fa-clock pe-3", text: "Recently Added", active: false },
+    { id: "category", iconClass: "fas fa-list pe-3", text: "Categories", active: false },
   ];
 
   // Create li elements and append to ul
