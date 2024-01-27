@@ -81,7 +81,7 @@ $("document").ready(function () {
   if (isCurrentCustomerAuthenticated()) {
     //***************Loading Page************************
     //myCart = sampleCartData;
-    //localStorage.setItem('userOrder',JSON.stringify(myCart));
+    //localStorage.setItem('orders',JSON.stringify(myCart));
     myCart = getCartFromLocalStorage();
     displayCartToDOM(myCart);
     loadAddressToDOM();
@@ -182,7 +182,7 @@ function createNewOrderId() {
   }
 }
 function getOrdersFromLocalStorage() {
-  let orders = localStorage.getItem("orders");
+  let orders = localStorage.getItem("allOrders");
   if (orders) {
     return JSON.parse(orders);
   }
@@ -310,7 +310,7 @@ function loadAddressToDOM() {
 }
 
 function getCartFromLocalStorage() {
-  let cart = localStorage.getItem("userOrder");
+  let cart = localStorage.getItem("orders");
 
   if (cart) {
     let _cart = JSON.parse(cart);
@@ -325,7 +325,7 @@ function getCartFromLocalStorage() {
 function saveOrderToLocalStorage(order) {
   let orders = getOrdersFromLocalStorage();
   orders.push(order);
-  localStorage.setItem("orders", JSON.stringify(orders));
+  localStorage.setItem("allOrders", JSON.stringify(orders));
 }
 
 function displayCartToDOM(_cart) {
