@@ -1,7 +1,7 @@
-import {Item,Order} from "../../Data/orderClass.js"
+
+import {Item,Order} from "../Data/orderClass.js"
 import * as valid from '../../order/valid.js';
 import data from "../../Data/books.json" assert { type: 'json' }; 
-
 $(document).ready(function(){
 
     //Asmaa
@@ -236,4 +236,4 @@ function createNewMessageID(messages) {
 }
 
 // **************************** End of Cutomer Service Area *****************************
-
+}
