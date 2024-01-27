@@ -22,6 +22,7 @@ document.getElementById("signup").addEventListener('click', function (e) {
             document.getElementById('emailmessage').style.color='red'
         } else {
             // Email is unique, proceed with the sign-up process
+            localStorage.setItem("userSignedUp",'true')
             saveUserData(username, email, password);
             window.location.href="index.html"
 
@@ -100,7 +101,9 @@ function samepass(password, againpassword) {
         document.getElementById("againpassword").classList.add('border-danger');
     }
 }
+
 function isSellerEmail(email) {
+
     let sellers = localStorage.getItem("users");
     if (!sellers) {
         return false; 
@@ -111,7 +114,10 @@ function isSellerEmail(email) {
 function saveUserData(username, email, password) {
     let users = localStorage.getItem("users");
     users = users ? JSON.parse(users) : [];
-    let newid=users[users.length-1].id+1
+    let newid=1;
+    if(users.length!==0){
+        newid=users[users.length-1].id+1
+}
 
     let newUser = {
         id:newid,

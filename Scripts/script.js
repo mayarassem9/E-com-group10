@@ -1,7 +1,16 @@
-
+import {Item,Order} from "../../Data/orderClass.js"
+import * as valid from '../../order/valid.js';
+import data from "../../Data/books.json" assert { type: 'json' }; 
 
 $(document).ready(function(){
 
+    //Asmaa
+    var orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    
+    localStorage.setItem("orders", JSON.stringify(orders));
+   
+    valid.notificationUpdate(orders);
     /* poster Section Index.html*/
     
         var imageContainer = document.querySelector('.image-container');
@@ -48,8 +57,98 @@ $(document).ready(function(){
 
 
 
+myTabContent.appendChild(allBooks);
 
+container.classList.add("ccontainer", "mt-5");
 
+allBooks.appendChild(container);
+row.classList.add("row");
+
+// Function to create a book card dynamically
+function createBookCard(bookId, title, author, description, price, imageSrc, isBestSeller, isRecentlyAdded) {
+    var colDiv = document.createElement('div');
+    colDiv.classList.add('col-md-3', 'mb-4');
+    console.log(bookId);
+
+    // Create an anchor for the entire card
+    var cardLink = document.createElement('div');
+    //cardLink.href = 'Productdetails.html?id=' + bookId; // Construct the URL with the book ID
+    
+    cardLink.classList.add('card-link'); // You can add a custom class for styling if needed
+
+    var cardDiv = document.createElement('div');
+    cardDiv.classList.add('card');
+
+    var imgDiv = document.createElement('div');
+    imgDiv.classList.add('custom-card-img');
+
+    var img = document.createElement('img');
+    img.src = imageSrc;
+    console.log('Image source:', imageSrc); // Log the image source
+    img.classList.add('card-img-top', 'img-fluid');
+    img.alt = title + ' Image';
+
+    img.addEventListener("click",function(){
+        goToProductDetails(bookId);
+    });
+
+    var bodyDiv = document.createElement('div');
+    bodyDiv.classList.add('card-body');
+
+    var cardTitle = document.createElement('h5');
+    cardTitle.classList.add('card-title');
+    cardTitle.textContent = title;
+
+    var cardAuthor = document.createElement('p');
+    cardAuthor.classList.add('card-author');
+    cardAuthor.textContent = "Author: " + author;
+
+    var cardDescription = document.createElement('p');
+    cardDescription.classList.add('card-text');
+    cardDescription.textContent = description;
+
+    // Create labels for Best Seller and Recently Added
+    var bestSellerLabel = document.createElement('span');
+    bestSellerLabel.classList.add('badge', 'badge-success');
+    bestSellerLabel.textContent = 'Best Seller';
+    bestSellerLabel.style.display = isBestSeller ? 'inline-block' : 'none';
+
+    var recentlyAddedLabel = document.createElement('span');
+    recentlyAddedLabel.classList.add('badge', 'badge-info');
+    recentlyAddedLabel.textContent = 'Recently Added';
+    recentlyAddedLabel.style.display = isRecentlyAdded ? 'inline-block' : 'none';
+
+    var cardPrice = document.createElement('p');
+    cardPrice.classList.add('card-text', 'price');
+    var formattedPrice = typeof price === 'number' ? '$' + price.toFixed(2) : 'Invalid Price';
+    cardPrice.textContent = formattedPrice;
+    
+
+    //======================================================
+    //=====================================================
+    //Asmaa
+    var addToCartBtn = document.createElement('button');
+    //addToCartBtn.id = 'addBtn';
+    //addToCartBtn.classList.add('btn', 'btn-dark');
+    addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+    addToCartBtn.addEventListener("click",function(){
+        valid.addToCart(Item,Order,data,bookId);
+
+        var orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    
+        localStorage.setItem("orders", JSON.stringify(orders));
+       
+    valid.notificationUpdate(orders);
+
+        
+    })
+    imgDiv.appendChild(img);
+    bodyDiv.appendChild(cardTitle);
+    bodyDiv.appendChild(cardAuthor);
+    bodyDiv.appendChild(cardDescription);
+    bodyDiv.appendChild(cardPrice);
+    bodyDiv.appendChild(addToCartBtn);
 
 
 
@@ -137,5 +236,4 @@ function createNewMessageID(messages) {
 }
 
 // **************************** End of Cutomer Service Area *****************************
-
 
