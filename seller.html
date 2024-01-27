@@ -8,58 +8,22 @@
     <script src="Scripts/jquery-3.7.1.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script type="module" src="seller/sel.js"></script>
+    <script src="seller/sel.js"  type="module"></script>
     <link rel="stylesheet" href="seller/seller.css">
     <title>Seller</title>
    
 </head>
+<style>
+  
+</style>
 <body>
 
-
-  
-  <!--
-    <div class="container-fluid ">
-        
-        <div class="sidebar">
-            <div class="d-flex flex-column flex-shrink-0 " style="width: 1.5rem;">
-                
-                <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-                  <a href="/" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
-                    <img src="Resources/Images/icon/home_480px.png">
-                </a>
-                    <li class="nav-item">
-                      <a href="seller.html" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
-                        <img src="Resources/Images/icon/bookS.png">
-                    </a>
-                    </li>
-                    <li>
-                      <a href="/" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
-                        <img src="Resources/Images/icon/orderS.png">
-                    </a>
-                    </li>
-                    <li>
-                      <a href="/" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
-                        <img src="Resources/Images/icon/exitS.png">
-                    </a>
-                    </li>
-                    <li>
-                        
-                    </li>
-                    <li>
-                        
-                    </li>
-                </ul>
-                
-            </div>
-        </div>
--->
-
-  <div class="row" style="height: 20%;"></div>
+  <div class="row" style="height: 30%;"></div>
 
   <div class="container-fluid">
     <div class="row">
       <!-- Sidebar -->
-      <div class="col-3 sidebarr">
+      <div class="sidebarr">
         <div class="d-flex flex-column flex-shrink-0 bg-dark" style="width: 4.5rem; position: fixed; height: 100vh;left: 0; top: 0; bottom: 0;">
           
             <img src="Resources/Images/logo/logo.png">
@@ -74,13 +38,13 @@
               <li onclick="navigateToPage('order.html')">
                   <img src="Resources/Images/icon/orderS.png">
               </li>
-              <li onclick="navigateToPage('user.html')">
+              <li onclick="navigateToPage('userProfile.html')">
                   <img src="Resources/Images/icon/user.png">
               </li>
           </ul>
           <div class="dropdown border-top">
             <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle">
+              <img src="Resources/Images/icon/exitS.png" alt="mdo" width="24" height="24" class="rounded-circle">
             </a>
             <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
               <li><a class="dropdown-item" href="#">Sign out</a></li>
@@ -90,17 +54,17 @@
     </div>
       
       <!-- Main Content -->
-      <div class="col-9 offset-1">
-        <div class="container">
-          <div class="main-content">
+      <div class="col-10 offset-1 p-5">
+        
+         
             <div class="row">
                 <div class="col-4">
-                  <button  class="btn btn-dark"  type="button"  data-bs-toggle="modal" data-bs-target="#AddBook"><img src="Resources/Images/icon/book.png" width="25vw" >   New Book</button>
+                  <button  class="btn btn-dark" id="addb" type="button"  data-bs-toggle="modal" data-bs-target="#ModelBook"><img src="Resources/Images/icon/book.png" width="25vw" >New</button>
                 </div>
                 <div class="col-7">
                   <div class="container-fluid">
                     <form class="d-flex">
-                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+                      <input class="form-control " type="search" placeholder="Search" aria-label="Search" id="searchInput">
                      
                     </form>
                   </div>
@@ -108,13 +72,13 @@
             </div>
             
             <div class="row">
-                <div class="col-12">
+                <div class="col-10">
                     <table class="table table-hover table-responsive">
                         <thead>
                             <th>ID</th>
                             <th>Title</th>
                             <th>Author</th>
-                            <th>Mount Available</th>
+                            <th>Num</th>
                             <th>Action</th>
 
                         </thead>
@@ -129,8 +93,8 @@
                   </nav>
                 </div>
             </div>
-        </div>
-    </div>
+      
+ 
         </div>
       
     </div>
@@ -138,93 +102,12 @@
   
  
 
-   
-
-    <!-- Modal for Adding Book -->
-   
-    <div class="modal fade" id="EditBook" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <!-- Modal for Adding, Editing Book -->
+    <div class="modal fade" id="ModelBook" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit Info About a Book</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form class="row g-3 needs-validation" novalidate>
-              <div class="">
-                <input type="text" class="form-control" id="idd"  style="display:none;">
-              </div>
-                <div class="col-md-6">
-                  <label for="titleEdit" class="form-label">Tittle</label>
-                  <input type="text" class="form-control" id="titleEdit"  required>
-                </div>
-                <div class="col-md-6">
-                  <label for="AuthorNameEdit" class="form-label">Author Name</label>
-                  <input type="text" class="form-control" id="AuthorNameEdit"  required>
-                </div>
-                
-                <div class="col-md-4">
-                  <label for="NumberOfStockEdit" class="form-label">Number Of Stock</label>
-                  <input type="number" class="form-control" id="NumberOfStockEdit" required>
-                </div>
-
-                <div class="col-md-4">
-                    <label for="PriceEdit" class="form-label">Price</label>
-                    <input type="text" class="form-control" id="PriceEdit" required>
-                  </div>
-                  <div class="col-md-4">
-                    <label for="CatogryEdit" class="form-label">Catogry</label>
-                    <select class="form-select" id="CatogryEdit" required>
-                      <option selected disabled value="">Choose...</option>
-                      <option>Children</option>
-                      <option>Fiction</option>
-                      <option>History</option>
-                      <option>Motivational</option>
-                    </select>
-                    
-                  </div>
-                  <div class="col-md-12">
-                    <label for="DescriptionEdit" class="form-label">Description</label>
-                    <textarea class="form-control" id="DescriptionEdit" rows="3"></textarea>
-                    
-                  </div>
-                
-                
-
-                  <div class="col-md-12">
-
-              
-                    <label for="BookImageEdit" class="form-label">Book Image</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" >Resources/Images/books/</span>
-                            <input type="file" class="form-control" id="BookImageEdit" >
-                            
-                        </div>
-    
-                          
-                      </div>
-                
-                
-              
-              
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" id="EditBookBtn">Edit</button>
-            
-
-          </div>
-        </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal for Editing Book -->
-    <div class="modal fade" id="AddBook" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit Info About a Book</h5>
+            <h5 class="modal-title" id="exampleModalLabel"> Book</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -235,23 +118,23 @@
                 <div class="col-md-6">
                   <label for="title" class="form-label">Tittle</label>
                   <input type="text" class="form-control" id="title"  required>
-                  
+                  <span id="titleSpan"></span>
                 </div>
                 <div class="col-md-6">
                   <label for="AuthorName" class="form-label">Author Name</label>
                   <input type="text" class="form-control" id="AuthorName"  required>
-                  
+                  <span id="AuthoreSpan"></span>
                 </div>
                 
                 <div class="col-md-4">
                   <label for="NumberOfStock" class="form-label">Number Of Stock</label>
                   <input type="number" class="form-control" id="NumberOfStock" required>
-                  
+                  <span id="NumStockSpan"></span>
                 </div>
                 <div class="col-md-4">
                     <label for="Price" class="form-label">Price</label>
                     <input type="text" class="form-control" id="Price" required>
-                    
+                    <span id="PriceSpan"></span>
                   </div>
                   <div class="col-md-4">
                     <label for="Catogry" class="form-label">Catogry</label>
@@ -262,12 +145,12 @@
                       <option>History</option>
                       <option>Motivational</option>
                     </select>
-                    
+                    <span id="CatogrySpan"></span>
                   </div>
                   <div class="col-md-12">
                     <label for="Description" class="form-label">Description</label>
                     <textarea class="form-control" id="Description" rows="3"></textarea>
-                    
+                    <span id="DescriptionSpan"></span>
                   </div>
                 
                 
@@ -279,7 +162,7 @@
                         <div class="input-group mb-3">
                             <span class="input-group-text" >Resources/Images/books/</span>
                             <input type="file" class="form-control" id="BookImage" >
-                            
+                            <span id="ImgSpan"></span>
                         </div>
     
                           
@@ -291,7 +174,8 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="addBookBtn">Add</button>
+            <button type="button" class="btn btn-primary" id="addBookBtn" >Add</button>
+            <button type="submit" class="btn btn-primary" id="EditBookBtn">Edit</button>
           </div>
         </div>
       </div>
@@ -341,6 +225,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary"  id="addb" style="display: none;">Add</button>
+        <button type="button" class="btn btn-secondary" id="editb" style="display: none;">Edit</button>
       </div>
     </div>
   </div>

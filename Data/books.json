@@ -4,10 +4,10 @@
         "ID":1,
         "title":"Abu Alhoul",
         "author":"Ahmed Mourad",
-        "description":"Mourads novel details the life of photographer and crime expert Sulaiman ElSeyofy known for investigating a mysterious  century crime during the Egyptian plague",
+        "description":"Mourads novel details the life of photographer and crime expert Sulaiman ElSeyofy known for investigating a mysterious century crime during the Egyptian plague",
         "price":115,
         "category":"Fiction",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/abuAlhoulBook.jpg",
         "stockNum":10
     },
@@ -18,7 +18,7 @@
         "description":"Avery Kylie Grambs the teenage girl who is unexpectedly left a billion dollar fortune by mysterious philanthropist Tobias Tattersall Hawthorne",
         "price":125,
         "category":"Fiction",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/TheFinalGambit.jpg",
         "stockNum":10
 },
@@ -29,7 +29,7 @@
         "description":"Avery Kylie Grambs the teenage girl who is unexpectedly left a billiondollar fortune by mysterious philanthropist Tobias Tattersall Hawthorne",
         "price":158,
         "category":"Fiction",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/FireAndBlood.jpg",
         "stockNum":10
 
@@ -41,7 +41,7 @@
         "description":"Dickens novel weaves love and sacrifice into the turbulent backdrop of the French Revolution",
         "price":135,
         "category":"Fiction",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/TaleofTwoCities.jpg",
         "stockNum":10
 },
@@ -52,7 +52,7 @@
         "description":"Detective Poirot untangles a murder mystery on a luxurious train with intricate passenger secrets",
         "price":340,
         "category":"Fiction",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/MurderOnTheOrientExpress.jpeg",
         "stockNum":10
 },
@@ -60,24 +60,14 @@
     "ID":6,
     "title":"We Free The Stars",
     "author":"Hafsah Faizal",
-        "description":" continues the thrilling fantasy saga of We Hunt the Flame by Hafsah Faizal following Zafira and Nasir on a quest filled with magic and intrigue",
+        "description":"continues the thrilling fantasy saga of We Hunt the Flame by Hafsah following Zafira and Nasir on a quest filled with magic and intrigue",
         "price":150,
         "category":"Fiction",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/WeFreeTheStars.jpg",
         "stockNum":10
 },
-{
-    "ID":7,
-    "title":"You have Reached Sam",
-    "author":"Dustin Thao",
-        "description":"Seventeen year old Julie has her future all planned out move out of her small town with her boyfriend Sam attend college in the city spend a summer",
-        "price":182,
-        "category":"Fiction",
-        "salerID":"11",
-        "imgLink":"Resources/Images/books/You'veReachedSam.jpg",
-        "stockNum":10
-},
+
 {
     "ID":8,
     "title":"Rich Dad And Poor Dad",
@@ -85,7 +75,7 @@
         "description":"contrasts financial philosophies providing insights into wealth building strategies and the mindset for financial success",
         "price":110,
         "category":"Motivational",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/RichDadAndPoorDad.jpg",
         "stockNum":10
 },
@@ -96,7 +86,7 @@
         "description":"contrasts financial philosophies providing insights into wealth building strategies and the mindset for financial success",
         "price":80,
         "category":"Motivational",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/AtomicHabits.jpg",
         "stockNum":10
 
@@ -108,7 +98,7 @@
         "description":" reveals how exceptional companies achieve sustained greatness through visionary leadership and disciplined processes",
         "price":186,
         "category":"Motivational",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/GoodToGreat.jpg",
         "stockNum":10
 
@@ -120,7 +110,7 @@
         "description":"delves into the impact of trauma on the body and mind, providing insights and therapeutic approaches for healing",
         "price":99,
         "category":"Motivational",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/TheBodyKeepsTheScore.jpg",
         "stockNum":10
 
@@ -132,7 +122,7 @@
         "description":"is a practical guide to negotiation drawing from FBI experiences with tips for success in various negotiations",
         "price":210,
         "category":"Motivational",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/NeverSplitTheDifference.jpg",
         "stockNum":10
 
@@ -144,7 +134,7 @@
         "description":"delves into the differences in communication and emotional needs between genders providing insights for better relationships",
         "price":222,
         "category":"Motivational",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/MenFromMarsAndWomenFromVenus.jpg",
         "stockNum":10
 
@@ -156,7 +146,7 @@
         "description":"explores how successful companies thrive in uncertainty through disciplined decision-making and consistent innovation",
         "price":550,
         "category":"Motivational",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/GreatByChoice.jpg",
         "stockNum":10
 
@@ -168,7 +158,7 @@
         "description":"explores how successful companies thrive in uncertainty through disciplined decision making and consistent innovation",
         "price":550,
         "category":"Children",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/CharlieAndTheChocolateFactory.jpg",
         "stockNum":10
 
@@ -180,7 +170,7 @@
         "description":"explores how successful companies thrive in uncertainty through disciplined decision making and consistent innovation",
         "price":320,
         "category":"Children",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/TheChaliceOfTheGods.jpg",
         "stockNum":10
 
@@ -192,7 +182,7 @@
         "description":"Percy Jackson undertakes a perilous quest to the Sea of Monsters to retrieve the Golden Fleece encountering mythical challenges to save his camp and the world",
         "price":350,
         "category":"Children",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/TheSeaOfMonsters.jpg",
         "stockNum":10
 
@@ -204,7 +194,7 @@
         "description":"Experience the beautiful story that captivated the country about a little owl found in the worlds most famous Christmas tree",
         "price":450,
         "category":"Children",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/TheChristmasOwl.jpg",
         "stockNum":10
 
@@ -216,7 +206,7 @@
         "description":"A stirring and heart warming tale of a young deaf girl who is determined to make a difference the perfect read for fans of Wonder",
         "price":110,
         "category":"Children",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/SongForWhale.jpg",
         "stockNum":10
 
@@ -228,7 +218,7 @@
         "description":"dragons navigate political intrigue and personal challenges during an IceWing succession war in the Wings of Fire series",
         "price":330,
         "category":"Children",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/WinterTurning.jpg",
         "stockNum":10
 
@@ -241,7 +231,7 @@
         "description":"follows young wizard Harry Potter at Hogwarts as he unravels the mystery of the Philosophers Stone and confronts the dark wizard Lord Voldemort",
         "price":410,
         "category":"Children",
-        "salerID":"11",
+        "salerID":2,
         "imgLink":"Resources/Images/books/HarryPotterandthePhilosophersStone.jpg",
         "stockNum":10
 
@@ -254,7 +244,7 @@
         "description":"analyzes how geography and agriculture have shaped human history and global inequalities",
         "price":210,
         "category":"History",
-        "salerID":"11",
+        "salerID":2,
         "imgLink":"Resources/Images/books/GunsGermsAndSteel.jpg",
         "stockNum":10
 
@@ -266,7 +256,7 @@
         "description":"explores the Great Migration detailing the significant journeys of African Americans from the Southern US to the North and West ",
         "price":610,
         "category":"History",
-        "salerID":"11",
+        "salerID":2,
         "imgLink":"Resources/Images/books/TheWarmthOfOtherSuns.jpg",
         "stockNum":10
 
@@ -278,7 +268,7 @@
         "description":"detailed biography chronicling the life and significant contributions of this Founding Father to the shaping of the United States",
         "price":210,
         "category":"History",
-        "salerID":"11",
+        "salerID":1,
         "imgLink":"Resources/Images/books/AlexanderHamilton.jpeg",
         "stockNum":10
 
@@ -290,7 +280,7 @@
         "description":"The Crusades is an authoritative accessible single volume history of the brutal struggle for the Holy Land in the Middle Ages",
         "price":410,
         "category":"History",
-        "salerID":"11",
+        "salerID":2,
         "imgLink":"Resources/Images/books/TheCrusades.jpg",
         "stockNum":10
 
@@ -302,7 +292,7 @@
         "description":"Murder Magic and Madness at the Fair That Changed America is a 2003 historical",
         "price":220,
         "category":"History",
-        "salerID":"11",
+        "salerID":2,
         "imgLink":"Resources/Images/books/TheDevilintheWhiteCity.jpg",
         "stockNum":10
 
@@ -314,7 +304,7 @@
         "description":" It is centered on the first month of World War I After introductory chapters Tuchman describes in great detail the opening events of the conflict",
         "price":310,
         "category":"History",
-        "salerID":"11",
+        "salerID":2,
         "imgLink":"Resources/Images/books/TheGunsofAugust.jpg",
         "stockNum":10
 
@@ -326,7 +316,7 @@
         "description":"The book provides a summary of periods and trends in history they had noted upon completion of the 10th volume",
         "price":510,
         "category":"History",
-        "salerID":"11",
+        "salerID":2,
         "imgLink":"Resources/Images/books/TheLessonsofHistory.jpg",
         "stockNum":10
 

@@ -19,7 +19,6 @@ table .btn:hover {
 .actionIcon{
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
 }
 table .btn table {
   width: 1vw;
@@ -29,15 +28,10 @@ table .btn table {
         margin: 0;
       }
       table {
-        text-align: left;
-        
+        text-align: left;        
       }
         
 
-        
-        .row{
-          margin-bottom: 3%;
-        }
         .InfoDiv h3{
           text-align: center;
         }
@@ -71,3 +65,56 @@ table .btn table {
     border-color: black; 
     color: white; 
 }
+.sidebarr {
+  width: 4.5rem;
+}
+
+
+@media (max-width: 576px) {
+  .sidebarr {
+      width: 100%;
+  }
+  table {
+    text-align: left;
+    font-size: 80%;   
+}
+
+}
+
+
+@media (min-width: 576px) {
+  .sidebarr {
+     
+      width: 8rem;
+  }
+
+  @media (max-width: 412px) {
+    .sidebarr {
+        width: 100%;
+        position: static;
+    }
+
+    .main-content {
+        padding-left: 0; 
+        padding-right: 0; 
+    }
+
+    #addb {
+        width: 100%; 
+        margin-bottom: 10px; 
+    }
+    table{
+      font-size: 80%;
+    }
+
+}
+
+ 
+    
+}
+
+#ModelBook span{
+  color: red;
+}
+
+

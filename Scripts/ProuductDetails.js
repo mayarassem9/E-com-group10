@@ -1,9 +1,28 @@
+import {Item,Order} from "../../Data/orderClass.js"
+import * as valid from '../../order/valid.js';
+import data from "../../Data/books.json" assert { type: 'json' }; 
+
 document.addEventListener('DOMContentLoaded', () => {
     // displayBookDetails(theBook);
+    //asmaa
+    
+    var orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    
+    localStorage.setItem("orders", JSON.stringify(orders));
+   
+    valid.notificationUpdate(orders);
+
 
     // Get the book ID from the URL
     const bookId = getBookIdFromUrl();
     console.log(bookId);
+
+    document.getElementById("addBtn").addEventListener("click",function(){
+        valid.addToCart(Item,Order,data,bookId);
+         orders=JSON.parse(localStorage.getItem("orders"));
+        valid.notificationUpdate(orders);
+    })
 
     if (bookId) {
         // Retrieve book details from local storage
@@ -23,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Handle the case where no book ID is provided in the URL
         console.error('Book ID not provided in the URL');
     }
+
+    
 });
 const getBooksFromLocalStorage = () => {
     const storedBooks = localStorage.getItem('booksData');
@@ -50,4 +71,5 @@ function displayBookDetails(theBook) {
     if (BookDetails) BookDetails.textContent = theBook.description;
     if (BookImg) BookImg.src = theBook.imgLink;
 }
+
 

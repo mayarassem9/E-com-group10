@@ -1,8 +1,17 @@
-
+import {Item,Order} from "../../Data/orderClass.js"
+import * as valid from '../../order/valid.js';
+import data from "../../Data/books.json" assert { type: 'json' }; 
 
 
 $(document).ready(function () {
 
+    //Asmaa
+    var orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    
+    localStorage.setItem("orders", JSON.stringify(orders));
+   
+    valid.notificationUpdate(orders);
     /* poster Section Index.html*/
 
     var imageContainer = document.querySelector('.image-container');
@@ -233,9 +242,7 @@ function createBookCard(bookId, title, author, description, price, imageSrc, isB
     // Create an anchor for the entire card
     var cardLink = document.createElement('div');
     //cardLink.href = 'Productdetails.html?id=' + bookId; // Construct the URL with the book ID
-    cardLink.addEventListener("click",function(){
-        goToProductDetails(bookId);
-    });
+    
     cardLink.classList.add('card-link'); // You can add a custom class for styling if needed
 
     var cardDiv = document.createElement('div');
@@ -249,6 +256,10 @@ function createBookCard(bookId, title, author, description, price, imageSrc, isB
     console.log('Image source:', imageSrc); // Log the image source
     img.classList.add('card-img-top', 'img-fluid');
     img.alt = title + ' Image';
+
+    img.addEventListener("click",function(){
+        goToProductDetails(bookId);
+    });
 
     var bodyDiv = document.createElement('div');
     bodyDiv.classList.add('card-body');
@@ -282,11 +293,25 @@ function createBookCard(bookId, title, author, description, price, imageSrc, isB
     cardPrice.textContent = formattedPrice;
     
 
-    var addToCartBtn = document.createElement('a');
-    addToCartBtn.href = '#';
-    addToCartBtn.classList.add('btn', 'btn-dark');
+    //======================================================
+    //=====================================================
+    //Asmaa
+    var addToCartBtn = document.createElement('button');
+    //addToCartBtn.id = 'addBtn';
+    //addToCartBtn.classList.add('btn', 'btn-dark');
     addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+    addToCartBtn.addEventListener("click",function(){
+        valid.addToCart(Item,Order,data,bookId);
 
+        var orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    
+        localStorage.setItem("orders", JSON.stringify(orders));
+       
+    valid.notificationUpdate(orders);
+
+        
+    })
     imgDiv.appendChild(img);
     bodyDiv.appendChild(cardTitle);
     bodyDiv.appendChild(cardAuthor);
@@ -499,5 +524,4 @@ function createNewMessageID(messages) {
 }
 
 // **************************** End of Cutomer Service Area *****************************
-
 

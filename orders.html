@@ -6,80 +6,110 @@
     
   
     <script src="Scripts/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script type="module" src="seller/orders.js"></script>
+    <script type="module" src="order/order.js"></script>
+    <script type="module" src="Data/orderClass.js"></script>
     <link rel="stylesheet" href="Styles/all.min.css">
-    <link rel="stylesheet" href="seller/orders.css">
+    <link rel="stylesheet" href="order/order.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Document</title>
+    <title>Orders</title>
 </head>
-<body  class="m-0">
-    
-    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button>
+<body>
 
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-  <div class="offcanvas-header">
-    
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    <div class="card">
-        <div class="row">
-            <div class="col-12 cart">
-                <div class="title">
-                    <div class="row">
-                        <div class="col"><h4><b>Shopping Cart</b></h4></div>
-                        <div class="col align-self-center text-right text-muted">3 items</div>
-                    </div>
-                </div>    
-                <div class="row border-top border-bottom">
-                    <div class="row main align-items-center">
-                        <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/1GrakTl.jpg"></div>
-                        <div class="col">
-                            <div class="row text-muted">Shirt</div>
-                            <div class="row">Cotton T-shirt</div>
-                        </div>
-                        <div class="col">
-                            <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-                        </div>
-                        <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
-                    </div>
+    <header>
+        <nav id="NavBar" >
+            <div class="header">
+                <div class="left-section">
+                    Free shipping, 30-day return or refund guarantee.
                 </div>
-                <div class="row">
-                    <div class="row main align-items-center">
-                        <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/ba3tvGm.jpg"></div>
-                        <div class="col">
-                            <div class="row text-muted">Shirt</div>
-                            <div class="row">Cotton T-shirt</div>
-                        </div>
-                        <div class="col">
-                            <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-                        </div>
-                        <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
-                    </div>
+                <div class="dropdown">
+                    <a class="btn btn-secondary dropdown-toggle  " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-regular fa-user"></i> Account 
+                    </a>
+                  
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="sign_up.html">Sign Up</a></li>
+                      <li><a class="dropdown-item" href="login.html">Login</a></li>
+                    </ul>
                 </div>
-                <div class="row border-top border-bottom">
-                    <div class="row main align-items-center">
-                        <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/pHQ3xT3.jpg"></div>
-                        <div class="col">
-                            <div class="row text-muted">Shirt</div>
-                            <div class="row">Cotton T-shirt</div>
-                        </div>
-                        <div class="col">
-                            <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-                        </div>
-                        <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
-                    </div>
-                </div>
-                <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
             </div>
+        </nav>
+        <nav class="main-navigation "  >
+            <div class="logo">
+                <img src="Resources/Images/logo/logo.png" alt="book logo" height="50">
+            </div>
+            <ul class="nav-links"> 
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#section-poster">Shop</a></li>
+                <li><a href="#">Contacts</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#search"><i class="fas fa-search"></i></i></a>
+                <a href="#"><i class="fa fa-heart"></i></a>
+
+                <button type="button" class=" position-relative" style="border: none; background-color: white;">
+                  <a href="#"><i class="fa fa-shopping-bag"></i></a>
+                  <span id="notification" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"style="width: 100%; font: 0.8em sans-serif; height: 90%;">
+                    
+                    <span class="visually-hidden">unread messages</span>
+                  </span>
+                </button>
+                
+                <!-- <span>$0.00</span> -->
+            </div>
+            <div class="hamburger-icon">
+                <i class="fas fa-bars"></i>
+            </div>
+          
             
+        </nav>
+
+
+    </header>
+
+    <!--===================================================================================================-->
+    <section class="h-100" style="background-color: #eee;">
+        <div class="container h-100 py-5">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-10">
+      
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
+                
+              </div>
+      
+              <div id="orderDiv"></div>
+             
+      
+              <div class="card mb-4">
+                <div class="card-body p-4 d-flex flex-row">
+                  <div class="form-outline flex-fill">
+                    <div><h5>
+                      Total Price :  
+                      <span id="TotalPrice"></span>
+                    </h5>
+                      
+                    </div>
+
+                  </div>
+                  <div></div>
+                </div>
+              </div>
+      
+              <div class="card">
+                <div class="card-body" style="align-self:flex-end;">
+                  <button type="button" class="btn btn-warning btn-block btn-m">checkout</button>
+                </div>
+              </div>
+      
+            </div>
+          </div>
         </div>
-        
-    </div>
-  </div>
-</div>
+      </section>
+    
+    
     
 </body>
 </html>

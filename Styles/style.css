@@ -340,7 +340,8 @@ width: 100%;
 
 .image-containerBookOfTheMounth img {
 height: 30vh;
-min-width: 30vh;
+min-width: 25vw;
+padding-left: 5vw;
 }
 
 .image-containerBookClub {
@@ -348,11 +349,11 @@ height: 30%;
 }
 
 .imgBCTwo, .imgBCOne {
-min-width: 20vh;
+min-width: 5vw;
 }
 
 .textBookOfTheMounth {
-margin-left: 5vw;
+margin-left: 20vw;
 }
 
 .quote {
@@ -366,6 +367,54 @@ body {
 	font-family: "Nunito Sans", sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
+
+
+  @media (max-width: 450px) {
+    .carousel-item img {
+        height: 50vh; /* Adjust height for smaller screens */
+    }
+
+    .carousel-item .subject {
+        font-size: 5vw; /* Adjust font size to be responsive */
+    }
+
+    .DateOfBookClub {
+        font-size: 2vw; /* Adjust font size */
+    }
+
+    .image-container {
+        flex-direction: row; /* Stack images vertically */
+        align-items: center;
+        height: auto; /* Adjust height to fit content */
+    }
+
+    .image-container img {
+        width: 100%; /* Adjust width */
+        height: 100%;
+        margin-bottom: 10px; /* Add some space between images */
+    }
+
+    .image-containerBookOfTheMounth img{
+    
+        height: auto; /* Adjust height to maintain aspect ratio */
+        width: 60%; /* Adjust width */
+        margin-left: 10vw;
+    }
+    .image-containerBookClub img {
+        display: none;
+    }
+
+    
+    .textBookOfTheMounth, .textBookClub {
+        margin-left: 2vw; /* Adjust margin */
+        font-size: 2vw; /* Adjust font size */
+    }
+
+    .quote {
+        font-size: 2.5vw, /* Adjust font size for quotes */
+        }
+}
+  
 
 
 
