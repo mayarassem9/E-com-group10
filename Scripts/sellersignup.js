@@ -22,6 +22,8 @@ document.getElementById("signup").addEventListener('click', function (e) {
         } else {
             // Email is unique, proceed with the sign-up process
 
+            localStorage.setItem("userSignedUp",'true')
+
             saveUserData(username, email, password);
             window.location.href="seller.html"
 
@@ -111,7 +113,7 @@ function saveUserData(username, email, password) {
     sellers = sellers ? JSON.parse(sellers) : [];
     if(sellers.length!==0){
         newid=sellers[sellers.length-1].id+1
-}
+    }
     
 
     let newSeller = {
@@ -120,7 +122,7 @@ function saveUserData(username, email, password) {
         email: email,
         password: password,
         role:"seller"
-}
+    }
     localStorage.removeItem("currentUser");
     const currentUser = [newSeller];
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
@@ -129,7 +131,7 @@ function saveUserData(username, email, password) {
     localStorage.setItem("users", JSON.stringify(sellers));
 }
 function emailExists(email) {
-    let sellers = localStorage.getItem("sellers");
+    let sellers = localStorage.getItem("users");
     if (!sellers) {
         return false; // No users stored yet
     }

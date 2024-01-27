@@ -23,6 +23,7 @@ document.getElementById("signup").addEventListener('click', function (e) {
         } else {
             // Email is unique, proceed with the sign-up process
             localStorage.setItem("userSignedUp",'true')
+
             let userRole = saveUserData(username, email, password); // save the role
             // Redirect based on role
             if (userRole === 'seller') {
@@ -32,6 +33,7 @@ document.getElementById("signup").addEventListener('click', function (e) {
                 window.location.href="index.html"
             }
           
+
 
         }
    }
@@ -110,7 +112,9 @@ function samepass(password, againpassword) {
 }
 
 function isSellerEmail(email) {
-    let sellers = localStorage.getItem("sellers");
+
+
+    let sellers = localStorage.getItem("users");
     if (!sellers) {
         return false; 
     }
@@ -124,15 +128,19 @@ function saveUserData(username, email, password) {
     if(users.length!==0){
         newid=users[users.length-1].id+1
 }
+
     const role = document.querySelector('input[name="role"]:checked').value;
+
 
     let newUser = {
         id:newid,
         username: username,
         email: email,
         password: password,
+
         role:role
     }
+
     localStorage.removeItem("currentUser");
     const currentUser = [newUser];
     localStorage.setItem("currentUser", JSON.stringify(currentUser));

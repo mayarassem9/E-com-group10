@@ -2,21 +2,24 @@ import data from "../../Data/books.json" assert { type: 'json' };
 import * as valid from './valid.js';
 
 $(document).ready(function() {
-    debugger
+//    debugger
     window.navigateToPage = function(pageUrl) {
         window.location.href = pageUrl;
     }
 /*===============Local Storage================*/
 /*============================================*/
 
-    if (!localStorage.getItem("books")) {
-        var books = data.books;
-        valid.updateLocalStorage(books);
+if (!localStorage.getItem("books")) {
+    var books = data.books;
+    valid.updateLocalStorage(books);
+} else {
+    var books = JSON.parse(localStorage.getItem("books")) || [];
+}
 
-    } else if(localStorage.getItem("books")){
-        var books = JSON.parse(localStorage.getItem("books"));
+var currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
+ books = books.filter(book => book["salerID"] === currentUser[0].id);
 
-    }  
+
 /*===============End Local Storge================*/
 //=====================log out=======================///
     const logout=document.getElementById("logout");
@@ -41,7 +44,14 @@ valid.createTable(rowsPerPage,books);
 var form = document.querySelector('.needs-validation');
 var submitBtn = document.getElementById('addBookBtn');
 submitBtn.addEventListener('click', function (event) {
-    if (valid.validateForm()) {
+
+    var addBtnn = document.getElementById("addBookBtn");
+    addBtnn.style.display = "block";
+
+    var editBtn = document.getElementById("EditBookBtn");
+    editBtn.style.display = "none";
+
+    if (valid.validateForm(0)) {
         valid.Add(books,rowsPerPage);
     }
     })
@@ -50,22 +60,30 @@ submitBtn.addEventListener('click', function (event) {
 
 /*===============Edit================*/
 /*============================================*/
+
  window.Edit=function(obj){
+    //debugger;
+if(obj){
+    var form = document.querySelector('.needs-validation');
+    form.classList.remove('was-validated');
     
-    document.getElementById("BookImageEdit").value=null;
-    document.getElementById("titleEdit").value=obj["title"];
-    document.getElementById("AuthorNameEdit").value=obj["author"];
-    document.getElementById("NumberOfStockEdit").value=obj["stockNum"];
-    document.getElementById("PriceEdit").value=obj["price"];
-    document.getElementById("DescriptionEdit").value=obj["description"];
-    document.getElementById("CatogryEdit").value=obj["category"];
-    document.getElementById("idd").value=obj["ID"]; 
+    document.getElementById("BookImage").value=null;
+    document.getElementById("title").value=obj["title"];
+    document.getElementById("AuthorName").value=obj["author"];
+    document.getElementById("NumberOfStock").value=obj["stockNum"];
+    document.getElementById("Price").value=obj["price"];
+    document.getElementById("Description").value=obj["description"];
+    document.getElementById("Catogry").value=obj["category"];
+    document.getElementById("idd").value=obj["ID"];
+}
+    
  }
 
  var submitBtnEdit = document.getElementById('EditBookBtn');
  submitBtnEdit.addEventListener('click', function (event) {
     event.preventDefault(); 
-    if (!valid.validateFormEdit()) {
+
+    if (!valid.validateForm(1)) {
         event.stopPropagation();
     } else {
         valid.EditV2(books,rowsPerPage);
@@ -73,6 +91,44 @@ submitBtn.addEventListener('click', function (event) {
     }
     
 });
+
+document.getElementById("addb").addEventListener("click",function(){
+    valid.clearModalInputs(); 
+
+        //clear all field of form
+
+    inputFields.forEach(function (input) {
+    input.value = "";
+    });
+
+
+    var textareas = document.getElementsByTagName('textarea');
+    for (var i = 0; i < textareas.length; i++) {
+        textareas[i].value = "";
+    }
+    
+    var selects = document.getElementsByTagName('select');
+    for (var i = 0; i < selects.length; i++) {
+        selects[i].selectedIndex = 0;
+    }
+
+    //end of clear
+    var addBtnn = document.getElementById("addBookBtn");
+    addBtnn.style.display = "";
+
+    var editBtn = document.getElementById("EditBookBtn");
+    editBtn.style.display = "none";
+})
+document.getElementById("editb").addEventListener("click",function(){
+    valid.clearModalInputs(); 
+    var addBtnn = document.getElementById("addBookBtn");
+    addBtnn.style.display = "none";
+
+    var editBtn = document.getElementById("EditBookBtn");
+    editBtn.style.display = "";
+})
+
+
 /*===============End Edit================*/
 
 
@@ -89,7 +145,7 @@ document.getElementById("searchInput").addEventListener("input", function (event
         );
     });
     
-    updateTable(filteredBooks);
+    valid.updateTable(rowsPerPage,filteredBooks);
 
     if (event.inputType === "deleteContentBackward" && searchValue === "") {
         valid.createTable(rowsPerPage,books); 
@@ -131,6 +187,8 @@ document.getElementsByTagName("thead")[0].addEventListener("dblclick", function 
 
 /*===============Info================*/
 /*============================================*/
+
+
 window.Info=function(obj){
     var img=document.createElement("img");
     img.setAttribute("src",obj["imgLink"]);
@@ -168,7 +226,7 @@ document.addEventListener('keydown', function (event) {
     }
 });
 
-$('#AddBook').on('hidden.bs.modal', function () {
+$('#ModelBook').on('hidden.bs.modal', function () {
     valid.clearModalInputs();
 });
 /*===============End Clear Input================*/  
