@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>order table</title>
+    <link rel="stylesheet" href="Styles/all.min.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="Styles/font-awesome.min.css" />
+    <script src="../Scripts/jquery-3.7.1.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <section id="content-wrapper">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="container my-5 border rounded">
+            <h3 class="text text-center p-3">Orders</h3>
+
+            <!--******************** Search Input with Icon ******************** -->
+            <div class="row my-3">
+              <form class="d-flex">
+                <div class="col-md-7 offset-3">
+                  <div class="input-group">
+                    <span class="input-group-prepend bg-light">
+                      <i
+                        class="input-group-text fa fa-search align-items-center py-3"
+                      ></i>
+                    </span>
+                    <input
+                      class="form-control me-2"
+                      type="search"
+                      placeholder="Search Book"
+                      aria-label="Search"
+                      id="searchBookOrder"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-hover" id="userTable">
+                <thead>
+                  <tr>
+                    <th>Order Id</th>
+                    <th>User Name</th>
+                    <th>Book Id</th>
+                    <th>Book Name</th>
+                    <th>Book Price</th>
+                    <th>Book Quantity</th>
+                    <th>Image</th>
+                    <th>Date Sold</th>
+                    <th>Order Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="sellerOrdersTableBody"></tbody>
+              </table>
+            </div>
+
+            <!-- ************************** Pagination  ****************************-->
+            <div class="row justify-content-center mt-3">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a
+                      class="page-link"
+                      href="#"
+                      id="prevPage"
+                      aria-label="Previous"
+                    >
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <div class="pagination-numbers"></div>
+
+                  <li class="page-item">
+                    <a
+                      class="page-link"
+                      href="#"
+                      id="nextPage"
+                      aria-label="Next"
+                    >
+                      <span aria-hidden="true">&raquo; </span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="./Scripts/orderSeller.js"></script>
+  </body>
+</html>

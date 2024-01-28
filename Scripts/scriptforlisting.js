@@ -1,5 +1,5 @@
 import { Item, Order } from "../../Data/orderClass.js";
-import * as valid from "../../order/valid.js";
+import * as valid from "../order/valid.js";
 import data from "../../Data/books.json" assert { type: "json" };
 
 // The main structure for the details
@@ -121,6 +121,11 @@ function createSearchAndTabs(sectionProducts) {
   const categoryCollapse = document.createElement("div");
   categoryCollapse.classList.add("collapse", "mt-3");
   categoryCollapse.setAttribute("id", "categoryCollapse");
+  categoryCollapse.style.backgroundColor = "#ffff";
+  categoryCollapse.style.display = "flex";
+  categoryCollapse.style.flexDirection = "row";
+  categoryCollapse.style.alignItems = "center";
+  categoryCollapse.style.justifyContent = "space-between";
 
   // Append to the sectionProducts element
   sectionProducts.appendChild(categoryCollapse);
@@ -138,7 +143,7 @@ function createCategoryButtons(categories) {
 
   uniqueCategories.forEach((category) => {
     const button = document.createElement("button");
-    button.classList.add("btn", "btn-outline-secondary", "category-btn");
+    button.classList.add("btn", "btn-dark", "category-btn", "me-3");
     button.textContent = category;
 
     button.addEventListener("click", () => filterBooksByCategory(category));
@@ -277,6 +282,7 @@ function createBookCard(
   //addToCartBtn.id = 'addBtn';
   addToCartBtn.classList.add("btn", "btn-dark");
   addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+
     addToCartBtn.addEventListener("click", function () {
 
       var currentUser = JSON.parse(localStorage.getItem("currentUser")) ;
@@ -293,12 +299,31 @@ function createBookCard(
   
       
     });
+
+  
+     /////==============================nada wish list================================// 
+     var wishlistbutton = document.createElement("button");
+     //addToCartBtn.id = 'addBtn';
+     wishlistbutton.classList.add("btn", "btn-dark");
+     wishlistbutton.innerHTML = '<i class="fa-solid fa-heart"></i> Wish List';
+     wishlistbutton.addEventListener("click", function () {
+       // id /bookid / book title /img /price
+       //check == bookid no add
+      //localStorage.setItem("wishlist")   
+       addwish(bookId,title,imageSrc,price);
+
+     });
+     //===============end wish list===========================//
+  
+
   imgDiv.appendChild(img);
   bodyDiv.appendChild(cardTitle);
   bodyDiv.appendChild(cardAuthor);
   bodyDiv.appendChild(cardDescription);
   bodyDiv.appendChild(cardPrice);
   bodyDiv.appendChild(addToCartBtn);
+  bodyDiv.appendChild(wishlistbutton); /// wish list button --nada
+
 
   cardDiv.appendChild(imgDiv);
   cardDiv.appendChild(bodyDiv);
@@ -446,22 +471,23 @@ document.addEventListener("click", (event) => {
   }
 });
 
-// ul.addEventListener("click", (event) => {
-//   if (event.target.tagName === "BUTTON") {
-//     const tabId = event.target.getAttribute("data-target").substring(1); // Extract tab id
-//     updateDisplayedBooks(tabId);
+let myUL = document.getElementById("myTab");
+myUL.addEventListener("click", (event) => {
+  if (event.target.tagName === "BUTTON") {
+    const tabId = event.target.getAttribute("data-target").substring(1); // Extract tab id
+    updateDisplayedBooks(tabId);
 
-//     // Hide the category collapse when switching to another tab
-//     const categoryCollapse = document.getElementById("categoryCollapse");
-//     if (tabId === "category") {
-//       // Show the category collapse if the "Categories" tab is clicked
-//       categoryCollapse.classList.add("show");
-//     } else {
-//       // Hide the category collapse if any other tab is clicked
-//       categoryCollapse.classList.remove("show");
-//     }
-//   }
-// });
+    // Hide the category collapse when switching to another tab
+    const categoryCollapse = document.getElementById("categoryCollapse");
+    if (tabId === "category") {
+      // Show the category collapse if the "Categories" tab is clicked
+      categoryCollapse.classList.add("show");
+    } else {
+      // Hide the category collapse if any other tab is clicked
+      categoryCollapse.classList.remove("show");
+    }
+  }
+});
 
 // Search button click event
 const searchButton = document.getElementById("searchButton");
@@ -508,3 +534,82 @@ addToCartBtn.addEventListener("click", function () {
 
   valid.notificationUpdate(orders);
 });
+
+
+function addwish(bookId, title, img, price) {
+  let wishlist = localStorage.getItem("wishlist");
+  let current = localStorage.getItem("currentUser");
+  current = current ? JSON.parse(current) : false;
+  let isuser = false;
+
+  if (current) {
+    // FOR handle if I logged out and no current user
+    isuser = current.some((current) => current.role === "customer");
+  }
+
+  wishlist = wishlist ? JSON.parse(wishlist) : [];
+  let newid = 1;
+  let found = false;
+
+  if (!isuser) {
+    // for handle if I didn't log in or sign up and if I came from seller to see home
+    Swal.fire({
+      title: "Please Login or SignUP First",
+      showClass: {
+        popup: `
+          animate__animated
+          animate__fadeInUp
+          animate__faster
+        `,
+      },
+      hideClass: {
+        popup: `
+          animate__animated
+          animate__fadeOutDown
+          animate__faster
+        `,
+      },
+    });
+  } else {
+    let userid = current[0].id;
+
+    if (wishlist.length !== 0) {
+      newid = wishlist[wishlist.length - 1].Id + 1;
+    }
+
+    wishlist.forEach((item, index) => {
+      if (item.bookid === bookId && item.Userid === userid) {
+        wishlist.splice(index, 1);
+        found = true;
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Removed Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+
+    if (!found) {
+      let newwish = {
+        Id: newid,
+        Userid: userid,
+        bookid: bookId,
+        title: title,
+        img: img,
+        price: price,
+      };
+      wishlist.push(newwish);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Added Successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  }
+}

@@ -79,7 +79,7 @@ function emailvalid(email) {
 
 function passvalid(password) {
     pass_message=document.getElementById("passmassege");
-    if (/^\S{8,}$/.test(password)) {
+    if (/^\S{8,}$/.test(password)  && password.length <= 20) {
         isPasswordValid = true;
         pass_message.textContent = ('valid password');
         pass_message.style.color='green'
@@ -87,7 +87,7 @@ function passvalid(password) {
         document.getElementById('password').classList.add('border-success');
     } else {
         isPasswordValid = false;
-        pass_message.textContent = ('Not valid. Min 8 characters, no spaces.');
+        pass_message.textContent = ('Not valid. Min 8 characters , Max limit 20, no spaces.');
         pass_message.style.color='red'
         document.getElementById('password').classList.remove('border-success');
         document.getElementById('password').classList.add('border-danger');
