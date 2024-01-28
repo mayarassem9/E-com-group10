@@ -121,8 +121,10 @@ $(document).ready(function () {
   console.log(myallOrders);
 
   sellerOrders = filterOrdersToSeller(myallOrders, sellerID);
+ 
   displaySellerOrders(sellerOrders);
 });
+
 function getSellerID() {
   let _seller = localStorage.getItem("currentUser");
   if (_seller) {
