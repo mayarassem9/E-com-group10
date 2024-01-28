@@ -337,8 +337,8 @@ function changeOrderStatus(_orderId) {
       order.status = "completed";
     }
   });
-  displayOrdersForPage(sellerOrders, currentPage);
   saveOrdersToLocalStorage(myallOrders);
+  displayOrdersForPage(sellerOrders, currentPage);
 }
 function changeColor(status) {
   if (status == "pending") {
