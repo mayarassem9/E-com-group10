@@ -67,7 +67,7 @@ function displayBookDetails(theBook) {
     // Set the text content for each element
     if (BookName) BookName.textContent = theBook.title;
     if (Authorname) Authorname.textContent = theBook.author;
-    if (PriceTag) PriceTag.textContent =theBook.price ;
+    if (PriceTag) PriceTag.textContent =`$${theBook.price}` ;
     if (BookDetails) BookDetails.textContent = theBook.description;
     if (BookImg) BookImg.src = theBook.imgLink;
 }

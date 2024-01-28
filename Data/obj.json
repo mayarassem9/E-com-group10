@@ -7,10 +7,8 @@
           "password":"password123",
           "cart":[
              
-          ],
-          "orders":[
-             
           ]
+          
        },
        {
           "id":2,
@@ -68,7 +66,7 @@
              }
           ],
           "total":21.98,
-          "status":"completed"
+          "status":"pending"
        }
     ],
     "sellerDashboard":{

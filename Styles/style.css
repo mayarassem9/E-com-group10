@@ -418,7 +418,9 @@ body {
 }
 
 .product__details__text {
-  text-align: center;
+
+	text-align: center;
+
 }
 .product__details__text h4 {
   color: #111111;
@@ -478,7 +480,13 @@ body {
   cursor: pointer;
   font-weight: 600;
 }
+/* .shop-details .card{
+    width: 450px;
+    height: auto;
+
+} */
 /* button style */
+
 .primary-btn {
   display: inline-block;
   font-size: 13px;
@@ -489,6 +497,7 @@ body {
   background: #000000;
   letter-spacing: 4px;
 }
+
 
 /*Customer Service Floating Button*/
 
