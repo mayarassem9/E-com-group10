@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="../Styles/all.min.css" />
+    <link rel="stylesheet" href="../Styles/font-awesome.min.css" />
+    <link rel="stylesheet" href="../Styles/bootstrap.css" />
+    <link rel="stylesheet" href="../Styles/navbar_footer_styles.css" />
+    <link rel="stylesheet" href="admin_style.css" />
+    <link
+      rel="icon"
+      href="../Resources/Images/logo/svg/White logo - no background.svg"
+      type="image/png"
+    />
+    
+  </head>
+  <body>
+    <div id="wrapper">
+      <!-- ************************** Side Bar ****************************-->
+      <aside id="sidebar-wrapper">
+        <div class="sidebar-brand">
+          <img
+            src="../Resources/Images/logo/png/White logo - no background.png"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <ul class="sidebar-nav">
+          <li>
+            <a href="admin.html" data-tab="0"
+              ><i class="fa fa-user"></i>Manage Users</a
+            >
+          </li>
+          <li>
+            <a href="manage_products.html" data-tab="1"
+              ><i class="fa fa-boxes-stacked"></i>Manage Products</a
+            >
+          </li>
+          <li>
+            <a href="customer_service.html" data-tab="2"
+              ><i class="fa fa-headset"></i>Customer Service</a
+            >
+          </li>
+          <li>
+            <a href="adminOrders.html" data-tab="3"
+              ><i class="fa fa-cart-shopping"></i>Orders</a
+            >
+          </li>
+        </ul>
+      </aside>
+      <!-- ************************** NEW NAV BAR  ****************************-->
+      <div id="navbar-wrapper">
+        <nav class="navbar navbar-inverse sticky-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a href="#" class="navbar-brand" id="sidebar-toggle"
+                ><i class="fa fa-bars"></i
+              ></a>
+            </div>
+            <ul class="nav navbar-nav ml-auto">
+              <li>
+                <a href="../index.html" id="logout">
+                  <i class="fa-solid fa-right-from-bracket"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <!-- **************************  Admin Panel  ****************************-->
+      <section id="content-wrapper">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="container my-5 border rounded">
+              <h3 class="text text-center p-3">Orders</h3>
+
+              <!--******************** Search Input with Icon ******************** -->
+              <div class="row my-3">
+                <form class="d-flex">
+                  <div class="col-md-7 offset-3">
+                    <div class="input-group">
+                      <span class="input-group-prepend bg-light">
+                        <i class="input-group-text fa fa-search"></i>
+                      </span>
+                      <input
+                        class="form-control me-2"
+                        type="search"
+                        placeholder="Search Seller"
+                        aria-label="Search"
+                      />
+                    </div>
+                  </div>
+
+                
+                </form>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table table-hover" id="userTable">
+                  <thead>
+                    <tr>
+                      <th>Order Id</th>
+                      <th>User</th>
+                      <th>Seller</th>
+                      <th>Total Price</th>
+                      <th>Items Sold</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- <tr class="row">
+                                <td class="col-sm-2">1</td>
+                                <td class="col-sm-2">customer1</td>
+                                <td class="col-sm-2">customer1</td>
+                                <td class="col-sm-2">password123</td>
+                                <td class="col-sm-2">Customer</td>
+                                <td class="col-sm-2">
+                                    <button class="btn btn-secondary  rounded-circle "><i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i></button>
+                                    <button class="btn btn-danger rounded-circle"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+                                </td>
+                            </tr> -->
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- ************************** Pagination  ****************************-->
+              <div class="row justify-content-center mt-3">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                    <li class="page-item">
+                      <a
+                        class="page-link"
+                        href="#"
+                        id="prevPage"
+                        aria-label="Previous"
+                      >
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <div class="pagination-numbers"></div>
+
+                    <li class="page-item">
+                      <a
+                        class="page-link"
+                        href="#"
+                        id="nextPage"
+                        aria-label="Next"
+                      >
+                        <span aria-hidden="true">&raquo; </span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <main>
+   
+    </main>
+
+    <script src="../Scripts/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="navigation_script.js"></script>
+    <script src="adminOrders.js"></script>
+    <script src="../Scripts/bootstrap.bundle.js"></script>
+  </body>
+</html>

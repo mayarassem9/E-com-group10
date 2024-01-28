@@ -1,5 +1,5 @@
 import { Item, Order } from "../../Data/orderClass.js";
-import * as valid from "../../order/valid.js";
+import * as valid from "../order/valid.js";
 import data from "../../Data/books.json" assert { type: "json" };
 
 // The main structure for the details
