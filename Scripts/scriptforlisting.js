@@ -407,7 +407,9 @@ fetchCategoryBooks();
 
 // Function to fetch and display best seller books
 const fetchBestSellerBooks = () => {
-  const bestSellerBooks = allBooksData.filter((book) => book.bestSeller);
+  let myBooks = JSON.parse(localStorage.getItem("mybooks"));
+
+  const bestSellerBooks = myBooks.filter((book) => book.bestSeller);
   addBooksToDOM(bestSellerBooks);
 };
 
