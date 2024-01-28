@@ -3,6 +3,36 @@ import * as valid from './valid.js';
 
 $(document).ready(function() {
 //    debugger
+
+let links = document.querySelectorAll('.sidebar-nav a');
+const currentTab=0;
+links.forEach(function (link) {
+    link.addEventListener('click', activateTab);
+});
+
+// this is the toggle collapse script
+const $button  = document.querySelector('#sidebar-toggle');
+const $wrapper = document.querySelector('#wrapper');
+
+$button.addEventListener('click', (e) => {
+e.preventDefault();
+$wrapper.classList.toggle('toggled');
+});
+function activateTab(event) {
+    
+    links.forEach(function (l) {
+        l.parentElement.classList.remove('active');
+    });
+
+
+    event.currentTarget.parentElement.classList.add('active');
+
+    currentTab = parseInt(event.currentTarget.getAttribute('data-tab'));
+    console.log(currentTab);
+
+    window.location.href = event.currentTarget.getAttribute('href');
+
+}
     window.navigateToPage = function(pageUrl) {
         window.location.href = pageUrl;
     }
@@ -93,10 +123,13 @@ if(obj){
 });
 
 document.getElementById("addb").addEventListener("click",function(){
+
+    
     valid.clearModalInputs(); 
 
         //clear all field of form
 
+    const inputFields=document.querySelectorAll("input")
     inputFields.forEach(function (input) {
     input.value = "";
     });
@@ -112,20 +145,29 @@ document.getElementById("addb").addEventListener("click",function(){
         selects[i].selectedIndex = 0;
     }
 
-    //end of clear
     var addBtnn = document.getElementById("addBookBtn");
     addBtnn.style.display = "";
 
     var editBtn = document.getElementById("EditBookBtn");
     editBtn.style.display = "none";
+
+
+    //end of clear
+  
 })
 document.getElementById("editb").addEventListener("click",function(){
-    valid.clearModalInputs(); 
+   
     var addBtnn = document.getElementById("addBookBtn");
     addBtnn.style.display = "none";
-
+    
     var editBtn = document.getElementById("EditBookBtn");
     editBtn.style.display = "";
+    
+    valid.clearModalInputs(); 
+   
+   
+  
+    
 })
 
 

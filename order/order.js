@@ -42,6 +42,8 @@ function createCartItem(books,item,orders,orderIndex) {
     var img = document.createElement('img');
     img.src = item["imgLink"];
     img.classList.add('img-fluid', 'rounded-3');
+    img.style.width="40%";
+    img.style.height="40%";
     
 
     imageCol.appendChild(img);
@@ -51,7 +53,7 @@ function createCartItem(books,item,orders,orderIndex) {
     detailsCol.classList.add('col-md-3', 'col-lg-3', 'col-xl-3');
 
     var productName = document.createElement('p');
-    productName.classList.add('lead', 'fw-normal', 'mb-2');
+    productName.classList.add('fw-normal', 'mb-2');
     productName.textContent = item["name"];
 
     detailsCol.appendChild(productName);
@@ -60,7 +62,7 @@ function createCartItem(books,item,orders,orderIndex) {
     var priceCol = document.createElement('div');
     priceCol.classList.add('col-md-3', 'col-lg-2', 'col-xl-2', 'offset-lg-1');
 
-    var priceS = document.createElement('h5');
+    var priceS = document.createElement('h6');
     priceS.classList.add('mb-0','priceH5');
     priceS.id="priceH5";
     priceS.innerText = item.price* item.quantity;
@@ -95,6 +97,7 @@ function createCartItem(books,item,orders,orderIndex) {
     quantityInput.value = `${item.quantity}`;
     quantityInput.type = 'number';
     quantityInput.classList.add('form-control', 'form-control-sm');
+    quantityInput.disabled=true;
 
    
 
