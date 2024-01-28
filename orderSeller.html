@@ -18,103 +18,153 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="seller/seller.css" />
     <script src="./Scripts/orderSeller.js"></script>
-
   </head>
-  <body>
-    <section id="content-wrapper">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="container my-5 border rounded">
-            <h3 class="text text-center p-3">Orders</h3>
+    <div id="wrapper">
+      <!-- ************************** Side Bar ****************************-->
+      <aside id="sidebar-wrapper">
+        <div class="sidebar-brand">
+          <img
+            src="../Resources/Images/logo/png/White logo - no background.png"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <ul class="sidebar-nav">
+          <li>
+            <a href="index.html" data-tab="3"><i class="fa fa-home"></i>Home</a>
+          </li>
+          <li>
+            <a href="userProfile.html" data-tab="0"
+              ><i class="fa fa-user"></i>Profile</a
+            >
+          </li>
+          <li>
+            <a href="seller.html" data-tab="1"
+              ><i class="fa fa-boxes-stacked"></i>Manage Products</a
+            >
+          </li>
+          <li>
+            <a href="orderSeller.html" data-tab="2"
+              ><i class="fa fa-cart-shopping"></i>Orders</a
+            >
+          </li>
+          <li>
+            <a href="orderSeller.html" data-tab="3"
+              ><i class="fa fa-chart-pie"></i>Analytics</a
+            >
+          </li>
 
-            <!--******************** Search Input with Icon ******************** -->
-            <div class="row my-3">
-              <form class="d-flex">
-                <div class="col-md-7 offset-3">
-                  <div class="input-group">
-                    <span class="input-group-prepend bg-light">
-                      <i
-                        class="input-group-text fa fa-search align-items-center py-3"
-                      ></i>
-                    </span>
-                    <input
-                      class="form-control me-2"
-                      type="search"
-                      placeholder="Search Book"
-                      aria-label="Search"
-                      id="searchBookOrder"
-                    />
+          <li>
+            <a href="#" id="logout" data-tab="3"
+              ><i class="fa fa-key"></i>Sign Out</a
+            >
+          </li>
+        </ul>
+      </aside>
+      <!-- ************************** NEW NAV BAR  ****************************-->
+      <div id="navbar-wrapper">
+        <nav class="navbar navbar-inverse sticky-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a href="#" class="navbar-brand" id="sidebar-toggle"
+                ><i class="fa fa-bars"></i
+              ></a>
+            </div>
+            <ul class="nav navbar-nav ml-auto"></ul>
+          </div>
+        </nav>
+      </div>
+      <section id="content-wrapper" class="table-responsive">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="container my-5 border rounded">
+              <h3 class="text text-center p-3">Orders</h3>
+  
+              <!--******************** Search Input with Icon ******************** -->
+              <div class="row my-3">
+                <form class="d-flex">
+                  <div class="col-md-7 offset-3">
+                    <div class="input-group">
+                      <span class="input-group-prepend bg-light">
+                        <i
+                          class="input-group-text fa fa-search align-items-center py-3"
+                        ></i>
+                      </span>
+                      <input
+                        class="form-control me-2"
+                        type="search"
+                        placeholder="Search Book"
+                        aria-label="Search"
+                        id="searchBookOrder"
+                      />
+                    </div>
                   </div>
-                </div>
-              </form>
-            </div>
-
-            <div class="table-responsive">
-              <table class="table table-hover" id="userTable">
-                <thead>
-                  <tr>
-                    <th>Order Id</th>
-                    <th>User Name</th>
-                    <th>Book Id</th>
-                    <th>Book Name</th>
-                    <th>Book Price</th>
-                    <th>Book Quantity</th>
-                    <th>Image</th>
-                    <th>Date Sold</th>
-                    <th>Order Status</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="sellerOrdersTableBody"></tbody>
-              </table>
-            </div>
-
-            <!-- ************************** Pagination  ****************************-->
-            <div class="row justify-content-center mt-3">
-              <nav aria-label="Page navigation example">
-                <ul class="pagination">
-
-                  <!-- <li class="page-item">
-                  <li class="page-item">
-
-                    <a
-                      class="page-link"
-                      href="#"
-                      id="prevPage"
-                      aria-label="Previous"
-                    >
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-
-                  </li> -->
-                  <div class="pagination-numbers"></div>
-
-                  <!-- <li class="page-item">
-
-                    <a
-                      class="page-link"
-                      href="#"
-                      id="nextPage"
-                      aria-label="Next"
-                    >
-                      <span aria-hidden="true">&raquo; </span>
-                    </a>
-
-            
-
-                  </li>
-
-                </ul>
-              </nav>
+                </form>
+              </div>
+  
+              <div class="table-responsive">
+                <table class="table table-hover" id="userTable">
+                  <thead>
+                    <tr>
+                      <th>Order Id</th>
+                      <th>User Name</th>
+                      <th>Book Id</th>
+                      <th>Book Name</th>
+                      <th>Book Price</th>
+                      <th>Book Quantity</th>
+                      <th>Image</th>
+                      <th>Date Sold</th>
+                      <th>Order Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="sellerOrdersTableBody"></tbody>
+                </table>
+              </div>
+  
+              <!-- ************************** Pagination  ****************************-->
+              <div class="row justify-content-center mt-3">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                    <!-- <li class="page-item">
+                    <li class="page-item">
+  
+                      <a
+                        class="page-link"
+                        href="#"
+                        id="prevPage"
+                        aria-label="Previous"
+                      >
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+  
+                    </li> -->
+                    <div class="pagination-numbers" style="display: flex"></div>
+  
+                    <!-- <li class="page-item">
+  
+                      <a
+                        class="page-link"
+                        href="#"
+                        id="nextPage"
+                        aria-label="Next"
+                      >
+                        <span aria-hidden="true">&raquo; </span>
+                      </a>
+  
+              
+  
+                    </li>-->
+                  </ul>
+                </nav>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-
-
-
+      </section>
+    </div>
+ 
   </body>
 </html>
