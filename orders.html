@@ -23,56 +23,58 @@
      <!-- **************************  NAV BAR  ****************************-->
     <!-- **************************  NAV BAR  ****************************-->
     <header>
-      <nav id="NavBar" >
-          <div class="header">
-              <div class="left-section">
-                  Free shipping, 30-day return or refund guarantee.
-              </div>
-              <div class="dropdown">
-                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fa-regular fa-user"></i> Account
-                  </a>
-                  
-                  <ul class="dropdown-menu">
-                    <li id="signup"><a class="dropdown-item" href="sign_up.html">Sign Up</a></li>
-                    <li id="login"><a class="dropdown-item" href="login.html">Login</a></li>
-                    <li id="myaccount"><a class="dropdown-item" href="userProfile.html"> <i class="fa-solid fa-house"></i> My Account</a></li>
-                    <li id="logout"><a class="dropdown-item" href="index.html"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></li>
-                  </ul>
-              </div>
-              
-          </div>
-      </nav>
-      <nav class="main-navigation "  >
-          <div class="logo">
-              <img class="navbar-brand" src="Resources/Images/logo/logo.png" alt="book logo" height="50">
-          </div>
-          <ul class="nav-links " > 
-              <li><a href="index.html">Home</a></li>
-              <li><a href="#section-poster">Shop</a></li>
-              <li><a href="#myfooter">Contacts</a></li>
-          </ul>
-          <div class="nav-icons">
-              <a href="#searchInput" ><i class="fas fa-search"></i></i></a>
-
-              <a href="orders.html"><i class="fa fa-heart"></i></a>
-              <button type="button" class=" position-relative" style="border: none; background-color: white;">
-                  <a href="orders.html"><i class="fa fa-shopping-bag"></i></a>
-                  <span id="notification" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"style="width: 100%; font: 0.8em sans-serif; height: 90%;">
+        <nav id="NavBar" >
+            <div class="header">
+                <div class="left-section">
+                    Free shipping, 30-day return or refund guarantee.
+                </div>
+                <div class="dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-regular fa-user"></i> Account
+                    </a>
                     
-                    <span class="visually-hidden">unread messages</span>
-                  </span>
-                </button>
-          </div>
-          <div class="hamburger-icon">
-              <i class="fas fa-bars"></i>
-          </div>
-         
-          
-      </nav>
+                    <ul class="dropdown-menu">
+                      <li id="signup"><a class="dropdown-item" href="sign_up.html">Sign Up</a></li>
+                      <li id="login"><a class="dropdown-item" href="login.html">Login</a></li>
+                      <li id="myaccount"><a class="dropdown-item" href="userProfile.html"> <i class="fa-solid fa-house"></i> My Account</a></li>
+                      <li id="logout"><a class="dropdown-item" href="index.html"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></li>
+                    </ul>
+                </div>
+                
+            </div>
+        </nav>
+        <nav class="main-navigation "  >
+            <div class="logo">
+                <img class="navbar-brand" src="Resources/Images/logo/logo.png" alt="book logo" height="50">
+            </div>
+            <ul class="nav-links " > 
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#section-poster">Shop</a></li>
+                <li><a href="#myfooter">Contacts</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#searchInput" ><i class="fas fa-search"></i></i></a>
+
+                <a href="orders.html"><i class="fa fa-heart"></i></a>
+                <button type="button" class=" position-relative" style="border: none; background-color: white;">
+                    <a href="orders.html"><i class="fa fa-shopping-bag"></i></a>
+                    <span id="notification" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"style="width: 100%; font: 0.8em sans-serif; height: 90%;">
+                      
+                      <span class="visually-hidden">unread messages</span>
+                    </span>
+                  </button>
+            </div>
+            <div class="hamburger-icon">
+                <i class="fas fa-bars"></i>
+            </div>
+           
+            
+        </nav>
 
 
-  </header>
+    </header>
+
+
     <!--===================================================================================================-->
     <section style="background-color: #eee;">
         <div class="container h-100 py-5">
@@ -90,12 +92,12 @@
               <div class="card mb-4">
                 <div class="card-body p-4 d-flex flex-row">
                   <div class="form-outline flex-fill">
-                    <div>
-                      <h5>
+                    <div style="font-size: 1.5vw;">
+                     
                       Total Price :  
-                      <span id="TotalPrice"></span>
-                      </h5>
-                      <button type="button" class="btn btn-warning btn-block btn-m" id="goToCheckout">checkout</button>
+                      <span id="TotalPrice" ></span>
+                      
+                      <button type="button" class="btn btn-warning btn-block btn-m" id="goToCheckout"style="margin-left: 10%;">checkout</button>
                     </div>
 
                   </div>

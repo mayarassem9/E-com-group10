@@ -80,7 +80,7 @@ export function oldPass(currentUser){
      var newPass=document.getElementById("newPassword").value;
      var confirmPass=document.getElementById("ConfirmPassword").value;
  
-     if(newPass != null &&newPass.trim()!=""&& newPass.length>8){
+     if(newPass != null &&newPass.trim()!=""&& newPass.length>8&&newPass.length<=20){
  
          if(newPass==confirmPass){
              return true;

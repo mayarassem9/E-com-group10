@@ -18,84 +18,152 @@
 </style>
 <body>
 
+
+  <div id="wrapper">
+    <!-- ************************** Side Bar ****************************-->
+    <aside id="sidebar-wrapper">
+      <div class="sidebar-brand">
+        <img
+          src="../Resources/Images/logo/png/White logo - no background.png"
+          alt=""
+          srcset=""
+        />
+      </div>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="index.html" data-tab="3"><i class="fa fa-home"></i>Home</a>
+        </li>
+        <li>
+          <a href="userProfile.html" data-tab="0"
+            ><i class="fa fa-user"></i>Profile</a
+          >
+        </li>
+        <li>
+          <a href="seller.html" data-tab="1"
+            ><i class="fa fa-boxes-stacked"></i>Manage Products</a
+          >
+        </li>
+        <li>
+          <a href="customer_service.html" data-tab="2"
+            ><i class="fa fa-headset"></i>Mayar +Moustafa</a
+          >
+        </li>
+        
+        <li>
+          <a href="#"  id="logout" data-tab="3"><i class="fa fa-key"></i>Sign Out</a>
+        </li>
+      </ul>
+    </aside>
+    <!-- ************************** NEW NAV BAR  ****************************-->
+    <div id="navbar-wrapper">
+      <nav class="navbar navbar-inverse sticky-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a href="#" class="navbar-brand" id="sidebar-toggle"
+              ><i class="fa fa-bars"></i
+            ></a>
+          </div>
+          <ul class="nav navbar-nav ml-auto">
+           
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <!-- **************************  Seller   ****************************-->
+    <section id="content-wrapper" class="table-responsive">
+      <div class="row">
+        <div class="col-lg-12">
+        
+            <div class="col-10 offset-1 p-5">
+        
+         
+              <div class="row">
+                  <div class="col-3">
+                    <button  class="btn btn-dark" id="addb" type="button"  data-bs-toggle="modal" data-bs-target="#ModelBook"><img src="Resources/Images/icon/book.png" width="25vw" ></button>
+                  </div>
+                  <div class="col-7">
+                    <div class="container-fluid">
+                      <form class="d-flex">
+                        <input class="form-control " type="search" placeholder="Search" aria-label="Search" id="searchInput">
+                       
+                      </form>
+                    </div>
+                   </div>
+              </div>
+              
+              <div class="row">
+                  <div  >
+                      <table class="table table-hover">
+                          <thead>
+                              <th>ID</th>
+                              <th>Title</th>
+                              <th>Author</th>
+                              <th>Num</th>
+                              <th>Action</th>
+  
+                          </thead>
+                          <tbody>
+                              <!-- Your table body goes here -->
+                          </tbody>
+                      </table>
+                      <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            
+                        </ul>
+                    </nav>
+                  </div>
+              </div>
+        
+   
+          </div>
+
+            <!-- ************************** Pagination  ****************************-->
+            <div class="row justify-content-center mt-3">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a
+                      class="page-link"
+                      href="#"
+                      id="prevPage"
+                      aria-label="Previous"
+                    >
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <div class="pagination-numbers"></div>
+
+                  <li class="page-item">
+                    <a
+                      class="page-link"
+                      href="#"
+                      id="nextPage"
+                      aria-label="Next"
+                    >
+                      <span aria-hidden="true">&raquo; </span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <main>
+
   <div class="row" style="height: 30%;"></div>
 
   <div class="container-fluid">
     <div class="row">
-      <!-- Sidebar -->
-      <div class="sidebarr">
-        <div class="d-flex flex-column flex-shrink-0 bg-dark" style="width: 4.5rem; position: fixed; height: 100vh;left: 0; top: 0; bottom: 0;">
-          
-            <img src="Resources/Images/logo/logo.png">
-          
-            <ul class="nav nav-pills nav-flush flex-column mb-auto text-center imgul">
-              <li onclick="navigateToPage('index.html')">
-                  <img src="Resources/Images/icon/home_480px.png">
-              </li>
-              <li class="nav-item" onclick="navigateToPage('seller.html')">
-                  <img src="Resources/Images/icon/bookS.png">
-              </li>
-              <li onclick="navigateToPage('order.html')">
-                  <img src="Resources/Images/icon/orderS.png">
-              </li>
-              <li onclick="navigateToPage('userProfile.html')">
-                  <img src="Resources/Images/icon/user.png">
-              </li>
-          </ul>
-          <div class="dropdown border-top">
-            <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="Resources/Images/icon/exitS.png" alt="mdo" width="24" height="24" class="rounded-circle">
-            </a>
-            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-              <li id="logout"><a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>  Log Out</a></li>
-            </ul>
-        </div>
-      </div>
-    </div>
+
+     
       
       <!-- Main Content -->
-      <div class="col-10 offset-1 p-5">
-        
-         
-            <div class="row">
-                <div class="col-4">
-                  <button  class="btn btn-dark" id="addb" type="button"  data-bs-toggle="modal" data-bs-target="#ModelBook"><img src="Resources/Images/icon/book.png" width="25vw" >New</button>
-                </div>
-                <div class="col-7">
-                  <div class="container-fluid">
-                    <form class="d-flex">
-                      <input class="form-control " type="search" placeholder="Search" aria-label="Search" id="searchInput">
-                     
-                    </form>
-                  </div>
-                 </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-10">
-                    <table class="table table-hover table-responsive">
-                        <thead>
-                            <th>ID</th>
-                            <th>Title</th>
-                            <th>Author</th>
-                            <th>Num</th>
-                            <th>Action</th>
-
-                        </thead>
-                        <tbody>
-                            <!-- Your table body goes here -->
-                        </tbody>
-                    </table>
-                    <nav aria-label="Page navigation example">
-                      <ul class="pagination">
-                          
-                      </ul>
-                  </nav>
-                </div>
-            </div>
-      
- 
-        </div>
+     
       
     </div>
   </div>
@@ -174,8 +242,8 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="addBookBtn" >Add</button>
-            <button type="submit" class="btn btn-primary" id="EditBookBtn">Edit</button>
+            <button type="button" class="btn btn-primary" id="addBookBtn"  >Add</button>
+            <button type="submit" class="btn btn-primary" id="EditBookBtn" >Edit</button>
           </div>
         </div>
       </div>

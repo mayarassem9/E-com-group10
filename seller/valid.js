@@ -259,10 +259,7 @@ export function clearModalInputs() {
     })
     document.querySelector("select").classList.remove("is-invalid");
     document.querySelector("textarea").classList.remove("is-invalid");
-    var inputFields = document.querySelectorAll('input');
-
-
-
+  
 
     // Clear validation styles and messages
     

@@ -136,15 +136,7 @@ function createBookCard(
   //addToCartBtn.id = 'addBtn';
   //addToCartBtn.classList.add('btn', 'btn-dark');
   addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
-  addToCartBtn.addEventListener("click", function () {
-    valid.addToCart(Item, Order, data, bookId);
-
-    var orders = JSON.parse(localStorage.getItem("orders")) || [];
-
-    localStorage.setItem("orders", JSON.stringify(orders));
-
-    valid.notificationUpdate(orders);
-  });
+  
   imgDiv.appendChild(img);
   bodyDiv.appendChild(cardTitle);
   bodyDiv.appendChild(cardAuthor);

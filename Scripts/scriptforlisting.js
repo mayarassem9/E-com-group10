@@ -282,12 +282,25 @@ function createBookCard(
   //addToCartBtn.id = 'addBtn';
   addToCartBtn.classList.add("btn", "btn-dark");
   addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
-  addToCartBtn.addEventListener("click", function () {
-    valid.addToCart(Item, Order, data, bookId);
-    var orders = JSON.parse(localStorage.getItem("orders")) || [];
-    localStorage.setItem("orders", JSON.stringify(orders));
-    valid.notificationUpdate(orders);
-  });
+
+    addToCartBtn.addEventListener("click", function () {
+
+      var currentUser = JSON.parse(localStorage.getItem("currentUser")) ;
+      if(currentUser){
+  
+        valid.addToCart(Item, Order, data, bookId);
+        var orders = JSON.parse(localStorage.getItem("orders")) || [];
+        localStorage.setItem("orders", JSON.stringify(orders));
+        valid.notificationUpdate(orders);
+      }
+      else{
+        Swal.fire("You Need To Login First !");
+      }
+  
+      
+    });
+
+  
      /////==============================nada wish list================================// 
      var wishlistbutton = document.createElement("button");
      //addToCartBtn.id = 'addBtn';
@@ -296,12 +309,9 @@ function createBookCard(
      wishlistbutton.addEventListener("click", function () {
        // id /bookid / book title /img /price
        //check == bookid no add
-      //localStorage.setItem("wishlist")
-       
+      //localStorage.setItem("wishlist")   
        addwish(bookId,title,imageSrc,price);
-      
-   
-       
+
      });
      //===============end wish list===========================//
   

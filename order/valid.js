@@ -15,6 +15,7 @@ export function addToCart(Item, Order, data, id) {
         if (existingItemIndex !== -1) {
             if (orders[existingOrderIndex].items[existingItemIndex].quantity < obj["stockNum"]) {
                 orders[existingOrderIndex].items[existingItemIndex].quantity++;
+                Swal.fire("Added to your cart !!");
             } else {
                 Swal.fire("Sorry Out Of Stock !!!");
             }
@@ -29,6 +30,7 @@ export function addToCart(Item, Order, data, id) {
                 obj["imgLink"]
             );
             orders[existingOrderIndex].items.push(newItem.getItem());
+            Swal.fire("Added to your cart !!");
         }
     } else {
         var newItem = new Item(
@@ -41,6 +43,7 @@ export function addToCart(Item, Order, data, id) {
         );
         var newOrder = new Order(currentUser[0].id, "pending", [newItem]);
         orders.push(newOrder.getOrder());
+        Swal.fire("Added to your cart !!");
     }
 
     localStorage.setItem("orders", JSON.stringify(orders));
