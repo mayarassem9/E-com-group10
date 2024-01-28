@@ -121,6 +121,11 @@ function createSearchAndTabs(sectionProducts) {
   const categoryCollapse = document.createElement("div");
   categoryCollapse.classList.add("collapse", "mt-3");
   categoryCollapse.setAttribute("id", "categoryCollapse");
+  categoryCollapse.style.backgroundColor = "#ffff";
+  categoryCollapse.style.display = "flex";
+  categoryCollapse.style.flexDirection = "row";
+  categoryCollapse.style.alignItems = "center";
+  categoryCollapse.style.justifyContent = "space-between";
 
   // Append to the sectionProducts element
   sectionProducts.appendChild(categoryCollapse);
@@ -138,7 +143,7 @@ function createCategoryButtons(categories) {
 
   uniqueCategories.forEach((category) => {
     const button = document.createElement("button");
-    button.classList.add("btn", "btn-outline-secondary", "category-btn");
+    button.classList.add("btn", "btn-dark", "category-btn", "me-3");
     button.textContent = category;
 
     button.addEventListener("click", () => filterBooksByCategory(category));
@@ -437,22 +442,23 @@ document.addEventListener("click", (event) => {
   }
 });
 
-// ul.addEventListener("click", (event) => {
-//   if (event.target.tagName === "BUTTON") {
-//     const tabId = event.target.getAttribute("data-target").substring(1); // Extract tab id
-//     updateDisplayedBooks(tabId);
+let myUL = document.getElementById("myTab");
+myUL.addEventListener("click", (event) => {
+  if (event.target.tagName === "BUTTON") {
+    const tabId = event.target.getAttribute("data-target").substring(1); // Extract tab id
+    updateDisplayedBooks(tabId);
 
-//     // Hide the category collapse when switching to another tab
-//     const categoryCollapse = document.getElementById("categoryCollapse");
-//     if (tabId === "category") {
-//       // Show the category collapse if the "Categories" tab is clicked
-//       categoryCollapse.classList.add("show");
-//     } else {
-//       // Hide the category collapse if any other tab is clicked
-//       categoryCollapse.classList.remove("show");
-//     }
-//   }
-// });
+    // Hide the category collapse when switching to another tab
+    const categoryCollapse = document.getElementById("categoryCollapse");
+    if (tabId === "category") {
+      // Show the category collapse if the "Categories" tab is clicked
+      categoryCollapse.classList.add("show");
+    } else {
+      // Hide the category collapse if any other tab is clicked
+      categoryCollapse.classList.remove("show");
+    }
+  }
+});
 
 // Search button click event
 const searchButton = document.getElementById("searchButton");

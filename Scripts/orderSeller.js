@@ -103,9 +103,17 @@ let orders = [
 let myallOrders;
 let sellerOrders = [];
 let sellerID;
+let searchTerm;
 $(document).ready(function () {
   //saveOrdersToLocalStorage(orders);
   // populateUser();
+
+  // EventListener
+  $("#searchBookOrder").on("input", function () {
+    searchTerm = $("#searchBookOrder").val();
+    console.log(searchTerm);
+    // displaySellerOrders(sellerOrders,searchTerm);
+  });
 
   sellerID = getSellerID();
   console.log(sellerID);
@@ -114,9 +122,6 @@ $(document).ready(function () {
 
   sellerOrders = filterOrdersToSeller(myallOrders, sellerID);
   displaySellerOrders(sellerOrders);
-  // if(true){
-  //     displaySellerOrders(sellerOrders);
-  // }
 });
 function getSellerID() {
   let _seller = localStorage.getItem("currentUser");
@@ -164,9 +169,9 @@ function filterOrdersToSeller(orders, sellerID) {
           orderId: order.orderId,
           userId: order.userId,
           bookID: item.ID,
-          name: item.name,
-          price: item.price,
-          quantity: item.quantity,
+          bookName: item.name,
+          bookPrice: item.price,
+          bookQuantity: item.quantity,
           imgLink: item.imgLink,
           date: order.date,
           status: order.status,
@@ -278,7 +283,7 @@ function changeOrderStatus(_orderId) {
     }
   });
   displaySellerOrders(sellerOrders);
-  //saveOrdersToLocalStorage(sellerOrders);
+  //saveOrdersToLocalStorage(allorders);
 }
 function changeColor(status) {
   if (status == "pending") {
@@ -290,18 +295,18 @@ function changeColor(status) {
   }
 }
 // 1. get Orders from Local Storage
-/*if (item.sellerId === sellerID) {
-        sellerOrders.push({
-          orderId: order.orderId,
-          userId: order.userId,
-          bookID: item.ID,
-          name: item.name,
-          price: item.price,
-          quantity: item.quantity,
-          imgLink: item.imgLink,
-          date: order.date,
-          status: order.status,
-        }); */
+/*
+    sellerOrders={
+      orderId: order.orderId,
+      userId: order.userId,
+      bookID: item.ID,
+      bookName: item.name,
+      bookPrice: item.price,
+      bookQuantity: item.quantity,
+      imgLink: item.imgLink,
+      date: order.date,
+      status: order.status,
+    } */
 // Cook the data  Total Profit
 // 2. Display seller order to The Dom
 // 3. add View Button to see the items
