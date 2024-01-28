@@ -75,7 +75,7 @@ let myCart;
 let myPromoCodePercentage;
 let currentOrder;
 let PurchaseError = "";
-
+let _total = 0;
 $("document").ready(function () {
   // check if the user is authenticated and authorized as a customer
   if (isCurrentCustomerAuthenticated()) {
@@ -129,8 +129,11 @@ $("document").ready(function () {
               footer: '<a href="../index.html">Go back To the Home Page?</a>',
             });
             // remove the order
-            localStorage.removeItem("userOrder");
+            localStorage.removeItem("orders");
             myCart = null;
+            $("#total-price").text("");
+            $("#promoCodeInput").val("");
+
             displayCartToDOM(myCart);
           } else {
             Swal.fire({
@@ -392,13 +395,46 @@ function displayCartToDOM(_cart) {
     listContainer.appendChild(errorMessage);
   }
 }
+
+/*[
+    {
+        "ID": 1,
+        "sellerId": 1,
+        "name": "Tale of Two Cities",
+        "price": 135,
+        "quantity": 1,
+        "imgLink": "Resources/Images/books/TaleofTwoCities.jpg"
+    },
+    {
+        "ID": 2,
+        "sellerId": 1,
+        "name": "Men From Mars And Women From Venus",
+        "price": 222,
+        "quantity": 1,
+        "imgLink": "Resources/Images/books/MenFromMarsAndWomenFromVenus.jpg"
+    }
+] */
 function computeDiscountTotal(cart) {
+  _total = computedCurrentTotal(cart);
   if (myPromoCodePercentage) {
-    let final = cart.total - cart.total * (myPromoCodePercentage / 100);
+    let final = _total - _total * (myPromoCodePercentage / 100);
     myCart.total = final;
     return final;
   } else {
-    return cart.total;
+    return _total;
+  }
+}
+function computedCurrentTotal(cart) {
+  let myTotal = 0;
+  debugger;
+  if (cart) {
+    cart.items.forEach((item) => {
+      let mul = item.quantity * item.price;
+      myTotal += mul;
+    });
+    return myTotal;
+  } else {
+    return 0;
   }
 }
 function validateEmail(email) {
