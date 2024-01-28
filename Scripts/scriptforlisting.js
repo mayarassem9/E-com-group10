@@ -420,24 +420,24 @@ const fetchRecentlyAddedBooks = () => {
 };
 
 // Function to remove out-of-stock items after 5 minutes
-const removeOutOfStockItems = () => {
-  const currentTime = new Date().getTime();
-  const updatedBooksData = allBooksData.filter((book) => {
-    if (book.stockNum === 0 && currentTime - book.outOfStockTime >= 60 * 1000) {
-      return false; // Exclude out-of-stock items older than 5 minutes
-    }
-    return true;
-  });
-  if (updatedBooksData.length !== allBooksData.length) {
-    allBooksData = updatedBooksData;
-    saveBooksToLocalStorage(allBooksData);
-    const activeTab = ul.querySelector(".active");
-    if (activeTab) {
-      const tabId = activeTab.getAttribute("data-target").substring(1);
-      updateDisplayedBooks(tabId);
-    }
-  }
-};
+// const removeOutOfStockItems = () => {
+//   const currentTime = new Date().getTime();
+//   const updatedBooksData = allBooksData.filter((book) => {
+//     if (book.stockNum === 0 && currentTime - book.outOfStockTime >= 60 * 1000) {
+//       return false; // Exclude out-of-stock items older than 5 minutes
+//     }
+//     return true;
+//   });
+//   if (updatedBooksData.length !== allBooksData.length) {
+//     allBooksData = updatedBooksData;
+//     saveBooksToLocalStorage(allBooksData);
+//     const activeTab = ul.querySelector(".active");
+//     if (activeTab) {
+//       const tabId = activeTab.getAttribute("data-target").substring(1);
+//       updateDisplayedBooks(tabId);
+//     }
+//   }
+// };
 
 // Function to add new books to replace out-of-stock ones
 const addNewBooks = () => {
