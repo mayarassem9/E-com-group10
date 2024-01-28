@@ -4,13 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details</Details></title>
+
+
     <link rel="stylesheet" href="Styles/all.min.css">
     <link rel="stylesheet" href="Styles/font-awesome.min.css">
     <link rel="stylesheet" href="Styles/bootstrap.css">
     <link rel="stylesheet" href="Styles/style.css">
+      <script src="Scripts/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="Scripts/scriptForDetails.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="Scripts/ProuductDetails.js"></script>
+    <script type="module" src="Scripts/ProuductDetails.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -45,7 +49,13 @@
             <div class="nav-icons">
                 <a href="#search"><i class="fas fa-search"></i></i></a>
                 <a href="#"><i class="fa fa-heart"></i></a>
-                <a href="#"><i class="fa fa-shopping-bag"></i></a>
+                <button type="button" class=" position-relative" style="border: none; background-color: white;">
+                    <a href="orders.html"><i class="fa fa-shopping-bag"></i></a>
+                    <span id="notification" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"style="width: 100%; font: 0.8em sans-serif; height: 90%;">
+                      
+                      <span class="visually-hidden">unread messages</span>
+                    </span>
+                  </button>
                 <!-- <span>$0.00</span> -->
             </div>
             <div class="hamburger-icon">
@@ -89,13 +99,14 @@
                                             <!-- add product details paragraph dynamically -->
                                             <p>  </p>
                                             <div class="product__details__cart__option">
-                                                <div class="quantity">
-                                                    <div class="pro-qty">
-                                                        <input type="number" value="1" min="1">
-                                                    </div>
-                                                </div>
-                                                <button class="btn btn-outline-dark"><i class="fa-solid fa-cart-shopping"></i> add to cart</button>
+
+                                               
+
+                                                <button id="addBtn" class="btn btn-outline-dark"><i class="fa-solid fa-cart-shopping"></i> add to cart</button>                        
+                                                
+
                                             </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -114,6 +125,9 @@
         </div>
     </section>
     
+    <div id="productDetailsContainer" class="mt-5">
+        <!-- Book details will be displayed here -->
+    </div>
     <!-- **************************  FOOTER  ****************************-->
     <footer class="footer">
         <div class="container">

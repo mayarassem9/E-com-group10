@@ -54,6 +54,7 @@ function saveMessagesToLocalStorage(_customerServiceMessages){
     localStorage.setItem('customerServiceMessages', messagesJSON);
 }
 
+
 function deleteMessage(id){
     let mycustomerServiceMessages = loadMessagesFromLocalStorage();
     mycustomerServiceMessages.forEach((message, index) => {

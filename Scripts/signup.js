@@ -22,8 +22,18 @@ document.getElementById("signup").addEventListener('click', function (e) {
             document.getElementById('emailmessage').style.color='red'
         } else {
             // Email is unique, proceed with the sign-up process
-            saveUserData(username, email, password);
-            window.location.href="index.html"
+            localStorage.setItem("userSignedUp",'true')
+
+            let userRole = saveUserData(username, email, password); // save the role
+            // Redirect based on role
+            if (userRole === 'seller') {
+                window.location.href = "seller.html"; // Redirect to seller page
+            }
+            else{
+                window.location.href="index.html"
+            }
+          
+
 
         }
    }
@@ -69,7 +79,7 @@ function emailvalid(email) {
 
 function passvalid(password) {
     pass_message=document.getElementById("passmassege");
-    if (/^\S{8,}$/.test(password)) {
+    if (/^\S{8,}$/.test(password)  && password.length <= 20) {
         isPasswordValid = true;
         pass_message.textContent = ('valid password');
         pass_message.style.color='green'
@@ -77,7 +87,7 @@ function passvalid(password) {
         document.getElementById('password').classList.add('border-success');
     } else {
         isPasswordValid = false;
-        pass_message.textContent = ('Not valid. Min 8 characters, no spaces.');
+        pass_message.textContent = ('Not valid. Min 8 characters , Max limit 20, no spaces.');
         pass_message.style.color='red'
         document.getElementById('password').classList.remove('border-success');
         document.getElementById('password').classList.add('border-danger');
@@ -100,32 +110,44 @@ function samepass(password, againpassword) {
         document.getElementById("againpassword").classList.add('border-danger');
     }
 }
+
 function isSellerEmail(email) {
-    let sellers = localStorage.getItem("sellers");
-    // if (!sellers) {
-    //     return false; 
-    // }
+
+
+    let sellers = localStorage.getItem("users");
+    if (!sellers) {
+        return false; 
+    }
     sellers = JSON.parse(sellers);
     return (sellers.some(sellers => sellers.email === email));
 }
 function saveUserData(username, email, password) {
     let users = localStorage.getItem("users");
     users = users ? JSON.parse(users) : [];
-    let newid=users[users.length-1].id+1
+    let newid=1;
+    if(users.length!==0){
+        newid=users[users.length-1].id+1
+}
+
+    const role = document.querySelector('input[name="role"]:checked').value;
+
 
     let newUser = {
         id:newid,
         username: username,
         email: email,
         password: password,
-        role:"user"
-}
+
+        role:role
+    }
+
     localStorage.removeItem("currentUser");
     const currentUser = [newUser];
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
     users.push(newUser);
     localStorage.setItem("users", JSON.stringify(users));
+    return role;
 }
 function emailExists(email) {
     let users = localStorage.getItem("users");

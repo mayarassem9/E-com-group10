@@ -10,44 +10,61 @@
     <link rel="stylesheet" href="../Styles/navbar_footer_styles.css">
     <link rel="stylesheet" href="admin_style.css">
     <link rel="icon" href="../Resources/Images/logo/svg/White logo - no background.svg" type="image/png">
-
     </head>
 <body>
 
     <div id="wrapper">
         <!-- ************************** Side Bar ****************************-->
         <aside id="sidebar-wrapper">
-            <div class="sidebar-brand">
-                <img src="../Resources/Images/logo/png/White logo - no background.png" alt="" srcset="">
-            </div>
-            <ul class="sidebar-nav">
-                <li>
-                    <a href="admin.html" data-tab="0"><i class=" fa fa-user" ></i>Manage Users</a>
-                </li>
-                <li>
-                    <a href="manage_products.html" data-tab="1"><i class="fa fa-boxes-stacked " ></i>Manage Products</a>
-                </li>
-                <li>
-                    <a href="customer_service.html" data-tab="2"><i class="fa fa-headset"></i>Customer Service</a>
-                </li>
-                <li>
-                    <a href="../index.html" data-tab="3"><i class="fa fa-home"></i>Back To Home</a>
-                </li>
-            </ul>
+          <div class="sidebar-brand">
+            <img
+              src="../Resources/Images/logo/png/White logo - no background.png"
+              alt=""
+              srcset=""
+            />
+          </div>
+          <ul class="sidebar-nav">
+            <li>
+              <a href="admin.html" data-tab="0"
+                ><i class="fa fa-user"></i>Manage Users</a
+              >
+            </li>
+            <li>
+              <a href="manage_products.html" data-tab="1"
+                ><i class="fa fa-boxes-stacked"></i>Manage Products</a
+              >
+            </li>
+            <li>
+              <a href="customer_service.html" data-tab="2"
+                ><i class="fa fa-headset"></i>Customer Service</a
+              >
+            </li>
+            <li>
+              <a href="adminOrders.html" data-tab="3"
+                ><i class="fa fa-cart-shopping"></i>Orders</a
+              >
+            </li>
+          </ul>
         </aside>
-             <!-- ************************** NEW NAV BAR  ****************************-->
-              <div id="navbar-wrapper">
-                <nav class="navbar navbar-inverse sticky-top">
-                  <div class="container-fluid">
-                    <div class="navbar-header">
-                      <a href="#" class="navbar-brand" id="sidebar-toggle"><i class="fa fa-bars"></i></a>
-                    </div>
-                    <ul class="nav navbar-nav ml-auto">
-                      <li><a href="#" id="signOut"> <i class="fa-solid fa-right-from-bracket"></i></a></li>
-                  </ul>
-                  </div>
-                </nav>
+        <!-- ************************** NEW NAV BAR  ****************************-->
+        <div id="navbar-wrapper">
+          <nav class="navbar navbar-inverse sticky-top">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a href="#" class="navbar-brand" id="sidebar-toggle"
+                  ><i class="fa fa-bars"></i
+                ></a>
               </div>
+              <ul class="nav navbar-nav ml-auto">
+                <li>
+                  <a href="../index.html" id="logout">
+                    <i class="fa-solid fa-right-from-bracket"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
 
             <section id="content-wrapper">
                 <!-- Content-->

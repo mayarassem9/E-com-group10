@@ -419,4 +419,3 @@ function handlePaginationClick(action) {
   // - search by bookname
   // - compute total profit
   // 4. add pagination
-  
