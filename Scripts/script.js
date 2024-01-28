@@ -1,7 +1,10 @@
 import { Item, Order } from "../Data/orderClass.js";
 import * as valid from "../order/valid.js";
 import data from "../Data/books.json" assert { type: "json" };
+import { populateAllData } from "./populateData.js";
+
 $(document).ready(function () {
+  //populateAllData();
   var orders = JSON.parse(localStorage.getItem("orders")) || [];
 
   localStorage.setItem("orders", JSON.stringify(orders));

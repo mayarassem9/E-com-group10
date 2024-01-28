@@ -433,174 +433,183 @@ function populateAllBooks() {
   );
 }
 function populateAllOrders() {
-  localStorage.setItem("allOrders", [
-    {
-      orderId: 1,
-      userId: 3,
-      status: "pending",
-      total: 1260,
-      items: [
-        {
-          ID: 1,
-          name: "Tale of Two Cities",
-          price: 135,
-          quantity: 2,
-          sellerId: 5,
-          imgLink: "Resources/Images/books/TaleofTwoCities.jpg",
-        },
-        {
-          ID: 2,
-          name: "The final Gambit",
-          price: 125,
-          quantity: 4,
-          sellerId: 1,
-          imgLink: "Resources/Images/books/TheFinalGambit.jpg",
-        },
-        {
-          ID: 3,
-          name: "Abu Alhoul",
-          price: 115,
-          quantity: 3,
-          sellerId: 1,
-          imgLink: "Resources/Images/books/abuAlhoulBook.jpg",
-        },
-      ],
-      date: "2024-01-27T14:00:09.892Z",
-    },
-    {
-      orderId: 2,
-      userId: 2,
-      status: "pending",
-      total: 1260,
-      items: [
-        {
-          ID: 1,
-          name: "Tale of Two Cities",
-          price: 135,
-          quantity: 2,
-          sellerId: 1,
-          imgLink: "Resources/Images/books/TaleofTwoCities.jpg",
-        },
-        {
-          ID: 2,
-          name: "The final Gambit",
-          price: 125,
-          quantity: 4,
-          sellerId: 5,
-          imgLink: "Resources/Images/books/TheFinalGambit.jpg",
-        },
-        {
-          ID: 3,
-          name: "Abu Alhoul",
-          price: 115,
-          quantity: 3,
-          sellerId: 6,
-          imgLink: "Resources/Images/books/abuAlhoulBook.jpg",
-        },
-      ],
-      date: "2024-01-27T14:01:32.371Z",
-    },
-    {
-      orderId: 3,
-      userId: 4,
-      status: "pending",
-      total: 556,
-      items: [
-        {
-          ID: 1,
-          name: "Tale of Two Cities",
-          price: 135,
-          quantity: 2,
-          sellerId: 1,
-          imgLink: "Resources/Images/books/TaleofTwoCities.jpg",
-        },
-        {
-          ID: 2,
-          name: "The final Gambit",
-          price: 125,
-          quantity: 4,
-          sellerId: 5,
-          imgLink: "Resources/Images/books/TheFinalGambit.jpg",
-        },
-        {
-          ID: 3,
-          name: "Abu Alhoul",
-          price: 115,
-          quantity: 3,
-          sellerId: 6,
-          imgLink: "Resources/Images/books/abuAlhoulBook.jpg",
-        },
-      ],
-      date: "2024-01-27T14:01:32.371Z",
-    },
-  ]);
+  localStorage.setItem(
+    "allOrders",
+    JSON.stringify([
+      {
+        orderId: 1,
+        userId: 3,
+        status: "pending",
+        total: 1260,
+        items: [
+          {
+            ID: 1,
+            name: "Tale of Two Cities",
+            price: 135,
+            quantity: 2,
+            sellerId: 5,
+            imgLink: "Resources/Images/books/TaleofTwoCities.jpg",
+          },
+          {
+            ID: 2,
+            name: "The final Gambit",
+            price: 125,
+            quantity: 4,
+            sellerId: 1,
+            imgLink: "Resources/Images/books/TheFinalGambit.jpg",
+          },
+          {
+            ID: 3,
+            name: "Abu Alhoul",
+            price: 115,
+            quantity: 3,
+            sellerId: 1,
+            imgLink: "Resources/Images/books/abuAlhoulBook.jpg",
+          },
+        ],
+        date: "2024-01-27T14:00:09.892Z",
+      },
+      {
+        orderId: 2,
+        userId: 2,
+        status: "pending",
+        total: 1260,
+        items: [
+          {
+            ID: 1,
+            name: "Tale of Two Cities",
+            price: 135,
+            quantity: 2,
+            sellerId: 1,
+            imgLink: "Resources/Images/books/TaleofTwoCities.jpg",
+          },
+          {
+            ID: 2,
+            name: "The final Gambit",
+            price: 125,
+            quantity: 4,
+            sellerId: 5,
+            imgLink: "Resources/Images/books/TheFinalGambit.jpg",
+          },
+          {
+            ID: 3,
+            name: "Abu Alhoul",
+            price: 115,
+            quantity: 3,
+            sellerId: 6,
+            imgLink: "Resources/Images/books/abuAlhoulBook.jpg",
+          },
+        ],
+        date: "2024-01-27T14:01:32.371Z",
+      },
+      {
+        orderId: 3,
+        userId: 4,
+        status: "pending",
+        total: 556,
+        items: [
+          {
+            ID: 1,
+            name: "Tale of Two Cities",
+            price: 135,
+            quantity: 2,
+            sellerId: 1,
+            imgLink: "Resources/Images/books/TaleofTwoCities.jpg",
+          },
+          {
+            ID: 2,
+            name: "The final Gambit",
+            price: 125,
+            quantity: 4,
+            sellerId: 5,
+            imgLink: "Resources/Images/books/TheFinalGambit.jpg",
+          },
+          {
+            ID: 3,
+            name: "Abu Alhoul",
+            price: 115,
+            quantity: 3,
+            sellerId: 6,
+            imgLink: "Resources/Images/books/abuAlhoulBook.jpg",
+          },
+        ],
+        date: "2024-01-27T14:01:32.371Z",
+      },
+    ])
+  );
 }
 function populateOrder() {
-  localStorage.setItem("orders", [
-    {
-      orderId: 1,
-      userId: 4,
-      status: "pending",
-      items: [
-        {
-          ID: 1,
-          sellerId: 1,
-          name: "Tale of Two Cities",
-          price: 135,
-          quantity: 1,
-          imgLink: "Resources/Images/books/TaleofTwoCities.jpg",
-        },
-      ],
-    },
-  ]);
+  localStorage.setItem(
+    "orders",
+    JSON.stringify([
+      {
+        orderId: 1,
+        userId: 4,
+        status: "pending",
+        items: [
+          {
+            ID: 1,
+            sellerId: 1,
+            name: "Tale of Two Cities",
+            price: 135,
+            quantity: 1,
+            imgLink: "Resources/Images/books/TaleofTwoCities.jpg",
+          },
+        ],
+      },
+    ])
+  );
 }
 function populateSellerOrders() {
-  localStorage.setItem("sellerOrders", [
-    {
-      orderId: 1,
-      userId: 3,
-      bookID: 2,
-      bookName: "The final Gambit",
-      bookPrice: 125,
-      bookQuantity: 4,
-      imgLink: "Resources/Images/books/TheFinalGambit.jpg",
-      date: "2024-01-27T14:00:09.892Z",
-      status: "pending",
-    },
-    {
-      orderId: 1,
-      userId: 3,
-      bookID: 3,
-      bookName: "Abu Alhoul",
-      bookPrice: 115,
-      bookQuantity: 3,
-      imgLink: "Resources/Images/books/abuAlhoulBook.jpg",
-      date: "2024-01-27T14:00:09.892Z",
-      status: "pending",
-    },
-    {
-      orderId: 2,
-      userId: 2,
-      bookID: 1,
-      bookName: "Tale of Two Cities",
-      bookPrice: 135,
-      bookQuantity: 2,
-      imgLink: "Resources/Images/books/TaleofTwoCities.jpg",
-      date: "2024-01-27T14:01:32.371Z",
-      status: "pending",
-    },
-    {
-      orderId: 3,
-      userId: 4,
-      bookID: 1,
-      bookName: "Tale of Two Cities",
-      bookPrice: 135,
-      bookQuantity: 2,
-      imgLink: "Resources/Images/books/TaleofTwoCities.jpg",
-      date: "2024-01-27T14:01:32.371Z",
-      status: "pending",
-    },
-  ]);
+  localStorage.setItem(
+    "sellerOrders",
+    JSON.stringify([
+      {
+        orderId: 1,
+        userId: 3,
+        bookID: 2,
+        bookName: "The final Gambit",
+        bookPrice: 125,
+        bookQuantity: 4,
+        imgLink: "Resources/Images/books/TheFinalGambit.jpg",
+        date: "2024-01-27T14:00:09.892Z",
+        status: "pending",
+      },
+      {
+        orderId: 1,
+        userId: 3,
+        bookID: 3,
+        bookName: "Abu Alhoul",
+        bookPrice: 115,
+        bookQuantity: 3,
+        imgLink: "Resources/Images/books/abuAlhoulBook.jpg",
+        date: "2024-01-27T14:00:09.892Z",
+        status: "pending",
+      },
+      {
+        orderId: 2,
+        userId: 2,
+        bookID: 1,
+        bookName: "Tale of Two Cities",
+        bookPrice: 135,
+        bookQuantity: 2,
+        imgLink: "Resources/Images/books/TaleofTwoCities.jpg",
+        date: "2024-01-27T14:01:32.371Z",
+        status: "pending",
+      },
+      {
+        orderId: 3,
+        userId: 4,
+        bookID: 1,
+        bookName: "Tale of Two Cities",
+        bookPrice: 135,
+        bookQuantity: 2,
+        imgLink: "Resources/Images/books/TaleofTwoCities.jpg",
+        date: "2024-01-27T14:01:32.371Z",
+        status: "pending",
+      },
+    ])
+  );
 }
 export function populateAllData() {
   populateAllUsers();
