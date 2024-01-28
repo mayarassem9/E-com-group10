@@ -104,6 +104,10 @@ let orders = [
   let sellerOrders = [];
   let sellerID;
   let searchTerm;
+  //pagination varriables
+  let currentPage = 1;
+  const itemsPerPage = 2; 
+
   $(document).ready(function () {
     saveOrdersToLocalStorage(orders);
     populateUser();
@@ -115,6 +119,18 @@ let orders = [
       console.log(searchTerm);
       // displaySellerOrders(sellerOrders,searchTerm);
     });
+
+    // Bind click event to previous page button
+    $('#prevPage').on('click', function(event) {
+    event.preventDefault(); // Prevent default behavior of anchor tag
+    handlePaginationClick('prev'); // Call pagination function with 'prev' action
+    });
+
+    // Bind click event to next page button
+    $('#nextPage').on('click', function(event) {
+    event.preventDefault(); // Prevent default behavior of anchor tag
+    handlePaginationClick('next'); // Call pagination function with 'next' action
+    });
   
     sellerID = getSellerID();
     console.log(sellerID);
@@ -123,6 +139,8 @@ let orders = [
   
     sellerOrders = filterOrdersToSeller(myallOrders, sellerID);
     displaySellerOrders(sellerOrders);
+    displayOrdersForPage(sellerOrders, currentPage);
+    updatePaginationNumbers();
   });
   function getSellerID() {
     let _seller = localStorage.getItem("currentUser");
@@ -318,8 +336,8 @@ let orders = [
         order.status = "completed";
       }
     });
-    displaySellerOrders(sellerOrders);
-    //saveOrdersToLocalStorage(allorders);
+   displayOrdersForPage(sellerOrders, currentPage);
+  saveOrdersToLocalStorage(allorders);
   }
   function changeColor(status) {
     if (status == "pending") {
@@ -330,6 +348,58 @@ let orders = [
       return "text-danger";
     }
   }
+
+  // Function to update pagination numbers
+function updatePaginationNumbers() {
+    // Clear existing pagination numbers
+    $('.pagination-numbers').empty();
+    
+    // Calculate total number of pages
+    const totalPages = Math.ceil(sellerOrders.length / itemsPerPage);
+    console.log(totalPages);
+    
+    // Generate pagination numbers
+    for (let i = 1; i <= totalPages; i++) {
+        const pageLink = $('<a>').addClass('page-link').attr('href', '#').text(i);
+        const listItem = $('<li>').addClass('page-item').append(pageLink);
+        
+        // Add active class to current page
+        if (i === currentPage) {
+            listItem.addClass('active');
+        }
+        
+        // Bind click event to page number
+        pageLink.on('click', function(event) {
+            event.preventDefault(); // Prevent default behavior of anchor tag
+            currentPage = i; // Update current page
+            updatePaginationNumbers(); // Update pagination numbers
+            displayOrdersForPage(sellerOrders, currentPage); // Display orders for the selected page
+            
+        });
+        
+        // Append page number to pagination numbers container
+        $('.pagination-numbers').append(listItem);
+    }
+}
+
+  // Function to display orders for the current page
+    function displayOrdersForPage(orders, page) {
+        const startIndex = (page - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const ordersForPage = orders.slice(startIndex, endIndex);
+        displaySellerOrders(ordersForPage);
+  }
+
+  // Function to handle pagination clicks
+function handlePaginationClick(action) {
+    if (action === 'next') {
+        currentPage++;
+    } else if (action === 'prev') {
+        currentPage = Math.max(currentPage - 1, 1);
+    }
+    
+    displayOrdersForPage(sellerOrders, currentPage);
+}
   // 1. get Orders from Local Storage
   /*
       sellerOrders={
