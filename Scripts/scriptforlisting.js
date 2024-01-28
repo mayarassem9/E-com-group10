@@ -206,22 +206,23 @@ const saveBooksToLocalStorage = (books) => {
 
 // Function to get books from local storage
 const getBooksFromLocalStorage = () => {
-  const storedBooks = localStorage.getItem("mybooks");
+  const storedBooks = localStorage.getItem("books");
   return storedBooks ? JSON.parse(storedBooks) : [];
 };
 
 // Function to get the books
 const getBooks = () => {
-  const storedBooks = getBooksFromLocalStorage();
-  fetch("Data/productData.json")
-    .then((res) => res.text())
-    .then((data) => JSON.parse(data))
-    .then((data) => {
-      allBooksData = data.books;
-      saveBooksToLocalStorage(allBooksData);
-      addBooksToDOM(allBooksData);
-    })
-    .catch((err) => console.log(err));
+  allBooksData = getBooksFromLocalStorage();
+  addBooksToDOM(allBooksData);
+  // fetch("Data/productData.json")
+  //   .then((res) => res.text())
+  //   .then((data) => JSON.parse(data))
+  //   .then((data) => {
+  //     allBooksData = data.books;
+  //     saveBooksToLocalStorage(allBooksData);
+
+  //   })
+  //   .catch((err) => console.log(err));
 };
 
 // Function to create a book card dynamically
@@ -283,38 +284,30 @@ function createBookCard(
   addToCartBtn.classList.add("btn", "btn-dark");
   addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
 
-    addToCartBtn.addEventListener("click", function () {
+  addToCartBtn.addEventListener("click", function () {
+    var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (currentUser) {
+      valid.addToCart(Item, Order, data, bookId);
+      var orders = JSON.parse(localStorage.getItem("orders")) || [];
+      localStorage.setItem("orders", JSON.stringify(orders));
+      valid.notificationUpdate(orders);
+    } else {
+      Swal.fire("You Need To Login First !");
+    }
+  });
 
-      var currentUser = JSON.parse(localStorage.getItem("currentUser")) ;
-      if(currentUser){
-  
-        valid.addToCart(Item, Order, data, bookId);
-        var orders = JSON.parse(localStorage.getItem("orders")) || [];
-        localStorage.setItem("orders", JSON.stringify(orders));
-        valid.notificationUpdate(orders);
-      }
-      else{
-        Swal.fire("You Need To Login First !");
-      }
-  
-      
-    });
-
-  
-     /////==============================nada wish list================================// 
-     var wishlistbutton = document.createElement("button");
-     //addToCartBtn.id = 'addBtn';
-     wishlistbutton.classList.add("btn", "btn-dark");
-     wishlistbutton.innerHTML = '<i class="fa-solid fa-heart"></i> Wish List';
-     wishlistbutton.addEventListener("click", function () {
-       // id /bookid / book title /img /price
-       //check == bookid no add
-      //localStorage.setItem("wishlist")   
-       addwish(bookId,title,imageSrc,price);
-
-     });
-     //===============end wish list===========================//
-  
+  /////==============================nada wish list================================//
+  var wishlistbutton = document.createElement("button");
+  //addToCartBtn.id = 'addBtn';
+  wishlistbutton.classList.add("btn", "btn-dark");
+  wishlistbutton.innerHTML = '<i class="fa-solid fa-heart"></i> Wish List';
+  wishlistbutton.addEventListener("click", function () {
+    // id /bookid / book title /img /price
+    //check == bookid no add
+    //localStorage.setItem("wishlist")
+    addwish(bookId, title, imageSrc, price);
+  });
+  //===============end wish list===========================//
 
   imgDiv.appendChild(img);
   bodyDiv.appendChild(cardTitle);
@@ -323,7 +316,6 @@ function createBookCard(
   bodyDiv.appendChild(cardPrice);
   bodyDiv.appendChild(addToCartBtn);
   bodyDiv.appendChild(wishlistbutton); /// wish list button --nada
-
 
   cardDiv.appendChild(imgDiv);
   cardDiv.appendChild(bodyDiv);
@@ -534,7 +526,6 @@ addToCartBtn.addEventListener("click", function () {
 
   valid.notificationUpdate(orders);
 });
-
 
 function addwish(bookId, title, img, price) {
   let wishlist = localStorage.getItem("wishlist");
