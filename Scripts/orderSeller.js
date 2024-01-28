@@ -337,6 +337,11 @@ function changeOrderStatus(_orderId) {
       order.status = "completed";
     }
   });
+  sellerOrders.forEach((order) => {
+    if (order.orderId === _orderId) {
+      order.status = "completed";
+    }
+  });
   saveOrdersToLocalStorage(myallOrders);
   displayOrdersForPage(sellerOrders, currentPage);
 }
@@ -387,6 +392,7 @@ function displayOrdersForPage(orders, page) {
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const ordersForPage = orders.slice(startIndex, endIndex);
+
   displaySellerOrders(ordersForPage);
 }
 
