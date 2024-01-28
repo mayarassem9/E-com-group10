@@ -213,6 +213,7 @@ const getBooksFromLocalStorage = () => {
 // Function to get the books
 const getBooks = () => {
   allBooksData = getBooksFromLocalStorage();
+  console.log(`DAATATA: ${allBooksData}`);
   addBooksToDOM(allBooksData);
   // fetch("Data/productData.json")
   //   .then((res) => res.text())

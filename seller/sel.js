@@ -1,6 +1,7 @@
 import data from "../../Data/books.json" assert { type: "json" };
 import * as valid from "./valid.js";
 
+let allBooks = [];
 $(document).ready(function () {
   //    debugger
 
@@ -44,6 +45,7 @@ $(document).ready(function () {
   }
 
   var currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
+  allBooks = books;
   books = books.filter((book) => book["salerID"] === currentUser[0].id);
 
   /*===============End Local Storge================*/
@@ -75,7 +77,7 @@ $(document).ready(function () {
     editBtn.style.display = "none";
 
     if (valid.validateForm(0)) {
-      valid.Add(books, rowsPerPage);
+      valid.Add(allBooks, rowsPerPage);
     }
   });
   /*===============End Add================*/
@@ -107,7 +109,7 @@ $(document).ready(function () {
     if (!valid.validateForm(1)) {
       event.stopPropagation();
     } else {
-      valid.EditV2(books, rowsPerPage);
+      valid.EditV2(allBooks, rowsPerPage);
       form.classList.add("was-validated");
     }
   });
@@ -252,7 +254,7 @@ $(document).ready(function () {
 
   /*===============Delete================*/
   window.Delete = function (obj) {
-    valid.Delete(obj, rowsPerPage, books);
+    valid.Delete(obj, rowsPerPage, allBooks);
   };
   /*===============End Delete================*/
 });
