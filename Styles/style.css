@@ -490,6 +490,7 @@ body {
 
 .product__details__text {
 	text-align: center;
+    /* margin-top: 150px; */
     
 }
 .product__details__text h4 {
@@ -550,8 +551,13 @@ body {
 	cursor: pointer;
 	font-weight: 600;
 }
+/* .shop-details .card{
+    width: 450px;
+    height: auto;
+
+} */
 /* button style */
-.primary-btn {
+/* .primary-btn {
 	display: inline-block;
 	font-size: 13px;
 	font-weight: 700;
@@ -560,7 +566,7 @@ body {
 	color: #ffffff;
 	background: #000000;
 	letter-spacing: 4px;
-}
+} */
 
 
 
