@@ -15,6 +15,8 @@ export function isadmin(email ,password){
     if(adminExists){
         console.log("admin")
         is_admin=true;
+        localStorage.setItem("userSignedUp",'false')
+
         window.location.href="/Admin_Component/admin.html"
         
     }
@@ -43,6 +45,8 @@ export function Add(x,y){
         const currentUser = [userExists];
         // Save the current user's data in local storage
         localStorage.setItem("currentUser", JSON.stringify(currentUser));
+        localStorage.setItem("userSignedUp",'true')
+
         window.location.href="index.html";
         
     }
@@ -64,6 +68,8 @@ export function Add(x,y){
         localStorage.removeItem("currentUser");
         const currentUser = [sellerExists];
         localStorage.setItem("currentUser", JSON.stringify(currentUser));
+        localStorage.setItem("userSignedUp",'false')
+
         window.location.href="seller.html"
        
     }

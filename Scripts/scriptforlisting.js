@@ -283,6 +283,23 @@ function createBookCard(
     localStorage.setItem("orders", JSON.stringify(orders));
     valid.notificationUpdate(orders);
   });
+     /////==============================nada wish list================================// 
+     var wishlistbutton = document.createElement("button");
+     //addToCartBtn.id = 'addBtn';
+     wishlistbutton.classList.add("btn", "btn-dark");
+     wishlistbutton.innerHTML = '<i class="fa-solid fa-heart"></i> Wish List';
+     wishlistbutton.addEventListener("click", function () {
+       // id /bookid / book title /img /price
+       //check == bookid no add
+      //localStorage.setItem("wishlist")
+       
+       addwish(bookId,title,imageSrc,price);
+      
+   
+       
+     });
+     //===============end wish list===========================//
+  
 
   imgDiv.appendChild(img);
   bodyDiv.appendChild(cardTitle);
@@ -290,6 +307,8 @@ function createBookCard(
   bodyDiv.appendChild(cardDescription);
   bodyDiv.appendChild(cardPrice);
   bodyDiv.appendChild(addToCartBtn);
+  bodyDiv.appendChild(wishlistbutton); /// wish list button --nada
+
 
   cardDiv.appendChild(imgDiv);
   cardDiv.appendChild(bodyDiv);
@@ -499,3 +518,82 @@ addToCartBtn.addEventListener("click", function () {
 
   valid.notificationUpdate(orders);
 });
+
+
+function addwish(bookId, title, img, price) {
+  let wishlist = localStorage.getItem("wishlist");
+  let current = localStorage.getItem("currentUser");
+  current = current ? JSON.parse(current) : false;
+  let isuser = false;
+
+  if (current) {
+    // FOR handle if I logged out and no current user
+    isuser = current.some((current) => current.role === "customer");
+  }
+
+  wishlist = wishlist ? JSON.parse(wishlist) : [];
+  let newid = 1;
+  let found = false;
+
+  if (!isuser) {
+    // for handle if I didn't log in or sign up and if I came from seller to see home
+    Swal.fire({
+      title: "Please Login or SignUP First",
+      showClass: {
+        popup: `
+          animate__animated
+          animate__fadeInUp
+          animate__faster
+        `,
+      },
+      hideClass: {
+        popup: `
+          animate__animated
+          animate__fadeOutDown
+          animate__faster
+        `,
+      },
+    });
+  } else {
+    let userid = current[0].id;
+
+    if (wishlist.length !== 0) {
+      newid = wishlist[wishlist.length - 1].Id + 1;
+    }
+
+    wishlist.forEach((item, index) => {
+      if (item.bookid === bookId && item.Userid === userid) {
+        wishlist.splice(index, 1);
+        found = true;
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Removed Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+
+    if (!found) {
+      let newwish = {
+        Id: newid,
+        Userid: userid,
+        bookid: bookId,
+        title: title,
+        img: img,
+        price: price,
+      };
+      wishlist.push(newwish);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Added Successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  }
+}
