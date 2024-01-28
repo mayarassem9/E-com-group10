@@ -19,7 +19,9 @@ $(document).ready(function(){
                     createCartItem(books,item,orders,orderIndex)
                 });
             } 
-        
+    $('#goToCheckout').click(function (event) {
+        window.location.href = "Checkout_Component/checkout.html"
+    })
 });
 
 function createCartItem(books,item,orders,orderIndex) {

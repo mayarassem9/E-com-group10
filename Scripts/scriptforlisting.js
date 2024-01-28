@@ -1,4 +1,8 @@
-// The main structure for the details 
+import { Item, Order } from "../../Data/orderClass.js";
+import * as valid from "../../order/valid.js";
+import data from "../../Data/books.json" assert { type: "json" };
+
+// The main structure for the details
 let sectionProducts = document.querySelector(".sectionContainer");
 let myTabContent = document.getElementById("myTabContent");
 let allBooks = document.createElement("DIV");
@@ -13,12 +17,12 @@ container.classList.add("ccontainer", "mt-5");
 allBooks.appendChild(container);
 row.classList.add("row");
 
-//to control the view more button 
+//to control the view more button
 let displayedBooks = 0;
 const pageSize = 12;
 let allBooksData = [];
 
-//function to create search and tabs dynamically 
+//function to create search and tabs dynamically
 function createSearchAndTabs(sectionProducts) {
   // Create row
   const rowDiv = document.createElement("div");
@@ -55,16 +59,36 @@ function createSearchAndTabs(sectionProducts) {
   sectionProducts.appendChild(rowDiv);
 
   // Create tabs
-  ul = document.createElement("ul");
+  let ul = document.createElement("ul");
   ul.classList.add("nav", "nav-tabs");
   ul.setAttribute("id", "myTab");
 
   // Create array of tab data
   const tabData = [
-    { id: "allBooks", iconClass: "fas fa-book pe-3", text: "All Books", active: true },
-    { id: "bestSeller", iconClass: "fas fa-fire pe-3", text: "Best Seller", active: false },
-    { id: "recentlyAdded", iconClass: "fas fa-clock pe-3", text: "Recently Added", active: false },
-    { id: "category", iconClass: "fas fa-list pe-3", text: "Categories", active: false },
+    {
+      id: "allBooks",
+      iconClass: "fas fa-book pe-3",
+      text: "All Books",
+      active: true,
+    },
+    {
+      id: "bestSeller",
+      iconClass: "fas fa-fire pe-3",
+      text: "Best Seller",
+      active: false,
+    },
+    {
+      id: "recentlyAdded",
+      iconClass: "fas fa-clock pe-3",
+      text: "Recently Added",
+      active: false,
+    },
+    {
+      id: "category",
+      iconClass: "fas fa-list pe-3",
+      text: "Categories",
+      active: false,
+    },
   ];
 
   // Create li elements and append to ul
@@ -107,32 +131,44 @@ createSearchAndTabs(sectionProducts);
 
 // Function to create category buttons in the collapse
 function createCategoryButtons(categories) {
-    const categoryCollapse = document.getElementById("categoryCollapse");
-    categoryCollapse.innerHTML = ""; // Clear existing buttons
-  
-    const uniqueCategories = getUniqueCategories(); //for unique categories 
-  
-    uniqueCategories.forEach((category) => {
-        const button = document.createElement("button");
-        button.classList.add("btn", "btn-outline-secondary", "category-btn");
-        button.textContent = category;
+  const categoryCollapse = document.getElementById("categoryCollapse");
+  categoryCollapse.innerHTML = ""; // Clear existing buttons
 
-        button.addEventListener("click", () => filterBooksByCategory(category));
-    
-        categoryCollapse.appendChild(button);
-    });
+  const uniqueCategories = getUniqueCategories(); //for unique categories
+
+  uniqueCategories.forEach((category) => {
+    const button = document.createElement("button");
+    button.classList.add("btn", "btn-outline-secondary", "category-btn");
+    button.textContent = category;
+
+    button.addEventListener("click", () => filterBooksByCategory(category));
+
+    categoryCollapse.appendChild(button);
+  });
 }
 
-// Function to add books to the dom 
+// Function to add books to the dom
 const viewMoreButton = document.getElementById("viewmorebtn");
 const addBooksToDOM = (books) => {
-  const remainingBooks = books.filter((book) => book.stockNum > 0).slice(displayedBooks, displayedBooks + pageSize);
+  const remainingBooks = books
+    .filter((book) => book.stockNum > 0)
+    .slice(displayedBooks, displayedBooks + pageSize);
   if (remainingBooks.length === 0) {
     viewMoreButton.disabled = true; // Disable the button when no more books to show
     return;
   }
   remainingBooks.forEach((book) => {
-    const bookCard = createBookCard(book.ID, book.title, book.author, book.description, book.price, book.imgLink, book.bestSeller, book.recentlyAdded, book.stockNum);
+    const bookCard = createBookCard(
+      book.ID,
+      book.title,
+      book.author,
+      book.description,
+      book.price,
+      book.imgLink,
+      book.bestSeller,
+      book.recentlyAdded,
+      book.stockNum
+    );
     row.appendChild(bookCard);
   });
   displayedBooks += remainingBooks.length;
@@ -184,7 +220,17 @@ const getBooks = () => {
 };
 
 // Function to create a book card dynamically
-function createBookCard(bookId, title, author, description, price, imageSrc, isBestSeller, isRecentlyAdded, stockNum) {
+function createBookCard(
+  bookId,
+  title,
+  author,
+  description,
+  price,
+  imageSrc,
+  isBestSeller,
+  isRecentlyAdded,
+  stockNum
+) {
   var colDiv = document.createElement("div");
   colDiv.classList.add("col-md-3", "mb-4");
   colDiv.setAttribute("id", "theCard");
@@ -197,8 +243,13 @@ function createBookCard(bookId, title, author, description, price, imageSrc, isB
 
   var img = document.createElement("img");
   img.src = imageSrc;
+  console.log("Image source:", imageSrc); // Log the image source
   img.classList.add("card-img-top", "img-fluid");
   img.alt = title + " Image";
+
+  img.addEventListener("click", function () {
+    goToProductDetails(bookId);
+  });
 
   var bodyDiv = document.createElement("div");
   bodyDiv.classList.add("card-body");
@@ -217,14 +268,21 @@ function createBookCard(bookId, title, author, description, price, imageSrc, isB
 
   var cardPrice = document.createElement("p");
   cardPrice.classList.add("card-text", "price");
-  var formattedPrice = typeof price === "number" ? "$" + price.toFixed(2) : "Invalid Price";
+  var formattedPrice =
+    typeof price === "number" ? "$" + price.toFixed(2) : "Invalid Price";
   cardPrice.textContent = formattedPrice;
 
-  var addToCartBtn = document.createElement("a");
-  addToCartBtn.href = "#";
+  // asmaa
+  var addToCartBtn = document.createElement("button");
+  //addToCartBtn.id = 'addBtn';
   addToCartBtn.classList.add("btn", "btn-dark");
   addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
-
+  addToCartBtn.addEventListener("click", function () {
+    valid.addToCart(Item, Order, data, bookId);
+    var orders = JSON.parse(localStorage.getItem("orders")) || [];
+    localStorage.setItem("orders", JSON.stringify(orders));
+    valid.notificationUpdate(orders);
+  });
 
   imgDiv.appendChild(img);
   bodyDiv.appendChild(cardTitle);
@@ -249,15 +307,15 @@ function goToProductDetails(bookId) {
 
 // Function to remove any existing category heading from a container element
 function removeExistingCategoryHeading(container) {
-    const existingCategoryHeading = container.querySelector('h3');
-    if (existingCategoryHeading) {
-        existingCategoryHeading.remove();
-    }
+  const existingCategoryHeading = container.querySelector("h3");
+  if (existingCategoryHeading) {
+    existingCategoryHeading.remove();
+  }
 }
 
 // Function to update the displayed books based on the selected tab
 const updateDisplayedBooks = (tabId) => {
-    removeExistingCategoryHeading(container);
+  removeExistingCategoryHeading(container);
   displayedBooks = 0;
   row.innerHTML = ""; // Clear existing books before adding new ones
   viewMoreButton.disabled = false; // Enable the "View More" button when updating the tab
@@ -275,24 +333,25 @@ const updateDisplayedBooks = (tabId) => {
 
 // Function to filter books by category
 function filterBooksByCategory(category) {
-
-    removeExistingCategoryHeading(container);
+  removeExistingCategoryHeading(container);
 
   // Create a heading element to display the category name
-  const categoryHeading = document.createElement('h3');
+  const categoryHeading = document.createElement("h3");
   categoryHeading.textContent = category;
-  categoryHeading.classList.add('category-heading'); // Add the category-heading class
-  
+  categoryHeading.classList.add("category-heading"); // Add the category-heading class
+
   // Append the category heading before displaying the books
   container.insertBefore(categoryHeading, row);
-  
+
   // Clear existing books before adding new ones
   displayedBooks = 0;
-  row.innerHTML = '';
+  row.innerHTML = "";
 
   // Filter books by the selected category
-  const filteredBooks = allBooksData.filter(book => book.category === category);
-  
+  const filteredBooks = allBooksData.filter(
+    (book) => book.category === category
+  );
+
   // Add filtered books to the DOM
   addBooksToDOM(filteredBooks);
 }
@@ -368,32 +427,32 @@ const addNewBooks = () => {
 };
 
 // Add click event listener to the tab buttons
-document.addEventListener('click', (event) => {
-    const clickedElement = event.target;
+document.addEventListener("click", (event) => {
+  const clickedElement = event.target;
 
-    // Check if the clicked element is not a tab button
-    if (clickedElement.tagName !== 'BUTTON' || !clickedElement.closest('ul')) {
-        const categoryCollapse = document.getElementById('categoryCollapse');
-        categoryCollapse.classList.remove('show');
-    }
+  // Check if the clicked element is not a tab button
+  if (clickedElement.tagName !== "BUTTON" || !clickedElement.closest("ul")) {
+    const categoryCollapse = document.getElementById("categoryCollapse");
+    categoryCollapse.classList.remove("show");
+  }
 });
 
-ul.addEventListener('click', (event) => {
-    if (event.target.tagName === 'BUTTON') {
-        const tabId = event.target.getAttribute('data-target').substring(1); // Extract tab id
-        updateDisplayedBooks(tabId);
-        
-        // Hide the category collapse when switching to another tab
-        const categoryCollapse = document.getElementById('categoryCollapse');
-        if (tabId === 'category') {
-            // Show the category collapse if the "Categories" tab is clicked
-            categoryCollapse.classList.add('show');
-        } else {
-            // Hide the category collapse if any other tab is clicked
-            categoryCollapse.classList.remove('show');
-        }
-    }
-});
+// ul.addEventListener("click", (event) => {
+//   if (event.target.tagName === "BUTTON") {
+//     const tabId = event.target.getAttribute("data-target").substring(1); // Extract tab id
+//     updateDisplayedBooks(tabId);
+
+//     // Hide the category collapse when switching to another tab
+//     const categoryCollapse = document.getElementById("categoryCollapse");
+//     if (tabId === "category") {
+//       // Show the category collapse if the "Categories" tab is clicked
+//       categoryCollapse.classList.add("show");
+//     } else {
+//       // Hide the category collapse if any other tab is clicked
+//       categoryCollapse.classList.remove("show");
+//     }
+//   }
+// });
 
 // Search button click event
 const searchButton = document.getElementById("searchButton");
@@ -402,23 +461,23 @@ searchButton.addEventListener("click", () => {
   const searchTerm = searchInput.value.trim();
   if (searchTerm !== "") {
     filterBooks(searchTerm);
-  } 
+  }
 });
 
 // Handle Enter key press in the search input
 const searchInput = document.getElementById("searchInput");
 searchInput.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-        // Prevent the default form submission behavior
-        event.preventDefault();
-        //to remove header if he goes from categories to search 
-        removeExistingCategoryHeading(container);
+  if (event.key === "Enter") {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+    //to remove header if he goes from categories to search
+    removeExistingCategoryHeading(container);
 
-        const searchTerm = searchInput.value.trim();
-        if (searchTerm !== "") {
-            filterBooks(searchTerm);
-        } 
+    const searchTerm = searchInput.value.trim();
+    if (searchTerm !== "") {
+      filterBooks(searchTerm);
     }
+  }
 });
 
 // Call addNewBooks initially to replace any initial out-of-stock items
@@ -426,3 +485,17 @@ addNewBooks();
 
 viewMoreButton.addEventListener("click", getBooks);
 document.addEventListener("DOMContentLoaded", getBooks);
+
+var addToCartBtn = document.createElement("button");
+//addToCartBtn.id = 'addBtn';
+//addToCartBtn.classList.add('btn', 'btn-dark');
+addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+addToCartBtn.addEventListener("click", function () {
+  valid.addToCart(Item, Order, data, bookId);
+
+  var orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+  localStorage.setItem("orders", JSON.stringify(orders));
+
+  valid.notificationUpdate(orders);
+});

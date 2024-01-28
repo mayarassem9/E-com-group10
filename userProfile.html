@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="Styles/all.min.css">
     <link rel="stylesheet" href="Styles/font-awesome.min.css">
     <link rel="stylesheet" href="Styles/bootstrap.css">
+    <!-- <link rel="stylesheet" href="Styles/style.css"> -->
     <link rel="stylesheet" href="userProfile/userProfile.css">
+    
+    <script defer src="Scripts/logout.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="icon" href="/Resources/Images/logo/svg/White logo - no background.svg" type="image/png"> 
@@ -23,29 +26,33 @@
                 Free shipping, 30-day return or refund guarantee.
             </div>
             <div class="dropdown">
-                <a class="btn btn-secondary dropdown-toggle  " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-regular fa-user"></i> Account 
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-regular fa-user"></i> Account
                 </a>
-              
+                
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="sign_up.html">Sign Up</a></li>
-                  <li><a class="dropdown-item" href="login.html">Login</a></li>
+                  <li id="signup"><a class="dropdown-item" href="sign_up.html">Sign Up</a></li>
+                  <li id="login"><a class="dropdown-item" href="login.html">Login</a></li>
+                  <li id="myaccount"><a class="dropdown-item" href="userProfile.html"> <i class="fa-solid fa-house"></i> My Account</a></li>
+                  <li id="logout"><a class="dropdown-item" href="index.html"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></li>
                 </ul>
             </div>
+            
         </div>
     </nav>
     <nav class="main-navigation "  >
         <div class="logo">
-            <img src="Resources/Images/logo/logo.png" alt="book logo" height="50">
+            <img class="navbar-brand" src="Resources/Images/logo/logo.png" alt="book logo" height="50">
         </div>
-        <ul class="nav-links"> 
+        <ul class="nav-links " > 
             <li><a href="index.html">Home</a></li>
             <li><a href="#section-poster">Shop</a></li>
-            <li><a href="#">Contacts</a></li>
+            <li><a href="#myfooter">Contacts</a></li>
         </ul>
         <div class="nav-icons">
-            <a href="#search"><i class="fas fa-search"></i></i></a>
-            <a href="#"><i class="fa fa-heart"></i></a>
+            <a href="#searchInput" ><i class="fas fa-search"></i></i></a>
+
+            <a href="orders.html"><i class="fa fa-heart"></i></a>
             <button type="button" class=" position-relative" style="border: none; background-color: white;">
                 <a href="orders.html"><i class="fa fa-shopping-bag"></i></a>
                 <span id="notification" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"style="width: 100%; font: 0.8em sans-serif; height: 90%;">
@@ -53,12 +60,11 @@
                   <span class="visually-hidden">unread messages</span>
                 </span>
               </button>
-            <!-- <span>$0.00</span> -->
         </div>
         <div class="hamburger-icon">
             <i class="fas fa-bars"></i>
         </div>
-      
+       
         
     </nav>
 
@@ -164,8 +170,73 @@
   </div>
 </div>
 
-      </section>
-      
+</section>
+<!-- <footer class="footer" id="myfooter">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="footer__about">
+                  <div class="footer__logo">
+                      <a href="#"><img width="150px"
+                              src="Resources/Images/logo/png/White logo - no background.png" alt=""></a>
+                  </div>
+                  <p>The joy of our customers is the narrative that we continuously write and enrich through the
+                      pages of our bookstore</p>
+              </div>
+          </div>
+          <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+              <div class="footer__widget">
+                  <h6 class="ps-4">Shopping</h6>
+                  <ul>
+                      <li><a href="#">Book Store</a></li>
+                      <li><a href="#">Trending Books</a></li>
+                      <li><a href="#">Recently Arrived</a></li>
+                      <li><a href="#">Categories</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-6">
+              <div class="footer__widget">
+                  <h6 class="ps-4">Contacts</h6>
+                  <ul>
+                      <li><a href="#">Contact Us</a></li>
+                      <li><a href="#">Email Us</a></li>
+                      <li><a href="#">Delivery</a></li>
+                      <li><a href="#">Return Policy</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+              <div class="footer__widget">
+                  <h6>NewLetter</h6>
+                  <div class="footer__newslatter">
+                      <p>Be the first to know about new arrivals, look books, sales & promos!</p>
+                      <form action="#">
+                          <input type="text" placeholder="Your email">
+                          <button type="submit"><span class="icon_mail_alt"></span><i
+                                  class="fa-regular fa-envelope" style="color: #ffffff;"></i></button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+      <!-- <div class="row justify-content-center">
+          <div class="col-lg-12 text-center">
+              <div class="footer__copyright__text">
+                  <p>Copyright ©
+                      <script>
+                          document.write(new Date().getFullYear());
+                      </script>2020
+                      All rights reserved | This website is made with <i class="fa fa-heart-o"
+                          aria-hidden="true"></i> by Team 10
+                  </p>
+              </div>
+          </div>
+      </div> -->
+  </div>
+
+</footer> -->
 </body>
 </html>
 

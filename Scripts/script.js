@@ -1,6 +1,6 @@
 import { Item, Order } from "../Data/orderClass.js";
-import * as valid from "../../order/valid.js";
-import data from "../../Data/books.json" assert { type: "json" };
+import * as valid from "../order/valid.js";
+import data from "../Data/books.json" assert { type: "json" };
 $(document).ready(function () {
   var orders = JSON.parse(localStorage.getItem("orders")) || [];
 
@@ -53,12 +53,12 @@ $(document).ready(function () {
   });
 });
 
-myTabContent.appendChild(allBooks);
+// myTabContent.appendChild(allBooks);
 
-container.classList.add("ccontainer", "mt-5");
+// container.classList.add("ccontainer", "mt-5");
 
-allBooks.appendChild(container);
-row.classList.add("row");
+// allBooks.appendChild(container);
+// row.classList.add("row");
 
 // Function to create a book card dynamically
 function createBookCard(
