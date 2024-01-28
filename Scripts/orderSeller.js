@@ -107,7 +107,7 @@ let searchTerm;
 $(document).ready(function () {
   //saveOrdersToLocalStorage(orders);
   // populateUser();
-
+  populateAllUser();
   // EventListener
   $("#searchBookOrder").on("input", function () {
     searchTerm = $("#searchBookOrder").val();
@@ -152,6 +152,41 @@ function populateUser() {
         email: "mohamedhamed3343@gmail.com",
         password: "123456789",
         role: "seller",
+      },
+    ])
+  );
+}
+function populateAllUser() {
+  localStorage.setItem(
+    "users",
+    JSON.stringify([
+      {
+        id: 1,
+        username: "customer1",
+        email: "customer1@gmail.com",
+        password: "password123",
+        role: "customer",
+      },
+      {
+        id: 2,
+        username: "seller1",
+        email: "seller166@gmail.com",
+        password: "sellerpass",
+        role: "seller",
+      },
+      {
+        id: 3,
+        username: "admin1",
+        email: "admin1@gmail.com",
+        password: "adminpass",
+        role: "admin",
+      },
+      {
+        id: 4,
+        username: "mohamed",
+        email: "mohamedhamed3343@gmail.com",
+        password: "123456789",
+        role: "customer",
       },
     ])
   );
