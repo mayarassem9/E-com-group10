@@ -4,7 +4,7 @@ import data from "../Data/books.json" assert { type: "json" };
 import { populateAllData } from "./populateData.js";
 
 $(document).ready(function () {
-  //populateAllData();
+  populateAllData();
   var orders = JSON.parse(localStorage.getItem("orders")) || [];
 
   localStorage.setItem("orders", JSON.stringify(orders));
@@ -136,7 +136,7 @@ function createBookCard(
   //addToCartBtn.id = 'addBtn';
   //addToCartBtn.classList.add('btn', 'btn-dark');
   addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
-  
+
   imgDiv.appendChild(img);
   bodyDiv.appendChild(cardTitle);
   bodyDiv.appendChild(cardAuthor);

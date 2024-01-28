@@ -201,12 +201,12 @@ const filterBooks = (searchTerm) => {
 
 // Function to save books to local storage
 const saveBooksToLocalStorage = (books) => {
-  localStorage.setItem("books", JSON.stringify(books));
+  localStorage.setItem("mybooks", JSON.stringify(books));
 };
 
 // Function to get books from local storage
 const getBooksFromLocalStorage = () => {
-  const storedBooks = localStorage.getItem("books");
+  const storedBooks = localStorage.getItem("mybooks");
   return storedBooks ? JSON.parse(storedBooks) : [];
 };
 
