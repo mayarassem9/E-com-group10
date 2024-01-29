@@ -143,14 +143,25 @@ $(document).ready(function () {
 
     //end of clear
   });
-  document.getElementById("editb").addEventListener("click", function () {
-    let addBtnn = document.getElementById("addBookBtn");
-    let editBtn = document.getElementById("EditBookBtn");
-    addBtnn.classList.add("d-none");
-    editBtn.classList.remove("d-none");
+  // document.getElementById("editb").addEventListener("click", function () {
+  //   let addBtnn = document.getElementById("addBookBtn");
+  //   let editBtn = document.getElementById("EditBookBtn");
+  //   addBtnn.classList.add("d-none");
+  //   editBtn.classList.remove("d-none");
 
-    valid.clearModalInputs();
-  });
+  //   valid.clearModalInputs();
+  // });
+
+  document.addEventListener("click", (e)=>{
+    if(e.target.closest(".btn").id == "editb")
+      {
+        let addBtnn = document.getElementById("addBookBtn");
+        let editBtn = document.getElementById("EditBookBtn");
+        addBtnn.classList.add("d-none");
+        editBtn.classList.remove("d-none");
+        valid.clearModalInputs();
+      }
+  })
 
   /*===============End Edit================*/
 
