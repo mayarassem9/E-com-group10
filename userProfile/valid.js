@@ -12,7 +12,7 @@ export function createTableOrder(orders,currentUser){
 
         console.log(item);
         var newRow = document.createElement('tr');
-
+    
     var data = [item.name, item.quantity, item.price*item.quantity+" $",order.status];
     for (var i = 0; i < 4; i++) {
         var newCell = document.createElement('td');

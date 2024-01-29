@@ -102,7 +102,7 @@ function createCartItem(books,item,orders,orderIndex) {
     console.log(books);
     var selectedBook = books.find(book => book["ID"] == item["bookId"]);
     console.log(selectedBook);
-
+    
     var quantityInput = document.createElement('input');
     quantityInput.id = 'form1';
     quantityInput.min = '1';

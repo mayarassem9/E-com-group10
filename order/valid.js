@@ -1,9 +1,11 @@
 /*===============Add To Cart================*/
+
 export function addToCart(Item, Order, data, id) {
+  let _books = JSON.parse(localStorage.getItem("books")) || [];
   var currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
   var orders = JSON.parse(localStorage.getItem("orders")) || [];
   console.log(data);
-  var obj = data.find((item) => item.ID === Number(id));
+  var obj = _books.find((item) => item.ID === Number(id));
 
   var existingOrderIndex = orders.findIndex(
     (order) => order.userId === currentUser[0].id
@@ -27,6 +29,7 @@ export function addToCart(Item, Order, data, id) {
       }
     } else {
       var newItemIndex = orders[existingOrderIndex].items.length + 1;
+      debugger;
       var newItem = new Item(
         newItemIndex,
         obj["salerID"],
@@ -71,6 +74,5 @@ export function notificationUpdate(orders) {
 
     document.getElementById("notification").innerText = totalItems;
   }
-  document.getElementById("notification").innerText = 0;
 }
 /*===============End Add To Cart================*/

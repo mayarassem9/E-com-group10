@@ -11,6 +11,7 @@ $(document).ready(function () {
     link.addEventListener("click", activateTab);
   });
 
+  
   // this is the toggle collapse script
   const $button = document.querySelector("#sidebar-toggle");
   const $wrapper = document.querySelector("#wrapper");
@@ -139,8 +140,6 @@ $(document).ready(function () {
     addBtnn.classList.remove("d-none");
     editBtn.classList.add("d-none");
 
-    
-
     //end of clear
   });
   // document.getElementById("editb").addEventListener("click", function () {
@@ -152,16 +151,15 @@ $(document).ready(function () {
   //   valid.clearModalInputs();
   // });
 
-  document.addEventListener("click", (e)=>{
-    if(e.target.closest(".btn").id == "editb")
-      {
-        let addBtnn = document.getElementById("addBookBtn");
-        let editBtn = document.getElementById("EditBookBtn");
-        addBtnn.classList.add("d-none");
-        editBtn.classList.remove("d-none");
-        valid.clearModalInputs();
-      }
-  })
+  document.addEventListener("click", (e) => {
+    if (e.target.closest(".btn").id == "editb") {
+      let addBtnn = document.getElementById("addBookBtn");
+      let editBtn = document.getElementById("EditBookBtn");
+      addBtnn.classList.add("d-none");
+      editBtn.classList.remove("d-none");
+      valid.clearModalInputs();
+    }
+  });
 
   /*===============End Edit================*/
 

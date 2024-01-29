@@ -4,7 +4,7 @@ import data from "../Data/books.json" assert { type: "json" };
 import { populateAllData } from "./populateData.js";
 
 $(document).ready(function () {
-  //populateAllData();
+  populateAllData();
   var orders = JSON.parse(localStorage.getItem("orders")) || [];
 
   localStorage.setItem("orders", JSON.stringify(orders));
@@ -23,6 +23,9 @@ $(document).ready(function () {
     imageContainer.style.transition = "transform 2s ease-in-out";
   }
 
+  $("#submitCustomerComplain").click(function () {
+    sendComplain();
+  });
   setInterval(function () {
     // Apply a transform to move images to the top smoothly
     imageContainer.style.transform = "translateY(-25%)";
@@ -160,6 +163,10 @@ function sendComplain() {
   let messages = loadMessagesFromLocalStorage();
   console.log(messages);
   let current_user = getCurrentUserFromLocalStorage();
+  if (!current_user) {
+
+    return;
+  }
 
   let messageID = createNewMessageID(messages);
   let userID = current_user[0].id;

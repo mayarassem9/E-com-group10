@@ -254,7 +254,7 @@ function populateAllBooks() {
         category: "Children",
         salerID: 1,
         imgLink: "Resources/Images/books/TheChristmasOwl.jpg",
-        stockNum:16,
+        stockNum: 16,
       },
       {
         ID: 19,
@@ -464,7 +464,7 @@ function populateAllOrders() {
           },
         ],
         date: "2024-01-26T10:30:45.123Z",
-      }, 
+      },
     ])
   );
 }
@@ -537,7 +537,8 @@ function populateSellerOrders() {
         imgLink: "Resources/Images/books/TaleofTwoCities.jpg",
         date: "2024-01-27T14:01:32.371Z",
         status: "pending",
-      },{
+      },
+      {
         orderId: 4,
         userId: 1,
         status: "pending",
@@ -551,7 +552,7 @@ function populateSellerOrders() {
             imgLink: "Resources/Images/books/MurderOnTheOrientExpress.jpeg",
           },
         ],
-      },    
+      },
     ])
   );
 }
@@ -560,7 +561,7 @@ export function populateAllData() {
   populateUser();
   populateAllBooks();
   populateAllOrders();
-  populateOrder();
+  //populateOrder();
 
   //when seller go to dashboard
   populateSellerOrders();
