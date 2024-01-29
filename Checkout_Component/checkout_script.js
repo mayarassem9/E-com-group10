@@ -83,6 +83,7 @@ $("document").ready(function () {
     //***************Loading Page************************
     //myCart = sampleCartData;
     //localStorage.setItem('orders',JSON.stringify(myCart));
+
     //myCart = getCartFromLocalStorage();
     //displayCartToDOM(myCart);
     //$("#notification").text(myCart.length);
@@ -91,6 +92,7 @@ $("document").ready(function () {
 
     var orders = JSON.parse(localStorage.getItem("orders")) || [];
     valid.notificationUpdate(orders);
+
 
     loadAddressToDOM();
     //***************end of Loading Page************************

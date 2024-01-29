@@ -7,6 +7,7 @@ export function isadmin(email, password) {
 
   if (!admin) {
     is_admin = false;
+    return;
   }
   admin = JSON.parse(admin);
   const adminExists = admin.find(
@@ -110,9 +111,10 @@ export function isCurrentCustomerAuthenticated() {
 
   if (currentUser) {
     let _currentUser = JSON.parse(currentUser);
-    if (_currentUser[0].role === "customer") {
-      return true;
-    }
+    // if (_currentUser[0].role === "customer") {
+    //   return true;
+    // }
+    return true;
   }
   console.log("user not logged in!");
   return false;

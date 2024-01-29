@@ -1,16 +1,90 @@
-// Fetch data and create charts
-fetch("Data/analysis.json")
-  .then((response) => response.json())
-  .then((data) => {
-    const salesByMonth = aggregateSalesByMonth(data);
-    const salesByWeek = aggregateSalesByWeek(data);
+$(document).ready(function () {
+  //    debugger
+
+  let links = document.querySelectorAll(".sidebar-nav a");
+  const currentTab = 0;
+  links.forEach(function (link) {
+    link.addEventListener("click", activateTab);
+  });
+
+  // this is the toggle collapse script
+  const $button = document.querySelector("#sidebar-toggle");
+  const $wrapper = document.querySelector("#wrapper");
+
+  $button.addEventListener("click", (e) => {
+    e.preventDefault();
+    $wrapper.classList.toggle("toggled");
+  });
+  function activateTab(event) {
+    links.forEach(function (l) {
+      l.parentElement.classList.remove("active");
+    });
+
+    event.currentTarget.parentElement.classList.add("active");
+
+    currentTab = parseInt(event.currentTarget.getAttribute("data-tab"));
+    console.log(currentTab);
+
+    window.location.href = event.currentTarget.getAttribute("href");
+  }
+  window.navigateToPage = function (pageUrl) {
+    window.location.href = pageUrl;
+  };
+});
+function getLoggedInSellerId() {
+  // Retrieve currentUser data from local storage
+  const currentUserData = JSON.parse(localStorage.getItem("currentUser"));
+  
+  // Check if currentUser data exists and if the role is "seller"
+  if (currentUserData && currentUserData.length > 0 && currentUserData[0].role === "seller") {
+    // Return the seller's ID from currentUser data
+    return currentUserData[0].id;
+  } else {
+    // Handle the case where currentUser data is not found or the role is not "seller"
+    console.error("Error: Seller ID not found or current user is not a seller.");
+    // You might redirect the user to the appropriate page or take other actions based on your application's logic
+    return null; // or throw an error, depending on your requirements
+  }
+}
+
+// Retrieve allOrders from local storage
+function analyzeSellerOrders() {
+  // Retrieve allOrders from local storage
+  const allOrders = JSON.parse(localStorage.getItem("allOrders"));
+
+  // Proceed with the analysis if allOrders exists
+  if (allOrders) {
+    // Filter orders based on the seller's ID
+    const sellerId = getLoggedInSellerId(); 
+    //debugger;
+    const sellerOrders = allOrders.filter(order => order.items.some(item => item.sellerId === sellerId));
+
+    // Aggregate sales by month and week for the seller's orders
+    const salesByMonth = aggregateSalesByMonth(sellerOrders);
+    const salesByWeek = aggregateSalesByWeek(sellerOrders);
+
+    // Create charts
     createBarChart(salesByMonth, "barChart", "Monthly Sales");
     createPieChart(salesByWeek, "pieChart", "Weekly Sales");
-    createLineChartForPastSevenDays(data); // Call the function for creating line chart for past seven days
-  })
-  .catch((error) => {
-    console.error("Error fetching data:", error);
-  });
+    createLineChartForPastSevenDays(sellerOrders); // Call the function for creating line chart for past seven days
+    
+    // Calculate the number of books sold and number of orders
+    const numberOfBooksSold = sellerOrders.reduce((acc, order) => {
+      return acc + order.items.reduce((totalQuantity, item) => totalQuantity + item.quantity, 0);
+    }, 0);
+    const numberOfOrders = sellerOrders.length;
+
+    // Update the HTML to display the numbers
+    document.getElementById("numberOfBooksSold").textContent = numberOfBooksSold;
+    document.getElementById("numberOfOrders").textContent = numberOfOrders;
+  } else {
+    console.error("Error: No data found in local storage.");
+  }
+}
+
+// Call the analyzeSellerOrders function
+analyzeSellerOrders();
+
 
 // Function to aggregate sales by month
 function aggregateSalesByMonth(data) {
@@ -78,7 +152,7 @@ function createChart(data, chartType, chartId, chartLabel) {
         const index = chartElement[0].index;
         const label = labels[index];
         const sales = values[index];
-        alert(`${chartLabel} for ${label}: $${sales.toFixed(2)}`);
+        Swal.fire(`${chartLabel} for ${label}: $${sales.toFixed(2)}`);
       }
     },
   };
@@ -155,7 +229,7 @@ function createLineChartForPastSevenDays(data) {
         const index = chartElement[0].index;
         const date = labels[index];
         const sales = salesData[date] || 0;
-        alert(`Total sales for ${date}: $${sales.toFixed(2)}`);
+        Swal.fire(`Total sales for ${date}: $${sales.toFixed(2)}`);
       }
     },
   };
