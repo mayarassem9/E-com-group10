@@ -305,14 +305,9 @@ function displaySellerOrders(sellerOrder) {
 }
 
 function getUserNameById(id) {
-  // Assuming users are stored in localStorage
   let users = JSON.parse(localStorage.getItem("users")) || [];
-
-  // Find the user with the given ID
   let user = users.find((user) => user.id === id);
-
-  // Return the username if the user is found, otherwise return null
-  return user ? user.username : null;
+ return user ? user.username : null;
 }
 function formatNiceDate(dateString) {
   const options = {

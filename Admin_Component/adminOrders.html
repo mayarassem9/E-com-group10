@@ -14,7 +14,6 @@
       href="../Resources/Images/logo/svg/White logo - no background.svg"
       type="image/png"
     />
-    
   </head>
   <body>
     <div id="wrapper">
@@ -61,7 +60,7 @@
             </div>
             <ul class="nav navbar-nav ml-auto">
               <li>
-                <a href="../index.html" id="logout">
+                <a href="../index.html" id="logout" onclick="logoutAdmin()">
                   <i class="fa-solid fa-right-from-bracket"></i
                 ></a>
               </li>
@@ -88,13 +87,11 @@
                       <input
                         class="form-control me-2"
                         type="search"
-                        placeholder="Search Seller"
+                        placeholder="Search User"
                         aria-label="Search"
                       />
                     </div>
                   </div>
-
-                
                 </form>
               </div>
 
@@ -104,25 +101,12 @@
                     <tr>
                       <th>Order Id</th>
                       <th>User</th>
-                      <th>Seller</th>
-                      <th>Total Price</th>
-                      <th>Items Sold</th>
+                      <th>Order Status</th>
                       <th>Date</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <!-- <tr class="row">
-                                <td class="col-sm-2">1</td>
-                                <td class="col-sm-2">customer1</td>
-                                <td class="col-sm-2">customer1</td>
-                                <td class="col-sm-2">password123</td>
-                                <td class="col-sm-2">Customer</td>
-                                <td class="col-sm-2">
-                                    <button class="btn btn-secondary  rounded-circle "><i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i></button>
-                                    <button class="btn btn-danger rounded-circle"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
-                                </td>
-                            </tr> -->
-                  </tbody>
+                  <tbody id="sellerOrdersTableBody"></tbody>
                 </table>
               </div>
 
@@ -160,10 +144,25 @@
         </div>
       </section>
     </div>
+    <!-- View Detail Modal-->
+    <div class="modal" id="orderDetailsModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Order Details</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="orderDetailsModalContent"></div>
+        </div>
+      </div>
+    </div>
 
-    <main>
-   
-    </main>
+    <main></main>
 
     <script src="../Scripts/jquery-3.7.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

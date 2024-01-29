@@ -1,30 +1,47 @@
-
-let links = document.querySelectorAll('.sidebar-nav a');
-const currentTab=0;
+let links = document.querySelectorAll(".sidebar-nav a");
+const currentTab = 0;
 links.forEach(function (link) {
-    link.addEventListener('click', activateTab);
+  link.addEventListener("click", activateTab);
 });
 
 // this is the toggle collapse script
-const $button  = document.querySelector('#sidebar-toggle');
-const $wrapper = document.querySelector('#wrapper');
+const $button = document.querySelector("#sidebar-toggle");
+const $wrapper = document.querySelector("#wrapper");
 
-$button.addEventListener('click', (e) => {
-e.preventDefault();
-$wrapper.classList.toggle('toggled');
+$button.addEventListener("click", (e) => {
+  e.preventDefault();
+  $wrapper.classList.toggle("toggled");
 });
 function activateTab(event) {
-    
-    links.forEach(function (l) {
-        l.parentElement.classList.remove('active');
-    });
+  links.forEach(function (l) {
+    l.parentElement.classList.remove("active");
+  });
 
+  event.currentTarget.parentElement.classList.add("active");
 
-    event.currentTarget.parentElement.classList.add('active');
+  currentTab = parseInt(event.currentTarget.getAttribute("data-tab"));
+  console.log(currentTab);
 
-    currentTab = parseInt(event.currentTarget.getAttribute('data-tab'));
-    console.log(currentTab);
+  window.location.href = event.currentTarget.getAttribute("href");
+}
 
-    window.location.href = event.currentTarget.getAttribute('href');
+$("document").ready(function () {
+  console.log("djnsgjkrngk");
+  isAdminAuthenticated();
+});
 
+function isAdminAuthenticated() {
+    debugger;
+  let currentUser = localStorage.getItem("currentUser");
+  if (currentUser) {
+    let _currentUser = JSON.parse(currentUser);
+    if (_currentUser.role === "admin") {
+      window.location.href = "admin.html";
+    }
+  } else {
+    window.location.href = "../login.html";
+  }
+}
+function logoutAdmin() {
+    localStorage.removeItem("currentUser");
 }
