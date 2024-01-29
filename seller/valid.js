@@ -16,7 +16,7 @@ export function istextvalid(val) {
   );
 }
 export function isnumbervalid(val) {
-  return val != null && val.trim() != "" && /^[0-9]+$/.test(val);
+  return val != null && val.trim() != "" && /^[0-9]+$/.test(val) && val.trim() !=0;
 }
 export function isImgValid(val) {
   return val != null && val.trim() != "";
@@ -323,9 +323,13 @@ export function EditV2(books, rowsPerPage) {
     (wish) => wish.bookid === book["ID"]
   );
 
+  console.log(wishList);
+  console.log(wishListIndex);
+
   if (wishListIndex != -1) {
-    wishList.title = title;
-    wishList.price = price;
+    wishList[wishListIndex].title = title;
+    wishList[wishListIndex 
+    ].price = price;
     localStorage.setItem("wishlist", JSON.stringify(wishList));
   }
 

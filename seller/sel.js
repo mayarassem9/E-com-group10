@@ -134,23 +134,34 @@ $(document).ready(function () {
       selects[i].selectedIndex = 0;
     }
 
-    var addBtnn = document.getElementById("addBookBtn");
-    addBtnn.style.display = "";
+    let addBtnn = document.getElementById("addBookBtn");
+    let editBtn = document.getElementById("EditBookBtn");
+    addBtnn.classList.remove("d-none");
+    editBtn.classList.add("d-none");
 
-    var editBtn = document.getElementById("EditBookBtn");
-    editBtn.style.display = "none";
+    
 
     //end of clear
   });
-  document.getElementById("editb").addEventListener("click", function () {
-    var addBtnn = document.getElementById("addBookBtn");
-    addBtnn.style.display = "none";
+  // document.getElementById("editb").addEventListener("click", function () {
+  //   let addBtnn = document.getElementById("addBookBtn");
+  //   let editBtn = document.getElementById("EditBookBtn");
+  //   addBtnn.classList.add("d-none");
+  //   editBtn.classList.remove("d-none");
 
-    var editBtn = document.getElementById("EditBookBtn");
-    editBtn.style.display = "";
+  //   valid.clearModalInputs();
+  // });
 
-    valid.clearModalInputs();
-  });
+  document.addEventListener("click", (e)=>{
+    if(e.target.closest(".btn").id == "editb")
+      {
+        let addBtnn = document.getElementById("addBookBtn");
+        let editBtn = document.getElementById("EditBookBtn");
+        addBtnn.classList.add("d-none");
+        editBtn.classList.remove("d-none");
+        valid.clearModalInputs();
+      }
+  })
 
   /*===============End Edit================*/
 
@@ -286,5 +297,6 @@ $(document).ready(function () {
   window.Delete = function (obj) {
     valid.Delete(obj, rowsPerPage, allBooks);
   };
+
   /*===============End Delete================*/
 });

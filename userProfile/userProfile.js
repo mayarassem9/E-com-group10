@@ -4,6 +4,7 @@ import * as valid2 from '../../order/valid.js';
 var orders =  JSON.parse(localStorage.getItem("orders")) || [];
 var users = JSON.parse(localStorage.getItem("users")) || [];
 var currentUser=JSON.parse(localStorage.getItem("currentUser")) || [];
+var allOrders=JSON.parse(localStorage.getItem("allOrders")) || [];
 
 
 
@@ -11,7 +12,7 @@ $(document).ready(function(){
 
     valid2.notificationUpdate(orders);
 
-    valid.createTableOrder(orders,currentUser);
+    valid.createTableOrder(allOrders,currentUser);
     valid.getUserData(currentUser);
 
     document.getElementById("EditBtn").addEventListener("click",function(){
