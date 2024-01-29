@@ -395,14 +395,6 @@ function populateAllOrders() {
             sellerId: 1,
             imgLink: "Resources/Images/books/TheFinalGambit.jpg",
           },
-          {
-            ID: 3,
-            name: "Abu Alhoul",
-            price: 115,
-            quantity: 3,
-            sellerId: 1,
-            imgLink: "Resources/Images/books/abuAlhoulBook.jpg",
-          },
         ],
         date: "2024-01-27T14:00:09.892Z",
       },
@@ -445,22 +437,6 @@ function populateAllOrders() {
         status: "pending",
         total: 556,
         items: [
-          {
-            ID: 1,
-            name: "Tale of Two Cities",
-            price: 135,
-            quantity: 2,
-            sellerId: 1,
-            imgLink: "Resources/Images/books/TaleofTwoCities.jpg",
-          },
-          {
-            ID: 2,
-            name: "The final Gambit",
-            price: 125,
-            quantity: 4,
-            sellerId: 5,
-            imgLink: "Resources/Images/books/TheFinalGambit.jpg",
-          },
           {
             ID: 3,
             name: "Abu Alhoul",
