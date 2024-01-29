@@ -61,7 +61,7 @@ function populateAllBooks() {
         category: "Fiction",
         salerID: 1,
         imgLink: "Resources/Images/books/abuAlhoulBook.jpg",
-        stockNum: 10,
+        stockNum: 15,
       },
       {
         ID: 2,
@@ -73,7 +73,7 @@ function populateAllBooks() {
         category: "Fiction",
         salerID: 1,
         imgLink: "Resources/Images/books/TheFinalGambit.jpg",
-        stockNum: 10,
+        stockNum: 18,
       },
       {
         ID: 3,
@@ -85,7 +85,7 @@ function populateAllBooks() {
         category: "Fiction",
         salerID: 1,
         imgLink: "Resources/Images/books/FireAndBlood.jpg",
-        stockNum: 10,
+        stockNum: 22,
       },
       {
         ID: 4,
@@ -97,7 +97,7 @@ function populateAllBooks() {
         category: "Fiction",
         salerID: 1,
         imgLink: "Resources/Images/books/TaleofTwoCities.jpg",
-        stockNum: 10,
+        stockNum: 23,
       },
       {
         ID: 5,
@@ -109,7 +109,7 @@ function populateAllBooks() {
         category: "Fiction",
         salerID: 2,
         imgLink: "Resources/Images/books/MurderOnTheOrientExpress.jpeg",
-        stockNum: 10,
+        stockNum: 16,
       },
       {
         ID: 6,
@@ -121,7 +121,7 @@ function populateAllBooks() {
         category: "Fiction",
         salerID: 2,
         imgLink: "Resources/Images/books/WeFreeTheStars.jpg",
-        stockNum: 10,
+        stockNum: 19,
       },
 
       {
@@ -134,7 +134,7 @@ function populateAllBooks() {
         category: "Motivational",
         salerID: 2,
         imgLink: "Resources/Images/books/RichDadAndPoorDad.jpg",
-        stockNum: 10,
+        stockNum: 17,
       },
       {
         ID: 9,
@@ -146,7 +146,7 @@ function populateAllBooks() {
         category: "Motivational",
         salerID: 1,
         imgLink: "Resources/Images/books/AtomicHabits.jpg",
-        stockNum: 10,
+        stockNum: 21,
       },
       {
         ID: 10,
@@ -158,7 +158,7 @@ function populateAllBooks() {
         category: "Motivational",
         salerID: 1,
         imgLink: "Resources/Images/books/GoodToGreat.jpg",
-        stockNum: 10,
+        stockNum: 19,
       },
       {
         ID: 11,
@@ -170,7 +170,7 @@ function populateAllBooks() {
         category: "Motivational",
         salerID: 1,
         imgLink: "Resources/Images/books/TheBodyKeepsTheScore.jpg",
-        stockNum: 10,
+        stockNum: 26,
       },
       {
         ID: 12,
@@ -182,7 +182,7 @@ function populateAllBooks() {
         category: "Motivational",
         salerID: 1,
         imgLink: "Resources/Images/books/NeverSplitTheDifference.jpg",
-        stockNum: 10,
+        stockNum: 29,
       },
       {
         ID: 13,
@@ -194,7 +194,7 @@ function populateAllBooks() {
         category: "Motivational",
         salerID: 1,
         imgLink: "Resources/Images/books/MenFromMarsAndWomenFromVenus.jpg",
-        stockNum: 10,
+        stockNum: 13,
       },
       {
         ID: 14,
@@ -206,7 +206,7 @@ function populateAllBooks() {
         category: "Motivational",
         salerID: 1,
         imgLink: "Resources/Images/books/GreatByChoice.jpg",
-        stockNum: 10,
+        stockNum: 23,
       },
       {
         ID: 15,
@@ -218,7 +218,7 @@ function populateAllBooks() {
         category: "Children",
         salerID: 1,
         imgLink: "Resources/Images/books/CharlieAndTheChocolateFactory.jpg",
-        stockNum: 10,
+        stockNum: 25,
       },
       {
         ID: 16,
@@ -230,7 +230,7 @@ function populateAllBooks() {
         category: "Children",
         salerID: 1,
         imgLink: "Resources/Images/books/TheChaliceOfTheGods.jpg",
-        stockNum: 10,
+        stockNum: 12,
       },
       {
         ID: 17,
@@ -242,7 +242,7 @@ function populateAllBooks() {
         category: "Children",
         salerID: 1,
         imgLink: "Resources/Images/books/TheSeaOfMonsters.jpg",
-        stockNum: 10,
+        stockNum: 9,
       },
       {
         ID: 18,
@@ -254,7 +254,7 @@ function populateAllBooks() {
         category: "Children",
         salerID: 1,
         imgLink: "Resources/Images/books/TheChristmasOwl.jpg",
-        stockNum: 10,
+        stockNum:16,
       },
       {
         ID: 19,
@@ -266,7 +266,7 @@ function populateAllBooks() {
         category: "Children",
         salerID: 1,
         imgLink: "Resources/Images/books/SongForWhale.jpg",
-        stockNum: 10,
+        stockNum: 17,
       },
       {
         ID: 20,
@@ -278,7 +278,7 @@ function populateAllBooks() {
         category: "Children",
         salerID: 1,
         imgLink: "Resources/Images/books/WinterTurning.jpg",
-        stockNum: 10,
+        stockNum: 23,
       },
       {
         ID: 21,
@@ -292,7 +292,7 @@ function populateAllBooks() {
         salerID: 2,
         imgLink:
           "Resources/Images/books/HarryPotterandthePhilosophersStone.jpg",
-        stockNum: 10,
+        stockNum: 25,
       },
       {
         ID: 22,
@@ -304,7 +304,7 @@ function populateAllBooks() {
         category: "History",
         salerID: 2,
         imgLink: "Resources/Images/books/GunsGermsAndSteel.jpg",
-        stockNum: 10,
+        stockNum: 15,
       },
       {
         ID: 23,
@@ -316,7 +316,7 @@ function populateAllBooks() {
         category: "History",
         salerID: 2,
         imgLink: "Resources/Images/books/TheWarmthOfOtherSuns.jpg",
-        stockNum: 10,
+        stockNum: 19,
       },
       {
         ID: 24,
@@ -328,7 +328,7 @@ function populateAllBooks() {
         category: "History",
         salerID: 1,
         imgLink: "Resources/Images/books/AlexanderHamilton.jpeg",
-        stockNum: 10,
+        stockNum: 16,
       },
       {
         ID: 25,
@@ -340,7 +340,7 @@ function populateAllBooks() {
         category: "History",
         salerID: 2,
         imgLink: "Resources/Images/books/TheCrusades.jpg",
-        stockNum: 10,
+        stockNum: 18,
       },
       {
         ID: 26,
@@ -352,7 +352,7 @@ function populateAllBooks() {
         category: "History",
         salerID: 2,
         imgLink: "Resources/Images/books/TheDevilintheWhiteCity.jpg",
-        stockNum: 10,
+        stockNum: 29,
       },
       {
         ID: 27,
@@ -364,7 +364,7 @@ function populateAllBooks() {
         category: "History",
         salerID: 2,
         imgLink: "Resources/Images/books/TheGunsofAugust.jpg",
-        stockNum: 10,
+        stockNum: 17,
       },
     ])
   );
@@ -384,7 +384,7 @@ function populateAllOrders() {
             name: "Tale of Two Cities",
             price: 135,
             quantity: 2,
-            sellerId: 5,
+            sellerId: 2,
             imgLink: "Resources/Images/books/TaleofTwoCities.jpg",
           },
           {
@@ -392,7 +392,7 @@ function populateAllOrders() {
             name: "The final Gambit",
             price: 125,
             quantity: 4,
-            sellerId: 1,
+            sellerId: 2,
             imgLink: "Resources/Images/books/TheFinalGambit.jpg",
           },
         ],
@@ -409,7 +409,7 @@ function populateAllOrders() {
             name: "Tale of Two Cities",
             price: 135,
             quantity: 2,
-            sellerId: 1,
+            sellerId: 2,
             imgLink: "Resources/Images/books/TaleofTwoCities.jpg",
           },
           {
@@ -417,7 +417,7 @@ function populateAllOrders() {
             name: "The final Gambit",
             price: 125,
             quantity: 4,
-            sellerId: 5,
+            sellerId: 2,
             imgLink: "Resources/Images/books/TheFinalGambit.jpg",
           },
           {
@@ -425,7 +425,7 @@ function populateAllOrders() {
             name: "Abu Alhoul",
             price: 115,
             quantity: 3,
-            sellerId: 6,
+            sellerId: 2,
             imgLink: "Resources/Images/books/abuAlhoulBook.jpg",
           },
         ],
@@ -442,12 +442,29 @@ function populateAllOrders() {
             name: "Abu Alhoul",
             price: 115,
             quantity: 3,
-            sellerId: 6,
+            sellerId: 2,
             imgLink: "Resources/Images/books/abuAlhoulBook.jpg",
           },
         ],
         date: "2024-01-27T14:01:32.371Z",
       },
+      {
+        orderId: 4,
+        userId: 1,
+        status: "pending",
+        total: 350,
+        items: [
+          {
+            ID: 5,
+            name: "Murder On The Orient Express",
+            price: 340,
+            quantity: 1,
+            sellerId: 2,
+            imgLink: "Resources/Images/books/MurderOnTheOrientExpress.jpeg",
+          },
+        ],
+        date: "2024-01-26T10:30:45.123Z",
+      }, 
     ])
   );
 }
@@ -462,7 +479,7 @@ function populateOrder() {
         items: [
           {
             ID: 1,
-            sellerId: 1,
+            sellerId: 2,
             name: "Tale of Two Cities",
             price: 135,
             quantity: 1,
@@ -520,7 +537,21 @@ function populateSellerOrders() {
         imgLink: "Resources/Images/books/TaleofTwoCities.jpg",
         date: "2024-01-27T14:01:32.371Z",
         status: "pending",
-      },
+      },{
+        orderId: 4,
+        userId: 1,
+        status: "pending",
+        items: [
+          {
+            ID: 5,
+            sellerId: 2,
+            name: "Murder On The Orient Express",
+            price: 340,
+            quantity: 1,
+            imgLink: "Resources/Images/books/MurderOnTheOrientExpress.jpeg",
+          },
+        ],
+      },    
     ])
   );
 }

@@ -1,3 +1,36 @@
+$(document).ready(function () {
+  //    debugger
+
+  let links = document.querySelectorAll(".sidebar-nav a");
+  const currentTab = 0;
+  links.forEach(function (link) {
+    link.addEventListener("click", activateTab);
+  });
+
+  // this is the toggle collapse script
+  const $button = document.querySelector("#sidebar-toggle");
+  const $wrapper = document.querySelector("#wrapper");
+
+  $button.addEventListener("click", (e) => {
+    e.preventDefault();
+    $wrapper.classList.toggle("toggled");
+  });
+  function activateTab(event) {
+    links.forEach(function (l) {
+      l.parentElement.classList.remove("active");
+    });
+
+    event.currentTarget.parentElement.classList.add("active");
+
+    currentTab = parseInt(event.currentTarget.getAttribute("data-tab"));
+    console.log(currentTab);
+
+    window.location.href = event.currentTarget.getAttribute("href");
+  }
+  window.navigateToPage = function (pageUrl) {
+    window.location.href = pageUrl;
+  };
+});
 function getLoggedInSellerId() {
   // Retrieve currentUser data from local storage
   const currentUserData = JSON.parse(localStorage.getItem("currentUser"));
@@ -23,6 +56,7 @@ function analyzeSellerOrders() {
   if (allOrders) {
     // Filter orders based on the seller's ID
     const sellerId = getLoggedInSellerId(); 
+    debugger;
     const sellerOrders = allOrders.filter(order => order.items.some(item => item.sellerId === sellerId));
 
     // Aggregate sales by month and week for the seller's orders
@@ -33,6 +67,16 @@ function analyzeSellerOrders() {
     createBarChart(salesByMonth, "barChart", "Monthly Sales");
     createPieChart(salesByWeek, "pieChart", "Weekly Sales");
     createLineChartForPastSevenDays(sellerOrders); // Call the function for creating line chart for past seven days
+    
+    // Calculate the number of books sold and number of orders
+    const numberOfBooksSold = sellerOrders.reduce((acc, order) => {
+      return acc + order.items.reduce((totalQuantity, item) => totalQuantity + item.quantity, 0);
+    }, 0);
+    const numberOfOrders = sellerOrders.length;
+
+    // Update the HTML to display the numbers
+    document.getElementById("numberOfBooksSold").textContent = numberOfBooksSold;
+    document.getElementById("numberOfOrders").textContent = numberOfOrders;
   } else {
     console.error("Error: No data found in local storage.");
   }
