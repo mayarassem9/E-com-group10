@@ -106,31 +106,49 @@ let sellerID;
 let searchTerm;
 //pagination varriables
 let currentPage = 1;
-const itemsPerPage = 2;
+const itemsPerPage = 5;
 
 $(document).ready(function () {
   //saveOrdersToLocalStorage(orders);
   // populateUser();
   // populateAllUser();
 
+   //=============search===========//
   // EventListener
   $("#searchBookOrder").on("input", function () {
-    searchTerm = $("#searchBookOrder").val();
+    searchTerm = $("#searchBookOrder").val().trim().toUpperCase();
     console.log(searchTerm);
     // displaySellerOrders(sellerOrders,searchTerm);
+    filterAndDisplayOrdersByBookName(sellerOrders, searchTerm);
   });
+
+
+// Function to filter orders based on book name search term and display
+function filterAndDisplayOrdersByBookName(orders, searchTerm) {
+  const filteredOrders = orders.filter(function (order) {
+    return order.bookName.toUpperCase().includes(searchTerm);
+  });
+
+  displayOrdersForPage(filteredOrders, currentPage);
+
+  // Handle showing all orders if the search term is cleared
+  if (searchTerm === "") {
+    displayOrdersForPage(sellerOrders, currentPage);
+  }
+}
+
 
   // Bind click event to previous page button
-  $("#prevPage").on("click", function (event) {
-    event.preventDefault(); // Prevent default behavior of anchor tag
-    handlePaginationClick("prev"); // Call pagination function with 'prev' action
-  });
+  // $("#prevPage").on("click", function (event) {
+  //   event.preventDefault(); // Prevent default behavior of anchor tag
+  //   handlePaginationClick("prev"); // Call pagination function with 'prev' action
+  // });
 
   // Bind click event to next page button
-  $("#nextPage").on("click", function (event) {
-    event.preventDefault(); // Prevent default behavior of anchor tag
-    handlePaginationClick("next"); // Call pagination function with 'next' action
-  });
+  // $("#nextPage").on("click", function (event) {
+  //   event.preventDefault(); // Prevent default behavior of anchor tag
+  //   handlePaginationClick("next"); // Call pagination function with 'next' action
+  // });
 
   sellerID = getSellerID();
   console.log(sellerID);
