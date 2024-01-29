@@ -27,10 +27,12 @@ logout.addEventListener("click", function () {
   window.location.href = "login.html";
 });
 function dashboard() {
+
   admindash.style.display = "none";
   sellerdash.style.display = "none";
   let currentuser = localStorage.getItem("currentUser");
   currentuser = currentuser ? JSON.parse(currentuser) : false;
+  if(!currentuser) return;
   seller = currentuser.some((currentuser) => currentuser.role === "seller");
   admin = currentuser.some((currentuser) => currentuser.role === "admin");
   if (currentuser && seller) {
