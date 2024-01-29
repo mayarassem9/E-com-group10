@@ -122,7 +122,7 @@ function createSearchAndTabs(sectionProducts) {
   categoryCollapse.classList.add("collapse", "mt-3");
   categoryCollapse.setAttribute("id", "categoryCollapse");
   categoryCollapse.style.backgroundColor = "#ffff";
-  categoryCollapse.style.display = "flex";
+  //categoryCollapse.style.display = "flex";
   categoryCollapse.style.flexDirection = "row";
   categoryCollapse.style.alignItems = "center";
   categoryCollapse.style.justifyContent = "space-between";
@@ -169,10 +169,7 @@ const addBooksToDOM = (books) => {
       book.author,
       book.description,
       book.price,
-      book.imgLink,
-      book.bestSeller,
-      book.recentlyAdded,
-      book.stockNum
+      book.imgLink
     );
     row.appendChild(bookCard);
   });
@@ -182,6 +179,12 @@ const addBooksToDOM = (books) => {
   if (displayedBooks >= books.length) {
     viewMoreButton.disabled = true;
   }
+  // Check if there are more books to display when the page loads
+window.addEventListener('load', () => {
+  if (displayedBooks < books.length) {
+    viewMoreButton.disabled = false;
+  }
+});
 };
 
 // Function to filter for the search
@@ -213,17 +216,7 @@ const getBooksFromLocalStorage = () => {
 // Function to get the books
 const getBooks = () => {
   allBooksData = getBooksFromLocalStorage();
-  console.log(`DAATATA: ${allBooksData}`);
   addBooksToDOM(allBooksData);
-  // fetch("Data/productData.json")
-  //   .then((res) => res.text())
-  //   .then((data) => JSON.parse(data))
-  //   .then((data) => {
-  //     allBooksData = data.books;
-  //     saveBooksToLocalStorage(allBooksData);
-
-  //   })
-  //   .catch((err) => console.log(err));
 };
 
 // Function to create a book card dynamically
@@ -233,10 +226,7 @@ function createBookCard(
   author,
   description,
   price,
-  imageSrc,
-  isBestSeller,
-  isRecentlyAdded,
-  stockNum
+  imageSrc
 ) {
   var colDiv = document.createElement("div");
   colDiv.classList.add("col-md-3", "mb-4");
@@ -250,7 +240,6 @@ function createBookCard(
 
   var img = document.createElement("img");
   img.src = imageSrc;
-  console.log("Image source:", imageSrc); // Log the image source
   img.classList.add("card-img-top", "img-fluid");
   img.alt = title + " Image";
 
@@ -405,40 +394,24 @@ function getUniqueCategories() {
 
 // Call fetchCategoryBooks initially to populate the category collapse
 fetchCategoryBooks();
+//functionto get theJsonfile from Localstorage
+function getMyBooksFromLocalStorage() {
+  return JSON.parse(localStorage.getItem("mybooks"));
+}
+
+let myBooks = getMyBooksFromLocalStorage();
 
 // Function to fetch and display best seller books
 const fetchBestSellerBooks = () => {
-  let myBooks = JSON.parse(localStorage.getItem("mybooks"));
-
   const bestSellerBooks = myBooks.filter((book) => book.bestSeller);
   addBooksToDOM(bestSellerBooks);
 };
 
 // Function to fetch and display recently added books
 const fetchRecentlyAddedBooks = () => {
-  const recentlyAddedBooks = allBooksData.filter((book) => book.recentlyAdded);
+  const recentlyAddedBooks = myBooks.filter((book) => book.recentlyAdded);
   addBooksToDOM(recentlyAddedBooks);
 };
-
-// Function to remove out-of-stock items after 5 minutes
-// const removeOutOfStockItems = () => {
-//   const currentTime = new Date().getTime();
-//   const updatedBooksData = allBooksData.filter((book) => {
-//     if (book.stockNum === 0 && currentTime - book.outOfStockTime >= 60 * 1000) {
-//       return false; // Exclude out-of-stock items older than 5 minutes
-//     }
-//     return true;
-//   });
-//   if (updatedBooksData.length !== allBooksData.length) {
-//     allBooksData = updatedBooksData;
-//     saveBooksToLocalStorage(allBooksData);
-//     const activeTab = ul.querySelector(".active");
-//     if (activeTab) {
-//       const tabId = activeTab.getAttribute("data-target").substring(1);
-//       updateDisplayedBooks(tabId);
-//     }
-//   }
-// };
 
 // Function to add new books to replace out-of-stock ones
 const addNewBooks = () => {
@@ -456,32 +429,29 @@ const addNewBooks = () => {
   }
 };
 
-// Add click event listener to the tab buttons
+// Attach event listener to a parent element using event delegation
 document.addEventListener("click", (event) => {
   const clickedElement = event.target;
 
-  // Check if the clicked element is not a tab button
-  if (clickedElement.tagName !== "BUTTON" || !clickedElement.closest("ul")) {
+  // Check if the clicked element is the "Categories" tab button
+  if (clickedElement.tagName === "BUTTON" && clickedElement.getAttribute("data-target") === "#category") {
     const categoryCollapse = document.getElementById("categoryCollapse");
-    categoryCollapse.classList.remove("show");
+    // Toggle visibility of the category collapse
+    categoryCollapse.style.display = "flex";
+  } else {
+    // Hide the category collapse when clicking outside of it
+    const categoryCollapse = document.getElementById("categoryCollapse");
+    categoryCollapse.style.display = "none";
   }
 });
 
+//event listener for navigating tabs 
 let myUL = document.getElementById("myTab");
 myUL.addEventListener("click", (event) => {
   if (event.target.tagName === "BUTTON") {
     const tabId = event.target.getAttribute("data-target").substring(1); // Extract tab id
+    console.log("Tab clicked:", tabId); // Check if tabId is correct
     updateDisplayedBooks(tabId);
-
-    // Hide the category collapse when switching to another tab
-    const categoryCollapse = document.getElementById("categoryCollapse");
-    if (tabId === "category") {
-      // Show the category collapse if the "Categories" tab is clicked
-      categoryCollapse.classList.add("show");
-    } else {
-      // Hide the category collapse if any other tab is clicked
-      categoryCollapse.classList.remove("show");
-    }
   }
 });
 

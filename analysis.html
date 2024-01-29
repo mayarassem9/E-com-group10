@@ -78,6 +78,17 @@
         </div>
           <!-- **************************  POSTER  ****************************-->
 <section >
+  <div class="d-flex gap-3 m-3">
+    <div class="card w-50">
+       <div class="card-body p-2"><i class="fa-solid fa-book"></i><span id="numberOfBooksSold">Calculating...</span> books sold</div>
+    </div>
+    <div class="card w-50">
+      <div class="card-body p-2"><i class="fa-solid fa-cart-shopping"></i><span id="numberOfOrders">Calculating...</span> orders</div>
+    </div>
+  </div>
+  
+
+
     <div class="chart-container m-3">
         <div class="chart">
           
@@ -93,9 +104,7 @@
         </div>
       </div>
     
-      <div id="selectedData">
-        
-      </div>
+    
 
 
 </div>
@@ -103,32 +112,7 @@
 </section>
 
  <!-- Floating Button Container -->
-  <div class="fixed-button">
-    <button class="btn btn-dark rounded-circle" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-headset"></i> </button>
-  </div>
 
-   <!-- Modal For Customer Sevice-->
-   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">What are your complains?</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="form-floating">
-            <textarea class="form-control" placeholder="Leave your message here" id="complainTextarea"></textarea>
-            <label for="complainTextarea">message</label>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" id="dismissCustomerComplain" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" id="submitCustomerComplain" onclick="sendComplain()" class="btn btn-primary">Send</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
       </div>
 
     <script src="Scripts/jquery-3.7.1.js"></script>
@@ -137,6 +121,7 @@
     <script src="Scripts/bootstrap.bundle.js"></script>
     <script src="Scripts/scriptforlisting.js"></script>
     <script src="Scripts/analysis.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
