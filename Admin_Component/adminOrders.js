@@ -335,9 +335,46 @@ function updatePaginationButtons(totalPages) {
     paginationContainer.appendChild(li);
   }
 }
+
+let sortOrder = {
+  column: null,
+  direction: 'asc', // 'asc' for ascending, 'desc' for descending
+};
+
+function sortTable(column) {
+  if (sortOrder.column === column) {
+
+    sortOrder.direction = sortOrder.direction === 'asc' ? 'desc' : 'asc';
+  } else {
+    sortOrder.column = column;
+    sortOrder.direction = 'asc';
+  }
+
+  myallOrders.sort((a, b) => {
+    let aValue = a[column];
+    let bValue = b[column];
+
+    if (column === 'date') {
+      aValue = new Date(aValue).getTime();
+      bValue = new Date(bValue).getTime();
+    } else if (typeof aValue === 'string') {
+      aValue = aValue.toLowerCase();
+      bValue = bValue.toLowerCase();
+    }
+
+    if (sortOrder.direction === 'asc') {
+      return aValue > bValue ? 1 : -1;
+    } else {
+      return aValue < bValue ? 1 : -1;
+    }
+  });
+
+  displayOrdersForPage(myallOrders, currentPage);
+}
+
+
 // 1. get Orders from Local Storage
 // Cook the data   Get USer Name From ID, Get Seller Name from ID
 // 2. Display to The Dom
 // 3. add View Button to see the items
 // 4. fix the pagination
-// 5.

@@ -202,7 +202,11 @@ a:focus {
   #sidebar-wrapper {
     width: 60px;
   }
-
+ #sidebar-logo {
+    float: left;
+    margin-left: 5px;
+    width: 50px;
+  }
   #wrapper.toggled #navbar-wrapper {
     position: absolute;
     margin-right: -250px;
