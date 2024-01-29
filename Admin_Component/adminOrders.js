@@ -67,7 +67,7 @@ let orders = [
   },
 ];
 let searchTerm;
-const itemsPerPage = 2; // Change this value to the desired number of orders per page
+const itemsPerPage = 5; // Change this value to the desired number of orders per page
 let currentPage = 1;
 
 $(document).ready(function () {

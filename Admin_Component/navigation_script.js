@@ -11,6 +11,7 @@ const $wrapper = document.querySelector("#wrapper");
 $button.addEventListener("click", (e) => {
   e.preventDefault();
   $wrapper.classList.toggle("toggled");
+
 });
 function activateTab(event) {
   links.forEach(function (l) {
