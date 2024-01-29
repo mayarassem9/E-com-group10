@@ -67,11 +67,34 @@ let orders = [
   },
 ];
 let searchTerm;
+const itemsPerPage = 2; // Change this value to the desired number of orders per page
+let currentPage = 1;
 
 $(document).ready(function () {
   links[3].parentElement.classList.add("active");
   myallOrders = loadOrdersFromLocalStorage();
-  displayAllOrders(myallOrders);
+  //displayAllOrders(myallOrders);
+  const totalPages = Math.ceil(myallOrders.length / itemsPerPage);
+  updatePaginationButtons(totalPages);
+  displayOrdersForPage(myallOrders, currentPage);
+
+
+  document.getElementById("prevPage").addEventListener("click", function () {
+    if (currentPage > 1) {
+      currentPage--;
+      displayOrdersForPage(myallOrders, currentPage);
+      updatePaginationButtons(Math.ceil(myallOrders.length / itemsPerPage));
+    }
+  });
+  
+  document.getElementById("nextPage").addEventListener("click", function () {
+    const totalPages = Math.ceil(myallOrders.length / itemsPerPage);
+    if (currentPage < totalPages) {
+      currentPage++;
+      displayOrdersForPage(myallOrders, currentPage);
+      updatePaginationButtons(totalPages);
+    }
+  });
 });
 
 function loadOrdersFromLocalStorage() {
@@ -255,6 +278,63 @@ function seeOrderDetails(orderID) {
   bootstrapModal.show();
 }
 
+function changeOrderStatus(_orderId) {
+  _orderId = Number(_orderId);
+  console.log(_orderId);
+  myallOrders = loadOrdersFromLocalStorage();
+  myallOrders.forEach((order) => {
+    if (order.orderId === _orderId) {
+      if (order.status === "pending") {
+        order.status = "completed";
+      } else if (order.status === "completed") {
+        order.status = "pending";
+      }
+    }
+  });
+  saveOrdersToLocalStorage(myallOrders);
+  myallOrders = loadOrdersFromLocalStorage();
+  //displayAllOrders(myallOrders);
+  const totalPages = Math.ceil(myallOrders.length / itemsPerPage);
+  updatePaginationButtons(totalPages);
+  displayOrdersForPage(myallOrders, currentPage);
+  // displayOrdersForPage(sellerOrders, currentPage);
+}
+
+function displayOrdersForPage(orders, page) {
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedOrders = orders.slice(startIndex, endIndex);
+
+  displayAllOrders(paginatedOrders);
+}
+
+function updatePaginationButtons(totalPages) {
+  const paginationContainer = document.querySelector(".pagination-numbers");
+  paginationContainer.innerHTML = '';
+
+  for (let i = 1; i <= totalPages; i++) {
+    const li = document.createElement("li");
+    li.classList.add("page-item");
+
+    const button = document.createElement("a");
+    button.classList.add("page-link");
+    button.href = "#";
+    button.textContent = i;
+
+    button.addEventListener("click", function () {
+      currentPage = i;
+      displayOrdersForPage(myallOrders, currentPage);
+      updatePaginationButtons(totalPages);
+    });
+
+    if (i === currentPage) {
+      li.classList.add("active");
+    }
+
+    li.appendChild(button);
+    paginationContainer.appendChild(li);
+  }
+}
 // 1. get Orders from Local Storage
 // Cook the data   Get USer Name From ID, Get Seller Name from ID
 // 2. Display to The Dom
