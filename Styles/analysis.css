@@ -27,3 +27,19 @@
   font-size: 18px;
   color: #333;
 }
+
+.card-body {
+  font-size: 25px; /* Adjust the font size as needed */
+  color: #393030;
+}
+
+.fa-solid {
+  font-size: 40px; /* Adjust the icon size as needed */
+  color:#5f6846 ;
+}
+
+/* Prevent hover effects */
+.card-body:hover {
+  background-color: transparent !important;
+  
+}
