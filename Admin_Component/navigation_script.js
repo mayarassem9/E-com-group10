@@ -26,7 +26,6 @@ function activateTab(event) {
 }
 
 $("document").ready(function () {
-  console.log("djnsgjkrngk");
   isAdminAuthenticated();
 });
 
