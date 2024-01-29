@@ -1,16 +1,46 @@
-// Fetch data and create charts
-fetch("Data/analysis.json")
-  .then((response) => response.json())
-  .then((data) => {
-    const salesByMonth = aggregateSalesByMonth(data);
-    const salesByWeek = aggregateSalesByWeek(data);
+function getLoggedInSellerId() {
+  // Retrieve currentUser data from local storage
+  const currentUserData = JSON.parse(localStorage.getItem("currentUser"));
+  
+  // Check if currentUser data exists and if the role is "seller"
+  if (currentUserData && currentUserData.length > 0 && currentUserData[0].role === "seller") {
+    // Return the seller's ID from currentUser data
+    return currentUserData[0].id;
+  } else {
+    // Handle the case where currentUser data is not found or the role is not "seller"
+    console.error("Error: Seller ID not found or current user is not a seller.");
+    // You might redirect the user to the appropriate page or take other actions based on your application's logic
+    return null; // or throw an error, depending on your requirements
+  }
+}
+
+// Retrieve allOrders from local storage
+function analyzeSellerOrders() {
+  // Retrieve allOrders from local storage
+  const allOrders = JSON.parse(localStorage.getItem("allOrders"));
+
+  // Proceed with the analysis if allOrders exists
+  if (allOrders) {
+    // Filter orders based on the seller's ID
+    const sellerId = getLoggedInSellerId(); 
+    const sellerOrders = allOrders.filter(order => order.items.some(item => item.sellerId === sellerId));
+
+    // Aggregate sales by month and week for the seller's orders
+    const salesByMonth = aggregateSalesByMonth(sellerOrders);
+    const salesByWeek = aggregateSalesByWeek(sellerOrders);
+
+    // Create charts
     createBarChart(salesByMonth, "barChart", "Monthly Sales");
     createPieChart(salesByWeek, "pieChart", "Weekly Sales");
-    createLineChartForPastSevenDays(data); // Call the function for creating line chart for past seven days
-  })
-  .catch((error) => {
-    console.error("Error fetching data:", error);
-  });
+    createLineChartForPastSevenDays(sellerOrders); // Call the function for creating line chart for past seven days
+  } else {
+    console.error("Error: No data found in local storage.");
+  }
+}
+
+// Call the analyzeSellerOrders function
+analyzeSellerOrders();
+
 
 // Function to aggregate sales by month
 function aggregateSalesByMonth(data) {
