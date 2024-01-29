@@ -56,7 +56,7 @@ function analyzeSellerOrders() {
   if (allOrders) {
     // Filter orders based on the seller's ID
     const sellerId = getLoggedInSellerId(); 
-    debugger;
+    //debugger;
     const sellerOrders = allOrders.filter(order => order.items.some(item => item.sellerId === sellerId));
 
     // Aggregate sales by month and week for the seller's orders
@@ -152,7 +152,7 @@ function createChart(data, chartType, chartId, chartLabel) {
         const index = chartElement[0].index;
         const label = labels[index];
         const sales = values[index];
-        alert(`${chartLabel} for ${label}: $${sales.toFixed(2)}`);
+        Swal.fire(`${chartLabel} for ${label}: $${sales.toFixed(2)}`);
       }
     },
   };
@@ -229,7 +229,7 @@ function createLineChartForPastSevenDays(data) {
         const index = chartElement[0].index;
         const date = labels[index];
         const sales = salesData[date] || 0;
-        alert(`Total sales for ${date}: $${sales.toFixed(2)}`);
+        Swal.fire(`Total sales for ${date}: $${sales.toFixed(2)}`);
       }
     },
   };
