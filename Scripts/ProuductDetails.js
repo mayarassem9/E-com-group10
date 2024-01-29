@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //asmaa
     
     var orders = JSON.parse(localStorage.getItem("orders")) || [];
+    var books = JSON.parse(localStorage.getItem("books")) || [];
 
     
     localStorage.setItem("orders", JSON.stringify(orders));
@@ -19,7 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(bookId);
 
     document.getElementById("addBtn").addEventListener("click",function(){
-        valid.addToCart(Item,Order,data,bookId);
+        
+        valid.addToCart(Item,books,data,bookId);
          orders=JSON.parse(localStorage.getItem("orders"));
         valid.notificationUpdate(orders);
     })

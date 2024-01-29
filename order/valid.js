@@ -3,7 +3,7 @@ export function addToCart(Item, Order, data, id) {
     var currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
     var orders = JSON.parse(localStorage.getItem("orders")) || [];
     console.log(data);
-    var obj = data.find(item => item.ID === Number(id));
+    var obj = data["books"].find(item => item.ID == Number(id));
     
 
     var existingOrderIndex = orders.findIndex(order => order.userId === currentUser[0].id);
