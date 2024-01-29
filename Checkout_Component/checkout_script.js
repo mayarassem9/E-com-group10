@@ -113,7 +113,6 @@ $("document").ready(function () {
         if ($("#save-info").is(":checked")) {
           saveBillingAddress();
         }
-        debugger;
         let myOrder = createNewOrder(myCart);
 
         if (myOrder) {
@@ -133,6 +132,7 @@ $("document").ready(function () {
             myCart = null;
             $("#total-price").text("");
             $("#promoCodeInput").val("");
+            $("#total-Items").text("0");
 
             displayCartToDOM(myCart);
           } else {
@@ -162,6 +162,7 @@ function createNewOrder(myCart) {
   if (myCart && myCart != {}) {
     let newOrderID = createNewOrderId();
     let orderDate = new Date();
+    let _tot = computeDiscountTotal(myCart[0]);
 
     let newOrder = new Order(
       newOrderID,
@@ -219,32 +220,67 @@ function redeemDiscount() {
     });
   }
 }
+// function updateProductStock(books, order) {
+//   if (!order || !order.items) {
+//     PurchaseError = "Invalid order data. Unable to update product stock";
+//     return false;
+//   }
+//   const soldItems = order.items;
+//   console.log(order);
+//   soldItems.forEach((soldItem) => {
+//     const bookToUpdate = books.find((book) => book.ID === soldItem.ID);
+//     debugger;
+//     if (bookToUpdate) {
+//       console.log(bookToUpdate.stockNum, soldItems.quantity);
+//       if (bookToUpdate.stockNum >= soldItem.quantity) {
+//         let sNum = bookToUpdate.stockNum;
+//         bookToUpdate.stockNum = sNum - soldItem.quantity;
+//       } else {
+//         PurchaseError = `Product  ${soldItem.name} is out of stock`;
+//         return false;
+//       }
+//     } else {
+//       console.warn(`Book with ID ${soldItem.ID} not found.`);
+//     }
+//   });
+//   updateBooksToLocalStorage(books);
+//   return true;
+// }
 function updateProductStock(books, order) {
+  let PurchaseError;
+
   if (!order || !order.items) {
     PurchaseError = "Invalid order data. Unable to update product stock";
     return false;
   }
+
   const soldItems = order.items;
-  console.log(order);
+  debugger;
   soldItems.forEach((soldItem) => {
-    const bookToUpdate = books.find((book) => book.ID === soldItem.ID);
-    debugger;
-    if (bookToUpdate) {
-      console.log(bookToUpdate.stockNum, soldItems.quantity);
+    const bookToUpdateIndex = books.findIndex(
+      (book) => book.ID === soldItem.bookId
+    );
+
+    if (bookToUpdateIndex !== -1) {
+      const bookToUpdate = books[bookToUpdateIndex];
+
       if (bookToUpdate.stockNum >= soldItem.quantity) {
-        let sNum = bookToUpdate.stockNum;
-        bookToUpdate.stockNum = sNum - soldItem.quantity;
+        books[bookToUpdateIndex].stockNum -= soldItem.quantity;
       } else {
-        PurchaseError = `Product  ${soldItem.name} is out of stock`;
+        PurchaseError = `Product ${soldItem.name} is out of stock`;
         return false;
       }
     } else {
       console.warn(`Book with ID ${soldItem.ID} not found.`);
+      return false;
     }
   });
+
   updateBooksToLocalStorage(books);
+
   return true;
 }
+
 function updateBooksToLocalStorage(books) {
   if (books) localStorage.setItem("books", JSON.stringify(books));
 }
@@ -298,17 +334,18 @@ function loadAddressToDOM() {
     const lastSavedAddress = savedAddresses.find(
       (address) => address.userID === getCurrentUser().id
     );
-
-    // Populate form fields with the saved address
-    $("#firstName").val(lastSavedAddress.firstName);
-    $("#lastName").val(lastSavedAddress.lastName);
-    $("#username").val(lastSavedAddress.username);
-    $("#email").val(lastSavedAddress.email);
-    $("#address").val(lastSavedAddress.address);
-    $("#address2").val(lastSavedAddress.address2);
-    $("#country").val(lastSavedAddress.country);
-    $("#state").val(lastSavedAddress.state);
-    $("#zip").val(lastSavedAddress.zip);
+    if (lastSavedAddress) {
+      // Populate form fields with the saved address
+      $("#firstName").val(lastSavedAddress.firstName);
+      $("#lastName").val(lastSavedAddress.lastName);
+      $("#username").val(lastSavedAddress.username);
+      $("#email").val(lastSavedAddress.email);
+      $("#address").val(lastSavedAddress.address);
+      $("#address2").val(lastSavedAddress.address2);
+      $("#country").val(lastSavedAddress.country);
+      $("#state").val(lastSavedAddress.state);
+      $("#zip").val(lastSavedAddress.zip);
+    }
   }
 }
 
@@ -426,7 +463,7 @@ function computeDiscountTotal(cart) {
 }
 function computedCurrentTotal(cart) {
   let myTotal = 0;
-  debugger;
+
   if (cart) {
     cart.items.forEach((item) => {
       let mul = item.quantity * item.price;
