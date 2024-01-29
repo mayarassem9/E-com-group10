@@ -538,8 +538,10 @@ function addwish(bookId, title, img, price) {
 
   if (current) {
     // FOR handle if I logged out and no current user
-    isuser = current.some((current) => current.role === "customer");
+    // current.some((current) => current.role === "customer");
+    isuser = true;
   }
+    
 
   wishlist = wishlist ? JSON.parse(wishlist) : [];
   let newid = 1;

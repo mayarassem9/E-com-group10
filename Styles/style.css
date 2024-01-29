@@ -714,8 +714,8 @@ body {
     gap: 30px;
     position: absolute;
     z-index: 3;
-    top: 350px;
-    right: 20px;
+    top: 4000px;
+    right: 10px;
     display: flex;
   }
 
