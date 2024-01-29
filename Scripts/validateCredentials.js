@@ -7,6 +7,7 @@ export function isadmin(email, password) {
 
   if (!admin) {
     is_admin = false;
+    return;
   }
   admin = JSON.parse(admin);
   const adminExists = admin.find(
