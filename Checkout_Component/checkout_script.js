@@ -2,6 +2,7 @@ import {
   isCurrentCustomerAuthenticated,
   getCurrentUser,
 } from "../Scripts/validateCredentials.js";
+import * as valid from '../../order/valid.js';
 
 // *********************Sample Data**********************
 const sampleCartData = [
@@ -82,9 +83,15 @@ $("document").ready(function () {
     //***************Loading Page************************
     //myCart = sampleCartData;
     //localStorage.setItem('orders',JSON.stringify(myCart));
-    myCart = getCartFromLocalStorage();
-    displayCartToDOM(myCart);
-    $("#notification").text(myCart.length);
+    //myCart = getCartFromLocalStorage();
+    //displayCartToDOM(myCart);
+    //$("#notification").text(myCart.length);
+
+    
+
+    var orders = JSON.parse(localStorage.getItem("orders")) || [];
+    valid.notificationUpdate(orders);
+
     loadAddressToDOM();
     //***************end of Loading Page************************
 

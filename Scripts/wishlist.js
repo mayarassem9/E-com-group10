@@ -1,3 +1,8 @@
+import * as valid from '../../order/valid.js';
+
+var orders = JSON.parse(localStorage.getItem("orders")) || [];
+valid.notificationUpdate(orders);
+
 
 let row = document.createElement("DIV");
 let allBooks = document.createElement("DIV");  
