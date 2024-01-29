@@ -288,7 +288,8 @@ function createBookCard(
   addToCartBtn.addEventListener("click", function () {
     var currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if (currentUser) {
-      valid.addToCart(Item, Order, data, bookId);
+      var books = JSON.parse(localStorage.getItem("books")) || [];
+      valid.addToCart(Item, Order, books, bookId);
       var orders = JSON.parse(localStorage.getItem("orders")) || [];
       localStorage.setItem("orders", JSON.stringify(orders));
       valid.notificationUpdate(orders);

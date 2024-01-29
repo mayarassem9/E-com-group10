@@ -3,14 +3,14 @@ export function addToCart(Item, Order, data, id) {
     var currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
     var orders = JSON.parse(localStorage.getItem("orders")) || [];
     console.log(data);
-    var obj = data["books"].find(item => item.ID === Number(id));
+    var obj = data.find(item => item.ID === Number(id));
     
 
     var existingOrderIndex = orders.findIndex(order => order.userId === currentUser[0].id);
 
     if (existingOrderIndex !== -1) {
         console.log(orders[existingOrderIndex].items);
-        var existingItemIndex = orders[existingOrderIndex].items.findIndex(item => item.name === obj["title"]);
+        var existingItemIndex = orders[existingOrderIndex].items.findIndex(item => item.bookId === obj["ID"]);
 
         if (existingItemIndex !== -1) {
             if (orders[existingOrderIndex].items[existingItemIndex].quantity < obj["stockNum"]) {
@@ -27,7 +27,8 @@ export function addToCart(Item, Order, data, id) {
                 obj["title"],
                 obj["price"],
                 1,
-                obj["imgLink"]
+                obj["imgLink"],
+                obj["ID"],
             );
             orders[existingOrderIndex].items.push(newItem.getItem());
             Swal.fire("Added to your cart !!");
@@ -39,7 +40,8 @@ export function addToCart(Item, Order, data, id) {
             obj["title"],
             obj["price"],
             1,
-            obj["imgLink"]
+            obj["imgLink"],
+            obj["ID"],
         );
         var newOrder = new Order(currentUser[0].id, "pending", [newItem]);
         orders.push(newOrder.getOrder());

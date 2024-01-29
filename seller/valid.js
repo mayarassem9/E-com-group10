@@ -276,8 +276,8 @@ export function EditV2 (books,rowsPerPage) {
     var id = Number(document.getElementById("idd").value);
     var title = document.getElementById("title").value;
     var authorName = document.getElementById("AuthorName").value;
-    var numOfStock = document.getElementById("NumberOfStock").value;
-    var price = document.getElementById("Price").value;
+    var numOfStock =Number( document.getElementById("NumberOfStock").value);
+    var price =Number( document.getElementById("Price").value);
     var description = document.getElementById("Description").value;
     var category = document.getElementById("Catogry").value;
     var bookImage = document.getElementById("BookImage").value;
@@ -296,6 +296,30 @@ export function EditV2 (books,rowsPerPage) {
     if (bookImage) {
         book["imgLink"] = "Resources/Images/books/" + bookImage;
     }
+
+    var orders = JSON.parse(localStorage.getItem("orders")) || [];
+            
+    orders.forEach(function(order) {
+        var itemIndex = order.items.findIndex(item => item.bookId === book["ID"]);
+        console.log(itemIndex);
+        if (itemIndex != -1) {
+            order.items[itemIndex].name=title;
+            order.items[itemIndex].price=price;
+            order.items[itemIndex].imgLink=book["imgLink"];
+            console.log(orders);
+            localStorage.setItem("orders", JSON.stringify(orders));
+        }
+    });
+
+    
+    var wishList = JSON.parse(localStorage.getItem("wishlist")) || [];
+            const wishListIndex = wishList.findIndex(wish => wish.bookid === book["ID"]);
+
+            if (wishListIndex != -1) {
+                wishList.title=title;
+                wishList.price=price;
+                 localStorage.setItem("wishlist", JSON.stringify(wishList));
+            }
 
     updateLocalStorage(books);
     createTable(rowsPerPage,books); 
@@ -326,7 +350,7 @@ export function sortDescending(prop,books,rowsPerPage) {
 /*===============End Sort================*/
 
 /*===============Delete================*/
-export function Delete(obj,rowsPerPage,books) {
+export function Delete(obj, rowsPerPage, books) {
     Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to delete this book!",
@@ -337,24 +361,44 @@ export function Delete(obj,rowsPerPage,books) {
         confirmButtonText: "Yes"
     }).then((result) => {
         if (result.isConfirmed) {
-            for (var i = 0; i < books.length; i++) {
-                if (obj["ID"] == books[i]["ID"]) {
-                    books.splice(i, 1); 
-                    
-                    updateLocalStorage(books);
-                    createTable(rowsPerPage,books); 
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your book has been deleted.",
-                        icon: "success"
-                    });
-                    break; 
+            const bookIndex = books.findIndex(book => book.ID === obj.ID);
+
+            var orders = JSON.parse(localStorage.getItem("orders")) || [];
+            
+            orders.forEach(function(order) {
+                var itemIndex = order.items.findIndex(item => item.bookId === obj.ID);
+                console.log(itemIndex);
+                if (itemIndex != -1) {
+                    order.items.splice(itemIndex, 1);
+                    console.log(orders);
+                    localStorage.setItem("orders", JSON.stringify(orders));
                 }
-                createTable(rowsPerPage,books);
+            });
+
+            var wishList = JSON.parse(localStorage.getItem("wishlist")) || [];
+            const wishListIndex = wishList.findIndex(wish => wish.bookid === obj.ID);
+
+            if (wishListIndex !== -1) {
+                wishList.splice(wishListIndex, 1);
+                 localStorage.setItem("wishlist", JSON.stringify(wishList));
+            }
+
+            if (bookIndex !== -1) {
+                books.splice(bookIndex, 1);
+                updateLocalStorage(books);
+                createTable(rowsPerPage, books);
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your book has been deleted.",
+                    icon: "success"
+                });
+            } else {
+                console.error("Book not found for deletion");
             }
         }
     });
 }
+
 /*===============End Delete================*/
 export function findObjectById(array, id) {
     return array.find(item => item.ID === id);

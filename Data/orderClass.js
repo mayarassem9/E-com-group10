@@ -5,12 +5,19 @@ export class Item {
     #quantity;
     #imgLink;
     #sellerId;
+    #bookId;
 
     set ID(_ID){
         this.#ID=_ID;
     }
     get ID(){
         return this.#ID;
+    }
+    set bookId(_bookId){
+        this.#bookId=_bookId;
+    }
+    get bookId(){
+        return this.#bookId;
     }
 
 
@@ -51,13 +58,14 @@ export class Item {
     
 
 
-    constructor(_ID,_sellerId,_name, _price,_quantity=1,_imgLink) {
+    constructor(_ID,_sellerId,_name, _price,_quantity=1,_imgLink,_bookId) {
         this.ID=_ID;
     this.sellerId=_sellerId;
       this.name = _name;
       this.price = _price;
       this.quantity = _quantity;
       this.imgLink=_imgLink;
+      this.bookId=_bookId
     }
 
     getItem() {
@@ -69,6 +77,7 @@ export class Item {
             "price":this.price,
             "quantity":this.quantity,
             "imgLink":this.imgLink,
+            "bookId":this.bookId,
         }
         
     }

@@ -20,7 +20,21 @@ $(document).ready(function(){
                 });
             } 
     $('#goToCheckout').click(function (event) {
-        window.location.href = "Checkout_Component/checkout.html"
+
+        var orderIndex =orders.findIndex(order => order.userId === currentUser[0].id);
+        if(orderIndex!=-1){
+            window.location.href = "Checkout_Component/checkout.html"
+        }
+        else{
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "You must place an order before proceeding to checkout.",
+                
+              });
+        }
+
+       
     })
 });
 
@@ -86,7 +100,7 @@ function createCartItem(books,item,orders,orderIndex) {
         updateTotalPrice();}
     });
     console.log(books);
-    var selectedBook = books.find(book => book["title"] == item["name"]);
+    var selectedBook = books.find(book => book["ID"] == item["bookId"]);
     console.log(selectedBook);
 
     var quantityInput = document.createElement('input');

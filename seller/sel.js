@@ -176,10 +176,41 @@ $(document).ready(function () {
       }
     });
 
+     /*===============Search================*/
+    /*============================================*/
+    /*document.getElementById("searchInput").addEventListener("input", function (event) {
+      var searchValue = this.value.trim().toUpperCase();
+      var storedBooks = books;
+
+      var filteredBooks = storedBooks.filter(function (book) {
+          return (
+              String(book.ID).startsWith(searchValue) ||
+              book.title.toUpperCase().startsWith(searchValue)
+          );
+      });
+
+      valid.updateTable(rowsPerPage, filteredBooks);
+
+      if (event.inputType === "deleteContentBackward" && searchValue === "") {
+          valid.createTable(rowsPerPage, books);
+      }
+  });
+
+  $('#searchInput').typeahead({
+      source: function(query, process) {
+
+          var options = books.map(book => book.title);
+          process(options);
+      }
+  });
+
   /*===============End Search================*/
 
+
+  /*===============End Search================*/
   /*===============Sort================*/
   /*============================================*/
+  
   document
     .getElementsByTagName("thead")[0]
     .addEventListener("click", function (e) {
