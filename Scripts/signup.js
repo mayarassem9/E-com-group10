@@ -57,26 +57,29 @@ function uservalid(username) {
 }
 
 function emailvalid(email) {
-    email_message=document.getElementById("emailmessage");
+    email_message = document.getElementById("emailmessage");
     
-    
-    if (/^[a-zA-Z0-9._%+-]+@(gmail|yahoo)\.com$/.test(email) && ! isSellerEmail(email)) {
-       console.log("HHIIIIII");
+    // Extract the email name and domain
+    const [emailName, emailDomain] = email.split('@');
+
+    // Check if the email name length is within the desired range (e.g., 1 to 20 characters)
+    const isEmailNameValid = emailName.length >= 1 && emailName.length <= 20;
+
+    if (/^[a-zA-Z0-9._%+-]+@(gmail|yahoo)\.com$/.test(email) && !isSellerEmail(email) && isEmailNameValid) {
+        console.log("HHIIIIII");
         isEmailValid = true;
-        email_message.textContent = ('valid email');
-        email_message.style.color='green'
+        email_message.textContent = ('Valid email');
+        email_message.style.color = 'green';
         document.getElementById('email').classList.remove('border-danger');
         document.getElementById('email').classList.add('border-success');
     } else {
-        console.log("NNNNIIIII");
         isEmailValid = false;
-        email_message.textContent = ('Not valid. Only Gmail or Yahoo emails allowed or use another email.');
-        email_message.style.color='red'
+        email_message.textContent = ('Not valid. Only Gmail or Yahoo emails allowed, Max lenght 20, or use another email.');
+        email_message.style.color = 'red';
         document.getElementById('email').classList.remove('border-success');
         document.getElementById('email').classList.add('border-danger');
     }
 }
-
 function passvalid(password) {
     pass_message=document.getElementById("passmassege");
     if (/^\S{8,}$/.test(password)  && password.length <= 20) {
