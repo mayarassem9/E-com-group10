@@ -1,15 +1,18 @@
-// let current = localStorage.getItem("currentUser");
-// current = current ? JSON.parse(current) : false;
+// window.addEventListener("load", function () {
+//   isSellerAuthenticated();
+// });
 
-// if (current) {
-//   let isseller = current.some((current) => current.role === "seller");
-//   let isadmin = current.some((current) => current.role === "admin");
-//   if (!isadmin) {
-//     window.location.href = "../index.html";
+// function isSellerAuthenticated() {
+//   debugger;
+//   let currentUser = localStorage.getItem("currentUser");
+//   if (currentUser) {
+//     let _currentUser = JSON.parse(currentUser);
+//     if (_currentUser[0].role === "seller") {
+//       window.location.href = "../seller.html";
+//     } else {
+//       window.location.href = "../login.html";
+//     }
+//   } else {
+//     window.location.href = "../login.html";
 //   }
-//   if (!isseller) {
-//     window.location.href = "index.html";
-//   }
-// } else {
-//   window.location.href = "index.html";
 // }

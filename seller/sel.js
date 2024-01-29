@@ -176,9 +176,9 @@ $(document).ready(function () {
       }
     });
 
-     /*===============Search================*/
-    /*============================================*/
-    /*document.getElementById("searchInput").addEventListener("input", function (event) {
+  /*===============Search================*/
+  /*============================================*/
+  /*document.getElementById("searchInput").addEventListener("input", function (event) {
       var searchValue = this.value.trim().toUpperCase();
       var storedBooks = books;
 
@@ -206,11 +206,10 @@ $(document).ready(function () {
 
   /*===============End Search================*/
 
-
   /*===============End Search================*/
   /*===============Sort================*/
   /*============================================*/
-  
+
   document
     .getElementsByTagName("thead")[0]
     .addEventListener("click", function (e) {
