@@ -11,7 +11,6 @@ const $wrapper = document.querySelector("#wrapper");
 $button.addEventListener("click", (e) => {
   e.preventDefault();
   $wrapper.classList.toggle("toggled");
-
 });
 function activateTab(event) {
   links.forEach(function (l) {
@@ -32,17 +31,19 @@ $("document").ready(function () {
 });
 
 function isAdminAuthenticated() {
-    debugger;
+  debugger;
   let currentUser = localStorage.getItem("currentUser");
   if (currentUser) {
     let _currentUser = JSON.parse(currentUser);
     if (_currentUser.role === "admin") {
       window.location.href = "admin.html";
+    } else {
+      window.location.href = "../login.html";
     }
   } else {
     window.location.href = "../login.html";
   }
 }
 function logoutAdmin() {
-    localStorage.removeItem("currentUser");
+  localStorage.removeItem("currentUser");
 }

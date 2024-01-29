@@ -84,6 +84,7 @@ $("document").ready(function () {
     //localStorage.setItem('orders',JSON.stringify(myCart));
     myCart = getCartFromLocalStorage();
     displayCartToDOM(myCart);
+    $("#notification").text(myCart.length);
     loadAddressToDOM();
     //***************end of Loading Page************************
 
