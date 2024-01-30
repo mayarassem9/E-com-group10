@@ -405,6 +405,8 @@ export function Delete(obj, rowsPerPage, books) {
       if (bookIndex !== -1) {
         books.splice(bookIndex, 1);
         updateLocalStorage(books);
+        var currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
+        books = books.filter((book) => book["salerID"] === currentUser[0].id);
         createTable(rowsPerPage, books);
         Swal.fire({
           title: "Deleted!",
