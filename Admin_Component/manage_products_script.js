@@ -12,7 +12,7 @@ import * as valid from "../seller/valid.js";
 
 let allBooks = [];
 $(document).ready(function () {
-  //    debugger
+
 
   let links = document.querySelectorAll(".sidebar-nav a");
   links[1].parentElement.classList.add("active");

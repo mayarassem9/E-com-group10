@@ -408,7 +408,7 @@ function deleteUser(id) {
           console.log(2);
           allUsers.splice(index, 1);
           saveUsersInLocalStorage(allUsers);
-          loadAllUsers();
+          displayUsersByPage(currentPage);
         }
       });
     }
