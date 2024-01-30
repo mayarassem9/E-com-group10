@@ -16,7 +16,9 @@ export function istextvalid(val) {
   );
 }
 export function isnumbervalid(val) {
-  return val != null && val.trim() != "" && /^[0-9]+$/.test(val) && val.trim() !=0;
+  return (
+    val != null && val.trim() != "" && /^[0-9]+$/.test(val) && val.trim() != 0
+  );
 }
 export function isImgValid(val) {
   return val != null && val.trim() != "";
@@ -116,6 +118,7 @@ export function validateForm(num) {
 /*============================================*/
 export function createTable(rowsPerPage, books) {
   //debugger;
+
   var tbody = document.querySelector("tbody");
   tbody.innerHTML = "";
 
@@ -175,6 +178,7 @@ export function createTable(rowsPerPage, books) {
   }
 }
 export function updateTable(rowsPerPage, books) {
+  books = books.filter((book) => book["salerID"] === currentUser[0].id);
   var tbody = document.querySelector("tbody");
   tbody.innerHTML = "";
 
@@ -249,6 +253,7 @@ export function Add(books, rowsPerPage) {
   books.push(newBook);
 
   updateLocalStorage(books);
+  books = books.filter((book) => book["salerID"] === currentUser[0].id);
   createTable(rowsPerPage, books);
 
   Swal.fire({
@@ -328,8 +333,8 @@ export function EditV2(books, rowsPerPage) {
 
   if (wishListIndex != -1) {
     wishList[wishListIndex].title = title;
-    wishList[wishListIndex 
-    ].price = price;
+    wishList[wishListIndex].price = price;
+    wishList[wishListIndex].img = book["imgLink"];
     localStorage.setItem("wishlist", JSON.stringify(wishList));
   }
 

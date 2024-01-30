@@ -180,11 +180,11 @@ const addBooksToDOM = (books) => {
     viewMoreButton.disabled = true;
   }
   // Check if there are more books to display when the page loads
-window.addEventListener('load', () => {
-  if (displayedBooks < books.length) {
-    viewMoreButton.disabled = false;
-  }
-});
+  window.addEventListener("load", () => {
+    if (displayedBooks < books.length) {
+      viewMoreButton.disabled = false;
+    }
+  });
 };
 
 // Function to filter for the search
@@ -220,14 +220,7 @@ const getBooks = () => {
 };
 
 // Function to create a book card dynamically
-function createBookCard(
-  bookId,
-  title,
-  author,
-  description,
-  price,
-  imageSrc
-) {
+function createBookCard(bookId, title, author, description, price, imageSrc) {
   var colDiv = document.createElement("div");
   colDiv.classList.add("col-md-3", "mb-4");
   colDiv.setAttribute("id", "theCard");
@@ -400,7 +393,7 @@ function getMyBooksFromLocalStorage() {
 }
 
 let myBooks = getMyBooksFromLocalStorage();
-
+debugger;
 // Function to fetch and display best seller books
 const fetchBestSellerBooks = () => {
   const bestSellerBooks = myBooks.filter((book) => book.bestSeller);
@@ -434,7 +427,10 @@ document.addEventListener("click", (event) => {
   const clickedElement = event.target;
 
   // Check if the clicked element is the "Categories" tab button
-  if (clickedElement.tagName === "BUTTON" && clickedElement.getAttribute("data-target") === "#category") {
+  if (
+    clickedElement.tagName === "BUTTON" &&
+    clickedElement.getAttribute("data-target") === "#category"
+  ) {
     const categoryCollapse = document.getElementById("categoryCollapse");
     // Toggle visibility of the category collapse
     categoryCollapse.style.display = "flex";
@@ -445,7 +441,7 @@ document.addEventListener("click", (event) => {
   }
 });
 
-//event listener for navigating tabs 
+//event listener for navigating tabs
 let myUL = document.getElementById("myTab");
 myUL.addEventListener("click", (event) => {
   if (event.target.tagName === "BUTTON") {
@@ -509,10 +505,9 @@ function addwish(bookId, title, img, price) {
 
   if (current) {
     // FOR handle if I logged out and no current user
-    // current.some((current) => current.role === "customer");
-    isuser = true;
+    isuser = current.some((current) => current.role === "customer");
+    // isuser = true;
   }
-    
 
   wishlist = wishlist ? JSON.parse(wishlist) : [];
   let newid = 1;
