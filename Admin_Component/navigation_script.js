@@ -34,9 +34,7 @@ function isAdminAuthenticated() {
   let currentUser = localStorage.getItem("currentUser");
   if (currentUser) {
     let _currentUser = JSON.parse(currentUser);
-    if (_currentUser.role === "admin") {
-      window.location.href = "admin.html";
-    } else {
+    if (_currentUser[0].role !== "admin") {
       window.location.href = "../login.html";
     }
   } else {

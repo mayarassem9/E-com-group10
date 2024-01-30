@@ -178,6 +178,7 @@ export function createTable(rowsPerPage, books) {
   }
 }
 export function updateTable(rowsPerPage, books) {
+  var currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
   books = books.filter((book) => book["salerID"] === currentUser[0].id);
   var tbody = document.querySelector("tbody");
   tbody.innerHTML = "";
@@ -253,6 +254,7 @@ export function Add(books, rowsPerPage) {
   books.push(newBook);
 
   updateLocalStorage(books);
+  var currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
   books = books.filter((book) => book["salerID"] === currentUser[0].id);
   createTable(rowsPerPage, books);
 
