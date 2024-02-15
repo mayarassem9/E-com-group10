@@ -49,7 +49,7 @@
             >
           </li>
           <li>
-            <a href="approveSellers.html" data-tab="3"
+            <a href="approveSellers.html" data-tab="4"
               ><i class="fa fa-person-circle-check"></i>Approve Sellers</a
             >
           </li>
@@ -75,48 +75,66 @@
         </nav>
       </div>
 
-      <!-- **************************  Admin Panel  ****************************-->
       <section id="content-wrapper">
         <div class="row">
           <div class="col-lg-12">
             <div class="container my-5 border rounded">
-              <h3 class="text text-center p-3">Orders</h3>
+              <h3 class="text text-center p-3">User Management</h3>
 
               <!--******************** Search Input with Icon ******************** -->
               <div class="row my-3">
                 <form class="d-flex">
-                  <div class="col-md-4 offset-4">
+                  <div class="col-md-9 offset-1">
                     <div class="input-group">
+                      <span class="input-group-prepend bg-light">
+                        <i class="input-group-text fa fa-search"></i>
+                      </span>
                       <input
-                        id="dateInput"
                         class="form-control me-2"
-                        type="date"
+                        type="search"
+                        placeholder="Search User"
                         aria-label="Search"
                       />
-                      <button
-                        class="btn btn-dark"
-                        type="button"
-                        onclick="searchOrdersByDate()"
-                      >
-                        Search
-                      </button>
                     </div>
                   </div>
+
                 </form>
               </div>
+
+              <!-- <button
+                class="btn btn-dark mb-3 rounded"
+                id="Add-User"
+                data-bs-toggle="modal"
+                data-bs-target="#addUserModal"
+              >
+                <i class="fa-solid fa-user-plus" style="color: #ffffff"></i> Add
+                User
+              </button> -->
 
               <div class="table-responsive">
                 <table class="table table-hover" id="userTable">
                   <thead>
                     <tr>
-                      <th>Order Id</th>
-                      <th>Customer Name</th>
-                      <th>Order Status</th>
-                      <th>Date</th>
+                      <th>ID</th>
+                      <th>Username</th>
+                      <th>Email</th>
+                      <th>Password</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
-                  <tbody id="sellerOrdersTableBody"></tbody>
+                  <tbody>
+                    <!-- <tr class="row">
+                                <td class="col-sm-2">1</td>
+                                <td class="col-sm-2">customer1</td>
+                                <td class="col-sm-2">customer1</td>
+                                <td class="col-sm-2">password123</td>
+                                <td class="col-sm-2">Customer</td>
+                                <td class="col-sm-2">
+                                    <button class="btn btn-secondary  rounded-circle "><i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i></button>
+                                    <button class="btn btn-danger rounded-circle"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+                                </td>
+                            </tr> -->
+                  </tbody>
                 </table>
               </div>
 
@@ -154,12 +172,20 @@
         </div>
       </section>
     </div>
-    <!-- View Detail Modal-->
-    <div class="modal" id="orderDetailsModal" tabindex="-1">
+
+    <!-- The Read Message Modal -->
+
+    <div
+      class="modal fade"
+      id="readMessageModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Order Details</h5>
+            <h5 class="modal-title" id="exampleModalLabel">User Message</h5>
             <button
               type="button"
               class="btn-close"
@@ -167,17 +193,24 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body" id="orderDetailsModalContent"></div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </div>
 
-    <main></main>
-
     <script src="../Scripts/jquery-3.7.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="navigation_script.js"></script>
-    <script src="adminOrders.js"></script>
+    <script src="approveSellers_script.js"></script>
     <script src="../Scripts/bootstrap.bundle.js"></script>
   </body>
 </html>

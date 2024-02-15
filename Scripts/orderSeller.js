@@ -113,7 +113,7 @@ $(document).ready(function () {
   // populateUser();
   // populateAllUser();
 
-   //=============search===========//
+  //=============search===========//
   // EventListener
   $("#searchBookOrder").on("input", function () {
     searchTerm = $("#searchBookOrder").val().trim().toUpperCase();
@@ -121,22 +121,25 @@ $(document).ready(function () {
     // displaySellerOrders(sellerOrders,searchTerm);
     filterAndDisplayOrdersByBookName(sellerOrders, searchTerm);
   });
-
-
-// Function to filter orders based on book name search term and display
-function filterAndDisplayOrdersByBookName(orders, searchTerm) {
-  const filteredOrders = orders.filter(function (order) {
-    return order.bookName.toUpperCase().includes(searchTerm);
+  $("#logout").click(function (e) {
+    e.preventDefault();
+    localStorage.removeItem("currentUser");
+    window.location.href = "./index.html";
   });
 
-  displayOrdersForPage(filteredOrders, currentPage);
+  // Function to filter orders based on book name search term and display
+  function filterAndDisplayOrdersByBookName(orders, searchTerm) {
+    const filteredOrders = orders.filter(function (order) {
+      return order.bookName.toUpperCase().includes(searchTerm);
+    });
 
-  // Handle showing all orders if the search term is cleared
-  if (searchTerm === "") {
-    displayOrdersForPage(sellerOrders, currentPage);
+    displayOrdersForPage(filteredOrders, currentPage);
+
+    // Handle showing all orders if the search term is cleared
+    if (searchTerm === "") {
+      displayOrdersForPage(sellerOrders, currentPage);
+    }
   }
-}
-
 
   // Bind click event to previous page button
   // $("#prevPage").on("click", function (event) {
@@ -325,7 +328,7 @@ function displaySellerOrders(sellerOrder) {
 function getUserNameById(id) {
   let users = JSON.parse(localStorage.getItem("users")) || [];
   let user = users.find((user) => user.id === id);
- return user ? user.username : null;
+  return user ? user.username : null;
 }
 function formatNiceDate(dateString) {
   const options = {

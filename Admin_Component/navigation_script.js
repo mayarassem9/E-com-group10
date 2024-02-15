@@ -30,7 +30,7 @@ $("document").ready(function () {
 });
 
 function isAdminAuthenticated() {
-  debugger;
+  // debugger;
   let currentUser = localStorage.getItem("currentUser");
   if (currentUser) {
     let _currentUser = JSON.parse(currentUser);

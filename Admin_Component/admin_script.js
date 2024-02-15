@@ -77,6 +77,8 @@ $(document).ready(function () {
     let searchTerm = $('input[type="search"]').val().toLowerCase();
     searchRole = $(this).val();
     searchAndDisplayUsers(searchTerm, searchRole);
+    let totalUsers = filterUsersByRole(searchRole);
+    displayUsersByPage(currentPage);
   });
   $("#submitEditUser").click(function () {
     console.log("HERE");
@@ -104,14 +106,16 @@ function displayUsersByPage(page) {
   currentPage = page; // Set the current page to the clicked page
   const startIndex = (page - 1) * usersPerPage;
   const endIndex = startIndex + usersPerPage;
-  const usersToDisplay = allUsers.slice(startIndex, endIndex);
+  let paginationUsers = filterUsersByRole(searchRole); // Filter users by selected role
 
+  const usersToDisplay = paginationUsers.slice(startIndex, endIndex);
   displayFilteredUsers(usersToDisplay);
-  updatePagination();
+
+  updatePagination(paginationUsers.length);
 }
 
-function updatePagination() {
-  const totalPages = Math.ceil(allUsers.length / usersPerPage);
+function updatePagination(totalUsers) {
+  const totalPages = Math.ceil(totalUsers / usersPerPage);
   let paginationHtml = "";
 
   for (let i = 1; i <= totalPages; i++) {
@@ -121,6 +125,14 @@ function updatePagination() {
         </li>`;
   }
   $(".pagination-numbers").html(paginationHtml);
+}
+
+function filterUsersByRole(role) {
+  if (role === "customer" || role === "seller") {
+    return allUsers.filter((user) => user.role === role);
+  } else {
+    return allUsers;
+  }
 }
 
 function searchAndDisplayUsers(searchTerm, searchRole) {
@@ -163,7 +175,8 @@ function displayFilteredUsers(users) {
     tbody.append(noDataFoundRow);
   }
   users.forEach((user) => {
-    const row = `<tr>
+    if (user.role !== "admin") {
+      const row = `<tr>
                         <td>${user.id}</td>
                         <td>${user.username}</td>
                         <td>${user.email}</td>
@@ -178,7 +191,9 @@ function displayFilteredUsers(users) {
                             </button>
                         </td>
                     </tr>`;
-    tbody.append(row);
+
+      tbody.append(row);
+    }
   });
 }
 function loadAllUsers() {
@@ -373,7 +388,17 @@ function updateUser(userId, name, email, password, role) {
 
   // Find the user to update
   let myUser = allUsers.find((user) => user.id === userId);
-
+  let emailExists = allUsers.some(
+    (user) => user.email === email && user.id !== userId
+  );
+  if (emailExists) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Email Exist Before",
+    });
+    return;
+  }
   if (myUser) {
     // Update user properties
     myUser.username = name;
@@ -399,7 +424,40 @@ function updateUser(userId, name, email, password, role) {
   }
 }
 
+function getOrdersFromLocalStorage() {
+  let orders = localStorage.getItem("allOrders");
+  if (orders) {
+    return JSON.parse(orders);
+  } else return [];
+}
+function getCartFromLocalStorage() {
+  let orders = localStorage.getItem("orders");
+  if (orders) {
+    return JSON.parse(orders);
+  } else return [];
+}
+
 function deleteUser(id) {
+  // Check if this user has an order that is pending
+  let allOrders = getOrdersFromLocalStorage();
+  let myUser = allUsers.find((user) => user.id === id);
+
+  if (myUser.role === "customer") {
+    let _orders = getCartFromLocalStorage();
+    let ordersExist = _orders.filter(
+      (order) => order.userId === id && order.status === "pending"
+    );
+
+    if (ordersExist.length > 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "This user has pending orders.",
+      });
+      return;
+    }
+  }
+
   allUsers.forEach((user, index) => {
     if (user.id === id) {
       debugger;

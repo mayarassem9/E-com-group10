@@ -40,7 +40,7 @@ if (currentUser) {
       };
       /*===============Local Storage================*/
       /*============================================*/
-      debugger;
+      //debugger;
       if (!localStorage.getItem("books")) {
         var books = data.books;
         valid.updateLocalStorage(books);
@@ -73,15 +73,26 @@ if (currentUser) {
       /*============================================*/
       var form = document.querySelector(".needs-validation");
       var submitBtn = document.getElementById("addBookBtn");
+
       submitBtn.addEventListener("click", function (event) {
-        var addBtnn = document.getElementById("addBookBtn");
-        addBtnn.style.display = "block";
+        let addBtnn = document.getElementById("addBookBtn");
+        let editBtn = document.getElementById("EditBookBtn");
+        addBtnn.classList.remove("d-none");
+        editBtn.classList.add("d-none");
 
-        var editBtn = document.getElementById("EditBookBtn");
-        editBtn.style.display = "none";
+        let title = document.getElementById("title").value;
+        const index = books.findIndex((book) => book["title"] === title);
+        console.log(index);
 
-        if (valid.validateForm(0)) {
-          valid.Add(allBooks, rowsPerPage);
+        if (index != -1) {
+          document.getElementById("title").classList.toggle("is-invalid");
+          document.getElementById("titleSpan").innerText =
+            "The book is already exists";
+          document.getElementById("titleSpan").style.display = "";
+        } else {
+          if (valid.validateForm(0)) {
+            valid.Add(allBooks, rowsPerPage);
+          }
         }
       });
       /*===============End Add================*/
@@ -154,15 +165,20 @@ if (currentUser) {
       //   valid.clearModalInputs();
       // });
 
-      document.addEventListener("click", (e) => {
-        if (e.target.closest(".btn").id == "editb") {
+     /* document.addEventListener("click", (e) => {
+        debugger;
+        console.log(e.target.parentNode.classList);
+        if (e.target.parentNode.classList.contains("editb")) {
           let addBtnn = document.getElementById("addBookBtn");
           let editBtn = document.getElementById("EditBookBtn");
           addBtnn.classList.add("d-none");
           editBtn.classList.remove("d-none");
           valid.clearModalInputs();
         }
-      });
+      });*/
+
+     
+
 
       /*===============End Edit================*/
 
@@ -256,6 +272,7 @@ if (currentUser) {
       /*============================================*/
 
       window.Info = function (obj) {
+        debugger;
         var img = document.createElement("img");
         img.setAttribute("src", obj["imgLink"]);
         img.setAttribute("width", "100%");

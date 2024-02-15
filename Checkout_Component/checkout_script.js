@@ -86,8 +86,7 @@ $("document").ready(function () {
 
     myCart = getCartFromLocalStorage();
     displayCartToDOM(myCart);
-    $("#notification").text(myCart.length);
-    debugger;
+    // $("#notification").text(myCart.length);
 
     var orders = JSON.parse(localStorage.getItem("orders")) || [];
     valid.notificationUpdate(orders);
@@ -118,9 +117,11 @@ $("document").ready(function () {
       event.stopPropagation();
       if (validateForm()) {
         //***************Confirm the payment***********************
+
         if ($("#save-info").is(":checked")) {
           saveBillingAddress();
         }
+        debugger;
         let myOrder = createNewOrder(myCart);
 
         if (myOrder) {
@@ -136,12 +137,23 @@ $("document").ready(function () {
               footer: '<a href="../index.html">Go back To the Home Page?</a>',
             });
             // remove the order
-            localStorage.removeItem("orders");
-            myCart = null;
-            $("#total-price").text("");
-            $("#promoCodeInput").val("");
-            $("#total-Items").text("0");
 
+            // let _userCart = getCartFromLocalStorage();
+            // let userCart = _userCart.find(
+            //   (cart) => cart.userId == currentUser[0].id
+            // );
+
+            removeOrder(myCart.orderId);
+            //localStorage.removeItem("orders");
+
+            $("#total-price").text("");
+            $("#promoCodeInput").text("");
+            $("#discountItemsContainer").text("");
+            $("#discount-items").text("");
+            $("#total-Items").text("0");
+            var orders = JSON.parse(localStorage.getItem("orders")) || [];
+            valid.notificationUpdate(orders);
+            myCart = getCartFromLocalStorage();
             displayCartToDOM(myCart);
           } else {
             Swal.fire({
@@ -166,18 +178,43 @@ function getBooksFromLocalStorage() {
   return [];
 }
 
+function removeOrder(id) {
+  debugger;
+  // Get the current cart from local storage
+  let cart = JSON.parse(localStorage.getItem("orders"));
+
+  // Ensure cart exists and is an array
+  if (cart && Array.isArray(cart)) {
+    // Find the index of the order with the given ID
+    const index = cart.findIndex((order) => order.orderId === id);
+
+    // If the order is found
+    if (index !== -1) {
+      // Remove the order from the cart
+      cart.splice(index, 1);
+
+      // Update the cart in local storage
+      localStorage.setItem("orders", JSON.stringify(cart));
+    } else {
+      console.error("Order not found.");
+    }
+  } else {
+    console.error("Cart not found or invalid format.");
+  }
+}
+
 function createNewOrder(myCart) {
   if (myCart && myCart != {}) {
     let newOrderID = createNewOrderId();
     let orderDate = new Date();
-    let _tot = computeDiscountTotal(myCart[0]);
+    let _tot = computeDiscountTotal(myCart);
 
     let newOrder = new Order(
       newOrderID,
       getCurrentUser().id,
       "pending",
-      myCart[0].total,
-      myCart[0].items,
+      myCart.total,
+      myCart.items,
       orderDate
     );
     console.log(newOrder);
@@ -358,16 +395,21 @@ function loadAddressToDOM() {
 }
 
 function getCartFromLocalStorage() {
+  // Ensure a user is logged in
+  const currentUser = getCurrentUser();
+  if (!currentUser) {
+    console.error("No user logged in.");
+    return null;
+  }
+
   let cart = localStorage.getItem("orders");
 
   if (cart) {
     let _cart = JSON.parse(cart);
-    // console.log(_cart);
-    // const userCart = _cart.find(
-    //   (myCart) => myCart.userId === getCurrentUser().id
-    // );
-    return _cart;
+    let userCart = _cart.find((myCart) => myCart.userId === currentUser.id);
+    return userCart || null; // Return userCart if found, otherwise return null
   }
+
   return null;
 }
 function saveOrderToLocalStorage(order) {
@@ -377,9 +419,10 @@ function saveOrderToLocalStorage(order) {
 }
 
 function displayCartToDOM(_cart) {
-  if (_cart && _cart[0]) {
+  debugger;
+  if (_cart) {
     //computing the total
-    let cart = _cart[0];
+    let cart = _cart;
     if (cart.items.length > 0) {
       let totalItems = cart.items.length;
       $("#total-Items").text(totalItems);

@@ -8,9 +8,19 @@ const admindash = document.getElementById("admindashboard");
 document.addEventListener("DOMContentLoaded", function () {
   // Check if the user has signed up or logined
   const userSignedUp = localStorage.getItem("userSignedUp");
+  let currentUser = localStorage.getItem("currentUser");
+  currentUser = currentUser ? JSON.parse(currentUser) : [];
+  const isSeller = currentUser.some((user) => user.role === "seller");
+  const isAdmin = currentUser.some((user) => user.role === "admin");
 
   if (userSignedUp === "true") {
     // Hide the "Sign Up" and "Login" elements
+    signup.style.display = "none";
+    login.style.display = "none";
+  } else if (isSeller) {
+    signup.style.display = "none";
+    login.style.display = "none";
+  } else if (isAdmin) {
     signup.style.display = "none";
     login.style.display = "none";
   } else {
@@ -27,12 +37,11 @@ logout.addEventListener("click", function () {
   window.location.href = "login.html";
 });
 function dashboard() {
-
   admindash.style.display = "none";
   sellerdash.style.display = "none";
   let currentuser = localStorage.getItem("currentUser");
   currentuser = currentuser ? JSON.parse(currentuser) : false;
-  if(!currentuser) return;
+  if (!currentuser) return;
   seller = currentuser.some((currentuser) => currentuser.role === "seller");
   admin = currentuser.some((currentuser) => currentuser.role === "admin");
   if (currentuser && seller) {

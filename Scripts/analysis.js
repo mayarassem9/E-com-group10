@@ -11,6 +11,12 @@ $(document).ready(function () {
   const $button = document.querySelector("#sidebar-toggle");
   const $wrapper = document.querySelector("#wrapper");
 
+  $("#logout").click(function (e) {
+    e.preventDefault();
+    localStorage.removeItem("currentUser");
+    window.location.href = "./index.html";
+  });
+
   $button.addEventListener("click", (e) => {
     e.preventDefault();
     $wrapper.classList.toggle("toggled");
@@ -34,14 +40,20 @@ $(document).ready(function () {
 function getLoggedInSellerId() {
   // Retrieve currentUser data from local storage
   const currentUserData = JSON.parse(localStorage.getItem("currentUser"));
-  
+
   // Check if currentUser data exists and if the role is "seller"
-  if (currentUserData && currentUserData.length > 0 && currentUserData[0].role === "seller") {
+  if (
+    currentUserData &&
+    currentUserData.length > 0 &&
+    currentUserData[0].role === "seller"
+  ) {
     // Return the seller's ID from currentUser data
     return currentUserData[0].id;
   } else {
     // Handle the case where currentUser data is not found or the role is not "seller"
-    console.error("Error: Seller ID not found or current user is not a seller.");
+    console.error(
+      "Error: Seller ID not found or current user is not a seller."
+    );
     // You might redirect the user to the appropriate page or take other actions based on your application's logic
     return null; // or throw an error, depending on your requirements
   }
@@ -55,9 +67,11 @@ function analyzeSellerOrders() {
   // Proceed with the analysis if allOrders exists
   if (allOrders) {
     // Filter orders based on the seller's ID
-    const sellerId = getLoggedInSellerId(); 
+    const sellerId = getLoggedInSellerId();
     //debugger;
-    const sellerOrders = allOrders.filter(order => order.items.some(item => item.sellerId === sellerId));
+    const sellerOrders = allOrders.filter((order) =>
+      order.items.some((item) => item.sellerId === sellerId)
+    );
 
     // Aggregate sales by month and week for the seller's orders
     const salesByMonth = aggregateSalesByMonth(sellerOrders);
@@ -67,15 +81,22 @@ function analyzeSellerOrders() {
     createBarChart(salesByMonth, "barChart", "Monthly Sales");
     createPieChart(salesByWeek, "pieChart", "Weekly Sales");
     createLineChartForPastSevenDays(sellerOrders); // Call the function for creating line chart for past seven days
-    
+
     // Calculate the number of books sold and number of orders
     const numberOfBooksSold = sellerOrders.reduce((acc, order) => {
-      return acc + order.items.reduce((totalQuantity, item) => totalQuantity + item.quantity, 0);
+      return (
+        acc +
+        order.items.reduce(
+          (totalQuantity, item) => totalQuantity + item.quantity,
+          0
+        )
+      );
     }, 0);
     const numberOfOrders = sellerOrders.length;
 
     // Update the HTML to display the numbers
-    document.getElementById("numberOfBooksSold").textContent = numberOfBooksSold;
+    document.getElementById("numberOfBooksSold").textContent =
+      numberOfBooksSold;
     document.getElementById("numberOfOrders").textContent = numberOfOrders;
   } else {
     console.error("Error: No data found in local storage.");
@@ -85,9 +106,9 @@ function analyzeSellerOrders() {
 // Call the analyzeSellerOrders function
 analyzeSellerOrders();
 
-
 // Function to aggregate sales by month
 function aggregateSalesByMonth(data) {
+  debugger;
   const salesByMonth = {};
   data.forEach((order) => {
     const date = new Date(order.date);

@@ -117,7 +117,7 @@ export function validateForm(num) {
 /*================Display=================*/
 /*============================================*/
 export function createTable(rowsPerPage, books) {
-  //debugger;
+  debugger;
 
   var tbody = document.querySelector("tbody");
   tbody.innerHTML = "";
@@ -146,10 +146,10 @@ export function createTable(rowsPerPage, books) {
     var creatTdAction = document.createElement("td");
     creatTdAction.innerHTML = `
             <div class='actionIcon'>
-                <button class="btn btn-secondary rounded-circle btn"  id='editb'   data-bs-toggle='modal' data-bs-target='#ModelBook' onclick='Edit(${JSON.stringify(
+                <button class="btn btn-secondary rounded-circle btn editb"     data-bs-toggle='modal' data-bs-target='#ModelBook' onclick='Edit(${JSON.stringify(
                   book
                 )})'>
-                    <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
+                    <i class="fa-regular fa-pen-to-square editb" style="color: #ffffff;"></i>
                 </button>
                 <button class="btn btn-danger rounded-circle btn" onclick='Delete(${JSON.stringify(
                   book
@@ -176,6 +176,103 @@ export function createTable(rowsPerPage, books) {
     li.innerHTML = `<a class="page-link" href="?page=${i}">${i}</a>`;
     pagination.appendChild(li);
   }
+  let elements = document.getElementsByClassName("editb");
+  console.log(elements);
+for (let i = 0; i < elements.length; i++) {
+elements[i].addEventListener("click", function () {
+  debugger;
+    let addBtnn = document.getElementById("addBookBtn");
+    let editBtn = document.getElementById("EditBookBtn");
+    addBtnn.classList.add("d-none");
+    editBtn.classList.remove("d-none");
+
+    valid.clearModalInputs();
+});
+}
+}
+export function createSellerTable(rowsPerPage, books) {
+  debugger;
+
+  var tbody = document.querySelector("tbody");
+  tbody.innerHTML = "";
+
+  var prop = ["ID", "salerID", "title", "author", "stockNum"];
+
+  var totalPages = Math.ceil(books.length / rowsPerPage);
+  var currentPage =
+    parseInt(new URLSearchParams(window.location.search).get("page")) || 1;
+
+  var startIndex = (currentPage - 1) * rowsPerPage;
+  var endIndex = startIndex + rowsPerPage;
+
+  var booksForPage = books.slice(startIndex, endIndex);
+
+  booksForPage.forEach(function (book) {
+    var createdTr = document.createElement("tr");
+
+    prop.forEach(function (property) {
+      var createTd = document.createElement("td");
+      if (property === "salerID") {
+        let sellerName = getSellerNameFromID(book[property]);
+        createTd.innerText = sellerName;
+      } else {
+        createTd.innerText = book[property];
+      }
+
+      createdTr.appendChild(createTd);
+    });
+
+    var creatTdAction = document.createElement("td");
+    creatTdAction.innerHTML = `
+            <div class='actionIcon'>
+                <button class="btn btn-secondary rounded-circle btn editb"   data-bs-toggle='modal' data-bs-target='#ModelBook' onclick='Edit(${JSON.stringify(
+                  book
+                )})'>
+                    <i class="fa-regular fa-pen-to-square editb" style="color: #ffffff;"></i>
+                </button>
+                <button class="btn btn-danger rounded-circle btn" onclick='Delete(${JSON.stringify(
+                  book
+                )})'>
+                    <i class="fa-solid fa-trash" style="color: #ffffff;"></i>
+                </button>
+                <button class="btn btn-info rounded-circle btn" onclick='Info(${JSON.stringify(
+                  book
+                )})' data-bs-toggle="modal" data-bs-target="#Info">
+                    <i class="fa-solid fa-circle-info" style="color: #ffffff;"></i>                         
+                </button>
+            </div>`;
+
+    createdTr.appendChild(creatTdAction);
+    tbody.appendChild(createdTr);
+  });
+
+  var pagination = document.querySelector(".pagination");
+  pagination.innerHTML = "";
+
+  for (var i = 1; i <= totalPages; i++) {
+    var li = document.createElement("li");
+    li.className = "page-item" + (i === currentPage ? " active" : "");
+    li.innerHTML = `<a class="page-link" href="?page=${i}">${i}</a>`;
+    pagination.appendChild(li);
+  }
+  let elements = document.getElementsByClassName("editb");
+  console.log(elements);
+for (let i = 0; i < elements.length; i++) {
+elements[i].addEventListener("click", function () {
+  debugger;
+    let addBtnn = document.getElementById("addBookBtn");
+    let editBtn = document.getElementById("EditBookBtn");
+    addBtnn.classList.add("d-none");
+    editBtn.classList.remove("d-none");
+
+    valid.clearModalInputs();
+});
+}
+}
+function getSellerNameFromID(id) {
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  let user = users.find((user) => user.id === id);
+  return user ? user.username : null;
 }
 export function updateTable(rowsPerPage, books) {
   var currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
@@ -198,14 +295,14 @@ export function updateTable(rowsPerPage, books) {
     var creatTdAction = document.createElement("td");
     creatTdAction.innerHTML = `
             <div class='actionIcon'>
-                <button class="btn btn-secondary rounded-circle btn" onclick='Edit(${JSON.stringify(
+                <button class="btn btn-secondary rounded-circle btn editb"  onclick='Edit(${JSON.stringify(
                   book
                 )})'>
-                    <i class="fa-regular fa-pen-to-square" style="color: #ffffff;" data-bs-toggle='modal' data-bs-target='#ModelBook'></i>
+                    <i class="fa-regular fa-pen-to-square editb" style="color: #ffffff;" data-bs-toggle='modal' data-bs-target='#ModelBook'></i>
                 </button>
                 <button class="btn btn-danger rounded-circle btn " onclick='Delete(${JSON.stringify(
                   book
-                )},${books},${rowsPerPage}) >
+                )},${JSON.stringify(books)},${rowsPerPage})' >
                     <i class="fa-solid fa-trash" style="color: #ffffff;"></i>
                 </button>
                 <button class="btn btn-info rounded-circle btn" onclick='Info(${JSON.stringify(
@@ -218,6 +315,20 @@ export function updateTable(rowsPerPage, books) {
     createdTr.appendChild(creatTdAction);
     tbody.appendChild(createdTr);
   });
+
+  let elements = document.getElementsByClassName("editb");
+  console.log(elements);
+for (let i = 0; i < elements.length; i++) {
+elements[i].addEventListener("click", function () {
+  debugger;
+    let addBtnn = document.getElementById("addBookBtn");
+    let editBtn = document.getElementById("EditBookBtn");
+    addBtnn.classList.add("d-none");
+    editBtn.classList.remove("d-none");
+
+    valid.clearModalInputs();
+});
+}
 }
 /*===============End Display================*/
 
@@ -341,9 +452,70 @@ export function EditV2(books, rowsPerPage) {
   }
 
   updateLocalStorage(books);
-  createTable(rowsPerPage, books);
+  var currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
+   let a = books.filter((book) => book["salerID"] === currentUser[0].id);
+  createTable(rowsPerPage, a);
   $("#ModelBook").modal("hide");
 }
+export function EditSellerV2(books, rowsPerPage) {
+  var id = Number(document.getElementById("idd").value);
+  var title = document.getElementById("title").value;
+  var authorName = document.getElementById("AuthorName").value;
+  var numOfStock = Number(document.getElementById("NumberOfStock").value);
+  var price = Number(document.getElementById("Price").value);
+  var description = document.getElementById("Description").value;
+  var category = document.getElementById("Catogry").value;
+  var bookImage = document.getElementById("BookImage").value;
+
+  var lastIndex = bookImage.lastIndexOf("\\");
+  bookImage = bookImage.slice(lastIndex + 1);
+
+  var book = findObjectById(books, id);
+  book["title"] = title;
+  book["author"] = authorName;
+  book["stockNum"] = numOfStock;
+  book["price"] = price;
+  book["description"] = description;
+  book["category"] = category;
+
+  if (bookImage) {
+    book["imgLink"] = "Resources/Images/books/" + bookImage;
+  }
+
+  var orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+  orders.forEach(function (order) {
+    var itemIndex = order.items.findIndex((item) => item.bookId === book["ID"]);
+    console.log(itemIndex);
+    if (itemIndex != -1) {
+      order.items[itemIndex].name = title;
+      order.items[itemIndex].price = price;
+      order.items[itemIndex].imgLink = book["imgLink"];
+      console.log(orders);
+      localStorage.setItem("orders", JSON.stringify(orders));
+    }
+  });
+
+  var wishList = JSON.parse(localStorage.getItem("wishlist")) || [];
+  const wishListIndex = wishList.findIndex(
+    (wish) => wish.bookid === book["ID"]
+  );
+
+  console.log(wishList);
+  console.log(wishListIndex);
+
+  if (wishListIndex != -1) {
+    wishList[wishListIndex].title = title;
+    wishList[wishListIndex].price = price;
+    wishList[wishListIndex].img = book["imgLink"];
+    localStorage.setItem("wishlist", JSON.stringify(wishList));
+  }
+
+  updateLocalStorage(books);
+  createSellerTable(rowsPerPage, books);
+  $("#ModelBook").modal("hide");
+}
+
 /*===============End Edit================*/
 
 /*===============Sort================*/

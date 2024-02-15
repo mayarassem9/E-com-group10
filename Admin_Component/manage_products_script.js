@@ -1,19 +1,8 @@
-let data = [];
-fetch("../Data/books.json")
-  .then((response) => response.json())
-  .then((_data) => {
-    // Now you can use the 'data' variable with the loaded JSON data
-    console.log(_data);
-    data = _data;
-  })
-  .catch((error) => console.error("Error loading JSON data:", error));
-
+import data from "../../Data/books.json" assert { type: "json" };
 import * as valid from "../seller/valid.js";
 
 let allBooks = [];
 $(document).ready(function () {
-
-
   let links = document.querySelectorAll(".sidebar-nav a");
   links[1].parentElement.classList.add("active");
   const currentTab = 0;
@@ -56,7 +45,7 @@ $(document).ready(function () {
 
   var currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
   allBooks = books;
- // books = books.filter((book) => book["salerID"] === currentUser[0].id);
+  books = books;
 
   /*===============End Local Storge================*/
   //=====================log out=======================///
@@ -72,7 +61,7 @@ $(document).ready(function () {
   /*================Display=================*/
   /*============================================*/
   var rowsPerPage = 6;
-  valid.createTable(rowsPerPage, books);
+  valid.createSellerTable(rowsPerPage, books);
   /*===============End Display================*/
 
   /*===============Add================*/
@@ -119,7 +108,7 @@ $(document).ready(function () {
     if (!valid.validateForm(1)) {
       event.stopPropagation();
     } else {
-      valid.EditV2(allBooks, rowsPerPage);
+      valid.EditSellerV2(allBooks, rowsPerPage);
       form.classList.add("was-validated");
     }
   });

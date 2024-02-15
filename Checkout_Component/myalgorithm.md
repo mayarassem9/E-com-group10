@@ -14,5 +14,5 @@
 
 5. if order has been successfully done
    - display Message
-   - remove the order from localStorage
+   - remove the order that has the current userid from localStorage
    - reset myCart

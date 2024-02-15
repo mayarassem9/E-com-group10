@@ -78,7 +78,6 @@ $(document).ready(function () {
   updatePaginationButtons(totalPages);
   displayOrdersForPage(myallOrders, currentPage);
 
-
   document.getElementById("prevPage").addEventListener("click", function () {
     if (currentPage > 1) {
       currentPage--;
@@ -86,7 +85,7 @@ $(document).ready(function () {
       updatePaginationButtons(Math.ceil(myallOrders.length / itemsPerPage));
     }
   });
-  
+
   document.getElementById("nextPage").addEventListener("click", function () {
     const totalPages = Math.ceil(myallOrders.length / itemsPerPage);
     if (currentPage < totalPages) {
@@ -107,6 +106,9 @@ function loadOrdersFromLocalStorage() {
   return [];
 }
 function displayAllOrders(myallOrders) {
+  // Sort orders by latest date
+  myallOrders.sort((a, b) => new Date(b.date) - new Date(a.date));
+
   let tableBody = document.getElementById("sellerOrdersTableBody");
   tableBody.innerHTML = ``;
 
@@ -156,10 +158,10 @@ function displayAllOrders(myallOrders) {
 
     if (status === "completed") {
       let actionCell = document.createElement("td");
+      // <button class="btn btn-secondary rounded-circle" onclick="changeOrderStatus('${_orderId}')">
+      // <i class="fa-regular fa-circle-check"></i>
+      // </button>
       actionCell.innerHTML = `
-      <button class="btn btn-secondary rounded-circle" onclick="changeOrderStatus('${_orderId}')">
-      <i class="fa-regular fa-circle-check"></i>
-      </button>
       <button class="btn btn-info rounded-circle" onclick="seeOrderDetails('${_orderId}')">
       <i class="fa-regular fa-eye"></i>
       </button>
@@ -168,9 +170,6 @@ function displayAllOrders(myallOrders) {
     } else {
       let actionCell = document.createElement("td");
       actionCell.innerHTML = `
-      <button class="btn btn-secondary rounded-circle" onclick="changeOrderStatus('${_orderId}')">
-      <i class="fa fa-hourglass-end"></i>
-      </button>
       <button class="btn btn-info rounded-circle" onclick="seeOrderDetails('${_orderId}')">
       <i class="fa-regular fa-eye"></i>
       </button>
@@ -181,6 +180,31 @@ function displayAllOrders(myallOrders) {
     tableBody.appendChild(row);
   });
 }
+
+
+function searchOrdersByDate() {
+  let dateInput = document.getElementById("dateInput").value;
+  
+  // If no date is entered, reset the table to display all orders
+  if (!dateInput) {
+    displayAllOrders(myallOrders);
+    return;
+  }
+  
+  // Filter orders based on the entered date
+  let filteredOrders = myallOrders.filter(order => {
+    // Extracting date portion from order date
+    let orderDate = order.date.split('T')[0];
+    return orderDate === dateInput;
+  });
+
+  // Display filtered orders
+  displayAllOrders(filteredOrders);
+}
+
+
+
+
 function saveOrdersToLocalStorage(orders) {
   localStorage.setItem("allOrders", JSON.stringify(orders));
 }
@@ -235,7 +259,9 @@ function seeOrderDetails(orderID) {
         <th>Price</th>
         <th>Quantity</th>
         <th>Image</th>
+        <th>Seller Name</th>
         <th>Total</th>
+       
       </tr>
     </thead>
     <tbody></tbody>
@@ -246,6 +272,9 @@ function seeOrderDetails(orderID) {
   // Add each item to the table
   order.items.forEach((item) => {
     const row = document.createElement("tr");
+    let allUsers = loadUsersFromLocalStorage();
+    let seller = allUsers.find((user) => user.id === item.sellerId);
+    let sellerName = seller.username;
     row.innerHTML = `
       <td>${item.name}</td>
       <td>${item.price}</td>
@@ -253,7 +282,9 @@ function seeOrderDetails(orderID) {
       <td><img src="../${
         item.imgLink
       }" alt="Book Image" style="max-width: 65px;"></td>
+      <td>${sellerName}</td>
       <td>$${item.price * item.quantity}</td>
+    
     `;
     tbody.appendChild(row);
   });
@@ -274,10 +305,17 @@ function seeOrderDetails(orderID) {
   const hr = document.createElement("hr");
   modalContent.appendChild(hr);
 
+  // Make the modal wider
+  modal.querySelector(".modal-dialog").classList.add("modal-xl");
+
   const bootstrapModal = new bootstrap.Modal(modal);
   bootstrapModal.show();
 }
 
+function loadUsersFromLocalStorage() {
+  let myUsers = JSON.parse(localStorage.getItem("users"));
+  return myUsers;
+}
 function changeOrderStatus(_orderId) {
   _orderId = Number(_orderId);
   console.log(_orderId);
@@ -310,7 +348,7 @@ function displayOrdersForPage(orders, page) {
 
 function updatePaginationButtons(totalPages) {
   const paginationContainer = document.querySelector(".pagination-numbers");
-  paginationContainer.innerHTML = '';
+  paginationContainer.innerHTML = "";
 
   for (let i = 1; i <= totalPages; i++) {
     const li = document.createElement("li");
@@ -338,31 +376,30 @@ function updatePaginationButtons(totalPages) {
 
 let sortOrder = {
   column: null,
-  direction: 'asc', // 'asc' for ascending, 'desc' for descending
+  direction: "asc", // 'asc' for ascending, 'desc' for descending
 };
 
 function sortTable(column) {
   if (sortOrder.column === column) {
-
-    sortOrder.direction = sortOrder.direction === 'asc' ? 'desc' : 'asc';
+    sortOrder.direction = sortOrder.direction === "asc" ? "desc" : "asc";
   } else {
     sortOrder.column = column;
-    sortOrder.direction = 'asc';
+    sortOrder.direction = "asc";
   }
 
   myallOrders.sort((a, b) => {
     let aValue = a[column];
     let bValue = b[column];
 
-    if (column === 'date') {
+    if (column === "date") {
       aValue = new Date(aValue).getTime();
       bValue = new Date(bValue).getTime();
-    } else if (typeof aValue === 'string') {
+    } else if (typeof aValue === "string") {
       aValue = aValue.toLowerCase();
       bValue = bValue.toLowerCase();
     }
 
-    if (sortOrder.direction === 'asc') {
+    if (sortOrder.direction === "asc") {
       return aValue > bValue ? 1 : -1;
     } else {
       return aValue < bValue ? 1 : -1;
@@ -371,5 +408,3 @@ function sortTable(column) {
 
   displayOrdersForPage(myallOrders, currentPage);
 }
-
-
