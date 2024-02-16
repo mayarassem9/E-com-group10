@@ -29,8 +29,9 @@ function loadAllMessages() {
   tbody.empty();
   allMessages = loadMessagesFromLocalStorage();
   // console.log(allUsers);
-  allMessages.forEach((message) => {
-    const row = `<tr${message.isRead ? ' class="read-message"' : ""} >
+  if (allMessages && allMessages.length > 0) {
+    allMessages.forEach((message) => {
+      const row = `<tr${message.isRead ? ' class="read-message"' : ""} >
 
                         <td>${message.id}</td>
                         <td>${message.userId}</td>
@@ -51,10 +52,11 @@ function loadAllMessages() {
                          
                         </td>
                     </tr>`;
-    tbody.append(row);
-    // <input class="form-check-input mt-2 form-check-lg" type="checkbox" value="" id="flexCheckDefault" onclick="markAsRead(${message.id})">
-    // </input>
-  });
+      tbody.append(row);
+      // <input class="form-check-input mt-2 form-check-lg" type="checkbox" value="" id="flexCheckDefault" onclick="markAsRead(${message.id})">
+      // </input>
+    });
+  }
 }
 
 function loadMessagesFromLocalStorage() {
